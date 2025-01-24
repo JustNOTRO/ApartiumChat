@@ -1,0 +1,3 @@
+/home/notro/CLionProjects/ApartiumChat/cmake-build-debug/CMakeFiles/ApartiumChat.dir
+/home/notro/CLionProjects/ApartiumChat/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/notro/CLionProjects/ApartiumChat/cmake-build-debug/CMakeFiles/rebuild_cache.dir
