@@ -1,26 +1,30 @@
-#ifndef SERVER_MANAGER_H
-#define SERVER_MANAGER_H
+//
+// Created by notro on 2/1/25.
+//
 
-#include "Client.h"
+#ifndef SERVERMANAGER_H
+#define SERVERMANAGER_H
+
+#include <unordered_map>
+#include <string>
+
 
 class Client;
 
 class ServerManager {
-    public:
-        static ServerManager& getInstance();
+public:
+    static ServerManager& getInstance();  // Singleton
 
-        void addClient(std::string username, int socket);
+    void addClient(std::string username, int socket);
 
-        void removeClient(int socket);
+    void removeClient(int socket);
 
-        Client& getClient(int socket);
+    Client& getClient(int socket);
 
+private:
+    ServerManager();
 
-    private:
-        ServerManager();
+    std::unordered_map<int, Client> clients;
+};
 
-        static ServerManager& instance;
-        std::unordered_map<int, Client> clients;
-}
-
-#endif //SERVER_MANAGER_H
+#endif // SERVERMANAGER_H

@@ -1,15 +1,13 @@
 #include <iostream>
 #include <thread>
-#include <vector>
-#include <set>
 #include <mutex>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <unistd.h>
 
 #include "Server.h"
-#include "Client.h"
 #include "ServerManager.h"
+#include "Client.h"
 
 std::mutex clientSocketsMtx;
 
@@ -38,7 +36,7 @@ int main() {
 
         Client& client = serverManager.getClient(clientSocket);
         {
-            std::lock_guard<std::mutex> lock(clientSocketsMtx);
+            std::lock_guard lock(clientSocketsMtx);
             // clientSocket.insert(clientSocket);
             client.setServer(server);
 
@@ -49,7 +47,7 @@ int main() {
         std::thread([&client](){ client.communicate(clientSocketsMtx); }).detach();
     }
 
-    server.close();
+    server.disconnect();
     // close(sock);
     return 0;
 }

@@ -49,67 +49,75 @@ cmake_ninja_workdir = /home/notro/CLionProjects/ApartiumChat/cmake-build-debug/
 
 build cmake_object_order_depends_target_ApartiumChat: phony || .
 
-build CMakeFiles/ApartiumChat.dir/server/server.cpp.o.ddi: CXX_SCAN__ApartiumChat_Debug /home/notro/CLionProjects/ApartiumChat/server/server.cpp || cmake_object_order_depends_target_ApartiumChat
-  DEP_FILE = CMakeFiles/ApartiumChat.dir/server/server.cpp.o.ddi.d
-  DYNDEP_INTERMEDIATE_FILE = CMakeFiles/ApartiumChat.dir/server/server.cpp.o.ddi
+build CMakeFiles/ApartiumChat.dir/tcp_server/server.cpp.o.ddi: CXX_SCAN__ApartiumChat_Debug /home/notro/CLionProjects/ApartiumChat/tcp_server/server.cpp || cmake_object_order_depends_target_ApartiumChat
+  DEP_FILE = CMakeFiles/ApartiumChat.dir/tcp_server/server.cpp.o.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = CMakeFiles/ApartiumChat.dir/tcp_server/server.cpp.o.ddi
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  OBJ_FILE = CMakeFiles/ApartiumChat.dir/server/server.cpp.o
-  PREPROCESSED_OUTPUT_FILE = CMakeFiles/ApartiumChat.dir/server/server.cpp.o.ddi.i
+  INCLUDES = -I/home/notro/CLionProjects/ApartiumChat/tcp_server
+  OBJ_FILE = CMakeFiles/ApartiumChat.dir/tcp_server/server.cpp.o
+  PREPROCESSED_OUTPUT_FILE = CMakeFiles/ApartiumChat.dir/tcp_server/server.cpp.o.ddi.i
 
-build CMakeFiles/ApartiumChat.dir/server/server.cpp.o: CXX_COMPILER__ApartiumChat_scanned_Debug /home/notro/CLionProjects/ApartiumChat/server/server.cpp | CMakeFiles/ApartiumChat.dir/server/server.cpp.o.modmap || cmake_object_order_depends_target_ApartiumChat CMakeFiles/ApartiumChat.dir/CXX.dd
-  DEP_FILE = CMakeFiles/ApartiumChat.dir/server/server.cpp.o.d
-  DYNDEP_MODULE_MAP_FILE = CMakeFiles/ApartiumChat.dir/server/server.cpp.o.modmap
+build CMakeFiles/ApartiumChat.dir/tcp_server/server.cpp.o: CXX_COMPILER__ApartiumChat_scanned_Debug /home/notro/CLionProjects/ApartiumChat/tcp_server/server.cpp | CMakeFiles/ApartiumChat.dir/tcp_server/server.cpp.o.modmap || cmake_object_order_depends_target_ApartiumChat CMakeFiles/ApartiumChat.dir/CXX.dd
+  DEP_FILE = CMakeFiles/ApartiumChat.dir/tcp_server/server.cpp.o.d
+  DYNDEP_MODULE_MAP_FILE = CMakeFiles/ApartiumChat.dir/tcp_server/server.cpp.o.modmap
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I/home/notro/CLionProjects/ApartiumChat/tcp_server
   OBJECT_DIR = CMakeFiles/ApartiumChat.dir
-  OBJECT_FILE_DIR = CMakeFiles/ApartiumChat.dir/server
+  OBJECT_FILE_DIR = CMakeFiles/ApartiumChat.dir/tcp_server
   dyndep = CMakeFiles/ApartiumChat.dir/CXX.dd
 
-build CMakeFiles/ApartiumChat.dir/client/client.cpp.o.ddi: CXX_SCAN__ApartiumChat_Debug /home/notro/CLionProjects/ApartiumChat/client/client.cpp || cmake_object_order_depends_target_ApartiumChat
-  DEP_FILE = CMakeFiles/ApartiumChat.dir/client/client.cpp.o.ddi.d
-  DYNDEP_INTERMEDIATE_FILE = CMakeFiles/ApartiumChat.dir/client/client.cpp.o.ddi
+build CMakeFiles/ApartiumChat.dir/tcp_client/client.cpp.o.ddi: CXX_SCAN__ApartiumChat_Debug /home/notro/CLionProjects/ApartiumChat/tcp_client/client.cpp || cmake_object_order_depends_target_ApartiumChat
+  DEP_FILE = CMakeFiles/ApartiumChat.dir/tcp_client/client.cpp.o.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = CMakeFiles/ApartiumChat.dir/tcp_client/client.cpp.o.ddi
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  OBJ_FILE = CMakeFiles/ApartiumChat.dir/client/client.cpp.o
-  PREPROCESSED_OUTPUT_FILE = CMakeFiles/ApartiumChat.dir/client/client.cpp.o.ddi.i
+  INCLUDES = -I/home/notro/CLionProjects/ApartiumChat/tcp_server
+  OBJ_FILE = CMakeFiles/ApartiumChat.dir/tcp_client/client.cpp.o
+  PREPROCESSED_OUTPUT_FILE = CMakeFiles/ApartiumChat.dir/tcp_client/client.cpp.o.ddi.i
 
-build CMakeFiles/ApartiumChat.dir/client/client.cpp.o: CXX_COMPILER__ApartiumChat_scanned_Debug /home/notro/CLionProjects/ApartiumChat/client/client.cpp | CMakeFiles/ApartiumChat.dir/client/client.cpp.o.modmap || cmake_object_order_depends_target_ApartiumChat CMakeFiles/ApartiumChat.dir/CXX.dd
-  DEP_FILE = CMakeFiles/ApartiumChat.dir/client/client.cpp.o.d
-  DYNDEP_MODULE_MAP_FILE = CMakeFiles/ApartiumChat.dir/client/client.cpp.o.modmap
+build CMakeFiles/ApartiumChat.dir/tcp_client/client.cpp.o: CXX_COMPILER__ApartiumChat_scanned_Debug /home/notro/CLionProjects/ApartiumChat/tcp_client/client.cpp | CMakeFiles/ApartiumChat.dir/tcp_client/client.cpp.o.modmap || cmake_object_order_depends_target_ApartiumChat CMakeFiles/ApartiumChat.dir/CXX.dd
+  DEP_FILE = CMakeFiles/ApartiumChat.dir/tcp_client/client.cpp.o.d
+  DYNDEP_MODULE_MAP_FILE = CMakeFiles/ApartiumChat.dir/tcp_client/client.cpp.o.modmap
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I/home/notro/CLionProjects/ApartiumChat/tcp_server
   OBJECT_DIR = CMakeFiles/ApartiumChat.dir
-  OBJECT_FILE_DIR = CMakeFiles/ApartiumChat.dir/client
+  OBJECT_FILE_DIR = CMakeFiles/ApartiumChat.dir/tcp_client
   dyndep = CMakeFiles/ApartiumChat.dir/CXX.dd
 
-build CMakeFiles/ApartiumChat.dir/client/Client.cpp.o.ddi: CXX_SCAN__ApartiumChat_Debug /home/notro/CLionProjects/ApartiumChat/client/Client.cpp || cmake_object_order_depends_target_ApartiumChat
-  DEP_FILE = CMakeFiles/ApartiumChat.dir/client/Client.cpp.o.ddi.d
-  DYNDEP_INTERMEDIATE_FILE = CMakeFiles/ApartiumChat.dir/client/Client.cpp.o.ddi
+build CMakeFiles/ApartiumChat.dir/tcp_client/Client.cpp.o.ddi: CXX_SCAN__ApartiumChat_Debug /home/notro/CLionProjects/ApartiumChat/tcp_client/Client.cpp || cmake_object_order_depends_target_ApartiumChat
+  DEP_FILE = CMakeFiles/ApartiumChat.dir/tcp_client/Client.cpp.o.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = CMakeFiles/ApartiumChat.dir/tcp_client/Client.cpp.o.ddi
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  OBJ_FILE = CMakeFiles/ApartiumChat.dir/client/Client.cpp.o
-  PREPROCESSED_OUTPUT_FILE = CMakeFiles/ApartiumChat.dir/client/Client.cpp.o.ddi.i
+  INCLUDES = -I/home/notro/CLionProjects/ApartiumChat/tcp_server
+  OBJ_FILE = CMakeFiles/ApartiumChat.dir/tcp_client/Client.cpp.o
+  PREPROCESSED_OUTPUT_FILE = CMakeFiles/ApartiumChat.dir/tcp_client/Client.cpp.o.ddi.i
 
-build CMakeFiles/ApartiumChat.dir/client/Client.cpp.o: CXX_COMPILER__ApartiumChat_scanned_Debug /home/notro/CLionProjects/ApartiumChat/client/Client.cpp | CMakeFiles/ApartiumChat.dir/client/Client.cpp.o.modmap || cmake_object_order_depends_target_ApartiumChat CMakeFiles/ApartiumChat.dir/CXX.dd
-  DEP_FILE = CMakeFiles/ApartiumChat.dir/client/Client.cpp.o.d
-  DYNDEP_MODULE_MAP_FILE = CMakeFiles/ApartiumChat.dir/client/Client.cpp.o.modmap
+build CMakeFiles/ApartiumChat.dir/tcp_client/Client.cpp.o: CXX_COMPILER__ApartiumChat_scanned_Debug /home/notro/CLionProjects/ApartiumChat/tcp_client/Client.cpp | CMakeFiles/ApartiumChat.dir/tcp_client/Client.cpp.o.modmap || cmake_object_order_depends_target_ApartiumChat CMakeFiles/ApartiumChat.dir/CXX.dd
+  DEP_FILE = CMakeFiles/ApartiumChat.dir/tcp_client/Client.cpp.o.d
+  DYNDEP_MODULE_MAP_FILE = CMakeFiles/ApartiumChat.dir/tcp_client/Client.cpp.o.modmap
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I/home/notro/CLionProjects/ApartiumChat/tcp_server
   OBJECT_DIR = CMakeFiles/ApartiumChat.dir
-  OBJECT_FILE_DIR = CMakeFiles/ApartiumChat.dir/client
+  OBJECT_FILE_DIR = CMakeFiles/ApartiumChat.dir/tcp_client
   dyndep = CMakeFiles/ApartiumChat.dir/CXX.dd
 
-build CMakeFiles/ApartiumChat.dir/server/Server.cpp.o.ddi: CXX_SCAN__ApartiumChat_Debug /home/notro/CLionProjects/ApartiumChat/server/Server.cpp || cmake_object_order_depends_target_ApartiumChat
-  DEP_FILE = CMakeFiles/ApartiumChat.dir/server/Server.cpp.o.ddi.d
-  DYNDEP_INTERMEDIATE_FILE = CMakeFiles/ApartiumChat.dir/server/Server.cpp.o.ddi
+build CMakeFiles/ApartiumChat.dir/tcp_server/Server.cpp.o.ddi: CXX_SCAN__ApartiumChat_Debug /home/notro/CLionProjects/ApartiumChat/tcp_server/Server.cpp || cmake_object_order_depends_target_ApartiumChat
+  DEP_FILE = CMakeFiles/ApartiumChat.dir/tcp_server/Server.cpp.o.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = CMakeFiles/ApartiumChat.dir/tcp_server/Server.cpp.o.ddi
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  OBJ_FILE = CMakeFiles/ApartiumChat.dir/server/Server.cpp.o
-  PREPROCESSED_OUTPUT_FILE = CMakeFiles/ApartiumChat.dir/server/Server.cpp.o.ddi.i
+  INCLUDES = -I/home/notro/CLionProjects/ApartiumChat/tcp_server
+  OBJ_FILE = CMakeFiles/ApartiumChat.dir/tcp_server/Server.cpp.o
+  PREPROCESSED_OUTPUT_FILE = CMakeFiles/ApartiumChat.dir/tcp_server/Server.cpp.o.ddi.i
 
-build CMakeFiles/ApartiumChat.dir/server/Server.cpp.o: CXX_COMPILER__ApartiumChat_scanned_Debug /home/notro/CLionProjects/ApartiumChat/server/Server.cpp | CMakeFiles/ApartiumChat.dir/server/Server.cpp.o.modmap || cmake_object_order_depends_target_ApartiumChat CMakeFiles/ApartiumChat.dir/CXX.dd
-  DEP_FILE = CMakeFiles/ApartiumChat.dir/server/Server.cpp.o.d
-  DYNDEP_MODULE_MAP_FILE = CMakeFiles/ApartiumChat.dir/server/Server.cpp.o.modmap
+build CMakeFiles/ApartiumChat.dir/tcp_server/Server.cpp.o: CXX_COMPILER__ApartiumChat_scanned_Debug /home/notro/CLionProjects/ApartiumChat/tcp_server/Server.cpp | CMakeFiles/ApartiumChat.dir/tcp_server/Server.cpp.o.modmap || cmake_object_order_depends_target_ApartiumChat CMakeFiles/ApartiumChat.dir/CXX.dd
+  DEP_FILE = CMakeFiles/ApartiumChat.dir/tcp_server/Server.cpp.o.d
+  DYNDEP_MODULE_MAP_FILE = CMakeFiles/ApartiumChat.dir/tcp_server/Server.cpp.o.modmap
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I/home/notro/CLionProjects/ApartiumChat/tcp_server
   OBJECT_DIR = CMakeFiles/ApartiumChat.dir
-  OBJECT_FILE_DIR = CMakeFiles/ApartiumChat.dir/server
+  OBJECT_FILE_DIR = CMakeFiles/ApartiumChat.dir/tcp_server
   dyndep = CMakeFiles/ApartiumChat.dir/CXX.dd
 
-build CMakeFiles/ApartiumChat.dir/CXX.dd | /home/notro/CLionProjects/ApartiumChat/cmake-build-debug/CMakeFiles/ApartiumChat.dir/CXXModules.json CMakeFiles/ApartiumChat.dir/server/server.cpp.o.modmap CMakeFiles/ApartiumChat.dir/client/client.cpp.o.modmap CMakeFiles/ApartiumChat.dir/client/Client.cpp.o.modmap CMakeFiles/ApartiumChat.dir/server/Server.cpp.o.modmap: CXX_DYNDEP__ApartiumChat_Debug CMakeFiles/ApartiumChat.dir/server/server.cpp.o.ddi CMakeFiles/ApartiumChat.dir/client/client.cpp.o.ddi CMakeFiles/ApartiumChat.dir/client/Client.cpp.o.ddi CMakeFiles/ApartiumChat.dir/server/Server.cpp.o.ddi | /home/notro/CLionProjects/ApartiumChat/cmake-build-debug/CMakeFiles/ApartiumChat.dir/CXXDependInfo.json
+build CMakeFiles/ApartiumChat.dir/CXX.dd | /home/notro/CLionProjects/ApartiumChat/cmake-build-debug/CMakeFiles/ApartiumChat.dir/CXXModules.json CMakeFiles/ApartiumChat.dir/tcp_server/server.cpp.o.modmap CMakeFiles/ApartiumChat.dir/tcp_client/client.cpp.o.modmap CMakeFiles/ApartiumChat.dir/tcp_client/Client.cpp.o.modmap CMakeFiles/ApartiumChat.dir/tcp_server/Server.cpp.o.modmap: CXX_DYNDEP__ApartiumChat_Debug CMakeFiles/ApartiumChat.dir/tcp_server/server.cpp.o.ddi CMakeFiles/ApartiumChat.dir/tcp_client/client.cpp.o.ddi CMakeFiles/ApartiumChat.dir/tcp_client/Client.cpp.o.ddi CMakeFiles/ApartiumChat.dir/tcp_server/Server.cpp.o.ddi | /home/notro/CLionProjects/ApartiumChat/cmake-build-debug/CMakeFiles/ApartiumChat.dir/CXXDependInfo.json
 
 
 # =============================================================================
@@ -119,7 +127,7 @@ build CMakeFiles/ApartiumChat.dir/CXX.dd | /home/notro/CLionProjects/ApartiumCha
 #############################################
 # Link the executable ApartiumChat
 
-build ApartiumChat: CXX_EXECUTABLE_LINKER__ApartiumChat_Debug CMakeFiles/ApartiumChat.dir/server/server.cpp.o CMakeFiles/ApartiumChat.dir/client/client.cpp.o CMakeFiles/ApartiumChat.dir/client/Client.cpp.o CMakeFiles/ApartiumChat.dir/server/Server.cpp.o
+build ApartiumChat: CXX_EXECUTABLE_LINKER__ApartiumChat_Debug CMakeFiles/ApartiumChat.dir/tcp_server/server.cpp.o CMakeFiles/ApartiumChat.dir/tcp_client/client.cpp.o CMakeFiles/ApartiumChat.dir/tcp_client/Client.cpp.o CMakeFiles/ApartiumChat.dir/tcp_server/Server.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/ApartiumChat.dir
   POST_BUILD = :

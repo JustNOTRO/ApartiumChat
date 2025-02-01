@@ -5,8 +5,8 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 #include <cstdlib>
-
-#include "Server.h"
+#include <iostream>
+#include <mutex>
 
 class Server;
 

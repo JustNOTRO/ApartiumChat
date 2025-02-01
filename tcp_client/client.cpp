@@ -10,6 +10,8 @@
 
 #include <sys/socket.h>
 
+#include "ServerManager.h"
+
 int main() {
     const int sock = socket(AF_INET, SOCK_STREAM, 0);
 
@@ -32,8 +34,8 @@ int main() {
 
     send(sock, joinMessage.c_str(), joinMessage.size(), 0);
 
-    ServerManager* serverManager = ServerManager::getInstance();
-    serverManager.addClient(sock, username);
+    ServerManager& serverManager = ServerManager::getInstance();
+    serverManager.addClient(username, sock);
 
     while (true) {
         memset(buffer, 0, 1024);
