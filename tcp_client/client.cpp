@@ -17,7 +17,6 @@ int main() {
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_port = htons(8080);
     serverAddress.sin_addr.s_addr = INADDR_ANY;
-    inet_pton(AF_INET, "127.0.0.1", &serverAddress.sin_addr);
 
     if (connect(sock, reinterpret_cast<sockaddr *>(&serverAddress), sizeof(serverAddress)) == -1) {
         std::cerr << "Could not connect to server";
@@ -33,14 +32,13 @@ int main() {
 
     send(sock, joinMessage.c_str(), joinMessage.size(), 0);
 
+    ServerManager* serverManager = ServerManager::getInstance();
+    serverManager.addClient(sock, username);
+
     while (true) {
         memset(buffer, 0, 1024);
         std::cout << "Enter message: ";
         std::cin.getline(buffer, 1024);
-
-        if (strcmp(buffer, "exit") == 0) {
-            break;
-        }
 
         send(sock, buffer, strlen(buffer), 0);
     }
