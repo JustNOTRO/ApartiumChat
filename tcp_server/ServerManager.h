@@ -7,24 +7,28 @@
 
 #include <unordered_map>
 #include <string>
+#include <vector>
 
-
-class Client;
+#include "Client.h"
 
 class ServerManager {
 public:
-    static ServerManager& getInstance();  // Singleton
+    static ServerManager& getInstance();
 
-    void addClient(std::string username, int socket);
+    void addClient(const std::string& username, const int& socket);
 
-    void removeClient(int socket);
+    void removeClient(const int& socket);
+    
+    void cleanupClients();
 
-    Client& getClient(int socket);
+    Client* getClient(int& socket);
+
+    std::vector<int> getClientSockets();
 
 private:
     ServerManager();
-
-    std::unordered_map<int, Client> clients;
+    static std::mutex mtx;
+    std::unordered_map<int, Client*> clients;
 };
 
 #endif // SERVERMANAGER_H

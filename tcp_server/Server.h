@@ -4,20 +4,18 @@
 
 #ifndef SERVER_H
 #define SERVER_H
-#include <iostream>
-#include <thread>
-#include <vector>
+#include <list>
 #include <set>
-#include <mutex>
-#include <sys/socket.h>
+#include <unordered_map>
 #include <netinet/in.h>
-#include <unistd.h>
+
+#include "Client.h"
 
 class Client;
 
 class Server {
     public:
-        explicit Server(int port);
+        Server(const short& port);
 
         ~Server(); // TODO implement destructor
 
@@ -25,11 +23,12 @@ class Server {
 
         void disconnect();
 
-        void broadcast(Client& client, char buffer[], std::mutex& clientSockMtx);
+        void broadcast(Client* client, char buffer[]);
 
         int getSocket();
 
         sockaddr_in getAddress();
+
         
 
     private:

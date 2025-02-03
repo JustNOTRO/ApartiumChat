@@ -9,8 +9,9 @@ add_executable(ApartiumChat
     tcp_server/server.cpp
     tcp_client/client.cpp
     tcp_client/Client.cpp
-        tcp_client/Client.h
+    tcp_client/Client.h
     tcp_server/Server.cpp
     tcp_server/Server.h
+    tcp_server/ServerManager.cpp
     tcp_server/ServerManager.h
 )

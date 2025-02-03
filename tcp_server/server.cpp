@@ -1,18 +1,24 @@
 #include <iostream>
 #include <thread>
+#include <vector>
+#include <set>
 #include <mutex>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <unistd.h>
 
 #include "Server.h"
+class Server;
+
 #include "ServerManager.h"
+class ServerManager;
+
 #include "Client.h"
 
-std::mutex clientSocketsMtx;
+class Client;
 
 int main() {
-    const short SERVER_PORT = 8080; // hard coded
+    const short& SERVER_PORT = 8080; // hard coded
     Server server(SERVER_PORT);
 
     int amountOfClients = 5; // todo remove hardcoded value
@@ -34,17 +40,16 @@ int main() {
             continue;
         }
 
-        Client& client = serverManager.getClient(clientSocket);
-        {
-            std::lock_guard lock(clientSocketsMtx);
-            // clientSocket.insert(clientSocket);
-            client.setServer(server);
-
-            std::cout << client.getName() << " connected to the server." << std::endl;
+        Client* client = serverManager.getClient(clientSocket);
+        if (client == nullptr) {
+            std::cerr << "Could not find Client with socket: " << clientSocket << std::endl;
+            continue;
         }
 
+        client->setServer(server);
+
         // Spawn a new thread to handle the client communication
-        std::thread([&client](){ client.communicate(clientSocketsMtx); }).detach();
+        std::thread([&client](){ client->communicate(); }).detach();
     }
 
     server.disconnect();

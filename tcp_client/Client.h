@@ -8,12 +8,14 @@
 #include <iostream>
 #include <mutex>
 
+#include "Server.h"
+
 class Server;
 
 class Client {
 
     public:
-        Client(std::string name, int socket);
+        Client(std::string name, int sock);
 
         std::string getName();
 
@@ -21,12 +23,12 @@ class Client {
 
         void setServer(Server& server);
 
-        void communicate(std::mutex& clientSockMtx);
+        void communicate();
 
     private:
         Server* server;
         std::string name;
-        int socket;
+        int sock;
     
 };
 
