@@ -4,8 +4,8 @@ CFLAGS = -I./tcp_server -I./tcp_client  # Include paths for server and client he
 LDFLAGS =  # Add any linker flags if needed
 
 # Source files for the server and client
-SRCS_SERVER = tcp_server/server.cpp tcp_server/Server.cpp tcp_server/ServerManager.cpp
-SRCS_CLIENT = tcp_client/client.cpp tcp_client/Client.cpp
+SRCS_SERVER = tcp_server/main.cpp tcp_server/ThreadPool.cpp tcp_server/Server.cpp tcp_server/ServerManager.cpp tcp_client/Client.cpp
+SRCS_CLIENT = tcp_client/main.cpp tcp_client/Client.cpp tcp_server/Server.cpp tcp_server/ServerManager.cpp tcp_server/ThreadPool.cpp
 
 # Object files
 OBJS_SERVER = $(SRCS_SERVER:.cpp=.o)
@@ -33,7 +33,3 @@ $(EXEC_CLIENT): $(OBJS_CLIENT)
 # Clean up object files and executables
 clean:
 	rm -f $(OBJS_SERVER) $(OBJS_CLIENT) $(EXEC_SERVER) $(EXEC_CLIENT)
-
-# Terminal command to open a new terminal window
-terminal:
-	gnome-terminal

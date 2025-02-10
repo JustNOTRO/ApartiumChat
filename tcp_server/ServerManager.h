@@ -10,25 +10,29 @@
 #include <vector>
 
 #include "Client.h"
+#include "Server.h"
 
 class ServerManager {
 public:
     static ServerManager& getInstance();
 
-    void addClient(const std::string& username, const int& socket);
+    void addServer(const short& port, Server* server);
 
-    void removeClient(const int& socket);
+    void removeServer(const short& port);
     
-    void cleanupClients();
+    void cleanupServers();
 
-    Client* getClient(int& socket);
+    bool contains(const short& port);
 
-    std::vector<int> getClientSockets();
+    Server* getServer(const short& port);
+
+    Server* getOrCreateServer(const short& port, size_t numThreads);
+
+    std::unordered_map<short, Server*>& getServers();
 
 private:
     ServerManager();
-    static std::mutex mtx;
-    std::unordered_map<int, Client*> clients;
+    std::unordered_map<short, Server*> servers;
 };
 
 #endif // SERVERMANAGER_H

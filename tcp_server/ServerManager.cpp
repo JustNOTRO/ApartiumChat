@@ -1,62 +1,75 @@
 #include <iostream>
 #include <vector>
+#include <unordered_map>
 
 #include "ServerManager.h"
+#include "Server.h"
 #include "Client.h"
-
 ServerManager::ServerManager() {}
 
 ServerManager& ServerManager::getInstance() {
-  std::lock_guard<std::mutex> lock(mtx);
+  //std::lock_guard<std::mutex> lock(mtx);
   static ServerManager instance;
   return instance;
 }
 
-void ServerManager::addClient(const std::string& username, const int& sock) {
-  std::lock_guard<std::mutex> lock(mtx);
-  Client* client = new Client(username, sock);
-  clients[sock] = client;
+void ServerManager::addServer(const short& port, Server* server) {
+  servers.insert(std::make_pair(port, server));
+  std::cout << "Server is running on port " << port << "..." << std::endl;
 }
 
-void ServerManager::removeClient(const int& sock) {
-  std::lock_guard<std::mutex> lock(mtx);
-  auto it = clients.find(sock);
-  if (it == clients.end()) {
+void ServerManager::removeServer(const short& port) {
+  auto it = servers.find(port);
+  if (it == servers.end()) {
       return;
   }
 
   delete it->second;
-  clients.erase(sock);
+  servers.erase(port);
 }
 
-void ServerManager::cleanupClients() {
-  for (auto& pair : clients) {
+void ServerManager::cleanupServers() {
+  for (auto& pair : servers) {
      delete pair.second;
   }
 
-  clients.clear();
+  servers.clear();
 }
 
-Client* ServerManager::getClient(int& sock) {
+bool ServerManager::contains(const short& port) {
+  return servers[port] != nullptr;
+}
+
+/*
   std::lock_guard<std::mutex> lock(mtx);
-  auto it = clients.find(sock);
-  if (it != clients.end()) {
+  auto it = servers.find(port);
+  if (it != servers.end()) {
       return it->second;
   }
 
   return nullptr;
+*/
+
+Server* ServerManager::getServer(const short& port) {
+  return servers[port];
 }
 
-std::vector<int> ServerManager::getClientSockets() {
-  std::lock_guard<std::mutex> lock(mtx);
-  std::vector<int> clientSockets;
+Server* ServerManager::getOrCreateServer(const short& port, size_t numThreads) {
+  Server* server = getServer(port);
 
-  for (auto& pair : clients) {
-      clientSockets.push_back(pair.first);
+  if (server == nullptr) {
+      server = new Server(port, numThreads);
+      addServer(port, server);
+      std::cout << "Created new server on port" << port << std::endl;
   }
 
-  return clientSockets;
+  return server;
 }
 
-std::mutex ServerManager::mtx;
+std::unordered_map<short, Server*>& ServerManager::getServers() {
+  return servers;
+}
+
+//std::mutex ServerManager::mtx;
+//std::unordered_map<std::string, Client*> ServerManager::clients;
 
