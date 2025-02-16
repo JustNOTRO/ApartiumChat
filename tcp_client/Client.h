@@ -13,6 +13,8 @@ class Client {
     public:
         Client(std::string name, int sock);
 
+        ~Client();
+
         std::string getUserName();
 
         int getSocket();

@@ -18,19 +18,13 @@ class ThreadPool;
 
 class Server {
     public:
-        Server(const short& port, size_t numThreads);
+        Server(const short& port);
 
         ~Server();
 
-        void disconnect();
+        void run();
 
         void broadcast(std::string senderName, int senderSock);
-
-        void enqueue(std::function<void()> task);
-
-        int getSocket();
-
-        sockaddr_in getAddress();
 
         void addClient(const std::string& username, const int& sock);
 
@@ -39,14 +33,20 @@ class Server {
         void cleanupClients();
 
         bool hasClientWithName(const std::string& username);
-        
-        void announceUserQuit(const std::string& username);
 
-        Client* getClient(const std::string& username);
+        std::unordered_map<std::string, Client*>& getClients();
 
         std::vector<int> getClientSockets();
 
-        std::unordered_map<std::string, Client*>& getClients();
+        Client* getClient(const std::string& username);
+
+        void announceUserQuit(const std::string& username);
+
+        void disconnect();
+
+        int getSocket();
+
+        sockaddr_in getAddress();
 
     private:
         std::unordered_map<std::string, Client*> clients;

@@ -12,15 +12,16 @@
 
 #include "Server.h"
 #include "Client.h"
-#include "ServerManager.h"
 #include "ThreadPool.h"
+
+#define NUM_THREADS 4
 
 class ThreadPool;
 
 std::mutex mtx;
 
-Server::Server(const short& port, size_t numThreads) : 
-               port(port), threadPool(numThreads) {
+Server::Server(const short& port) :
+               port(port), threadPool(NUM_THREADS) {
 
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0) {
@@ -48,14 +49,33 @@ Server::Server(const short& port, size_t numThreads) :
     }
 }
 
-Server::~Server() {
-    ServerManager::getInstance().removeServer(this->port);
-}
+Server::~Server() {}
 
-void Server::disconnect() {
-    cleanupClients();
-    close(this->sock);
-    delete this;
+void Server::run() {
+    socklen_t sockAddrLen = sizeof(address);
+
+    while (true) {
+        int clientSocket = accept(sock, (struct sockaddr *)&address, &sockAddrLen);
+        if (clientSocket < 0) {
+            std::cerr << "Could not accept client socket." << std::endl;
+            continue;
+        }
+
+        char buffer[1024];
+        int received = recv(clientSocket, buffer, sizeof(buffer), 0);
+        buffer[received] = '\0';
+    
+        std::string senderName = std::string(buffer);
+
+        std::cout << senderName << " connected to the server." << std::endl;
+        addClient(senderName, clientSocket);
+
+        threadPool.enqueue([this, senderName, clientSocket] {
+            broadcast(senderName, clientSocket);
+        });
+    }
+
+    disconnect();
 }
 
 void Server::broadcast(std::string senderName, int senderSock) {
@@ -101,8 +121,75 @@ void Server::broadcast(std::string senderName, int senderSock) {
     close(senderSock);
 }
 
-void Server::enqueue(std::function<void()> task) {
-    threadPool.enqueue(task);
+void Server::addClient(const std::string& username, const int& sock) {
+    std::lock_guard<std::mutex> lock(mtx);
+    std::string msg = "Username already taken, Please try other name.";
+  
+    if (hasClientWithName(username)) {
+        send(sock, msg.c_str(), msg.length(), 0);
+        return;
+    }
+  
+    Client* client = new Client(username, sock);
+    clients[username] = client;
+}
+
+void Server::removeClient(const std::string& username) {
+    std::lock_guard<std::mutex> lock(mtx);
+    auto it = clients.find(username);
+    if (it == clients.end()) {
+        return;
+    }
+  
+    delete it->second;
+    clients.erase(username);
+}
+
+void Server::cleanupClients() {
+    std::lock_guard<std::mutex> lock(mtx);
+  
+    for (auto& pair : clients) {
+       delete pair.second;
+    }
+  
+    clients.clear();
+}
+
+bool Server::hasClientWithName(const std::string& username) {
+    return clients.find(username) != clients.end();
+}
+
+std::unordered_map<std::string, Client*>& Server::getClients() {
+    std::lock_guard<std::mutex> lock(mtx);
+    return clients;
+}
+
+std::vector<int> Server::getClientSockets() {
+    std::lock_guard<std::mutex> lock(mtx);
+    std::vector<int> clientSockets;
+  
+    for (auto& pair : clients) {
+        Client* client = pair.second;
+        clientSockets.push_back(client->getSocket());
+    }
+  
+    return clientSockets;
+}
+
+Client* Server::getClient(const std::string& username) {
+    std::lock_guard<std::mutex> lock(mtx);
+    auto it = clients.find(username);
+    if (it != clients.end()) {
+        return it->second;
+    }
+  
+    return nullptr;
+}
+
+void Server::disconnect() {
+    cleanupClients();
+    close(this->sock);
+    delete this;
 }
 
 int Server::getSocket() {
@@ -113,28 +200,6 @@ sockaddr_in Server::getAddress() {
     return this->address;
 }
 
-void Server::addClient(const std::string& username, const int& sock) {
-  std::lock_guard<std::mutex> lock(mtx);
-
-  if (hasClientWithName(username)) {
-      return;
-  }
-
-  Client* client = new Client(username, sock);
-  clients[username] = client;
-}
-
-void Server::removeClient(const std::string& username) {
-  std::lock_guard<std::mutex> lock(mtx);
-  auto it = clients.find(username);
-  if (it == clients.end()) {
-      return;
-  }
-
-  delete it->second;
-  clients.erase(username);
-}
-
 void Server::announceUserQuit(const std::string& username) {
     std::string quitMsg = username + " disconnected from the server.";
     std::cout << quitMsg << std::endl;
@@ -142,48 +207,13 @@ void Server::announceUserQuit(const std::string& username) {
     for (auto& pair : clients) {
         Client* client = pair.second;
         if (send(client->getSocket(), quitMsg.c_str(), quitMsg.length(), 0) == -1) {
-            std::cout << "Could not send quit message of " << username << " to: " << pair.first << std::endl;
+            std::cerr << "Could not send quit message of " << username << " to: " << pair.first << std::endl;
         }
     }
 }
 
-void Server::cleanupClients() {
-  std::lock_guard<std::mutex> lock(mtx);
 
-  for (auto& pair : clients) {
-     delete pair.second;
-  }
 
-  clients.clear();
-}
 
-bool Server::hasClientWithName(const std::string& username) {
-  return clients.find(username) != clients.end();
-}
 
-Client* Server::getClient(const std::string& username) {
-  std::lock_guard<std::mutex> lock(mtx);
-  auto it = clients.find(username);
-  if (it != clients.end()) {
-      return it->second;
-  }
 
-  return nullptr;
-}
-
-std::vector<int> Server::getClientSockets() {
-  std::lock_guard<std::mutex> lock(mtx);
-  std::vector<int> clientSockets;
-
-  for (auto& pair : clients) {
-      Client* client = pair.second;
-      clientSockets.push_back(client->getSocket());
-  }
-
-  return clientSockets;
-}
-
-std::unordered_map<std::string, Client*>& Server::getClients() {
-  std::lock_guard<std::mutex> lock(mtx);
-  return clients;
-}
