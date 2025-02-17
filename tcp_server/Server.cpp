@@ -5,6 +5,7 @@
 #include <set>
 #include <mutex>
 #include <sys/socket.h>
+#include <arpa/inet.h>
 #include <netinet/in.h>
 #include <unistd.h>
 #include <functional>
@@ -15,14 +16,13 @@
 #include "ThreadPool.h"
 
 #define NUM_THREADS 4
+#define BUFFER_SIZE 1024
 
 class ThreadPool;
 
 std::mutex mtx;
 
-Server::Server(const short& port) :
-               port(port), threadPool(NUM_THREADS) {
-
+Server::Server(std::string ip, const short& port) : port(port), threadPool(NUM_THREADS) {
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0) {
         std::cerr << "Socket creation failed." << std::endl;
@@ -34,11 +34,16 @@ Server::Server(const short& port) :
     struct sockaddr_in serverAddress;
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_port = htons(port);
-    serverAddress.sin_addr.s_addr = INADDR_ANY;
+    // serverAddress.sin_addr.s_addr = inet_addr(ip.c_str());
     this->address = serverAddress;
 
-    if (bind(sock, (struct sockaddr *)&serverAddress, sizeof(serverAddress)) < 0) {
-        std::cerr << "Binding failed." << std::endl;
+    if (inet_pton(AF_INET, ip.c_str(), &serverAddress.sin_addr) <= 0) {
+        std::cerr << "Invalid IP Address: " << ip << std::endl;
+        exit(EXIT_FAILURE);
+    }
+
+    if (bind(sock, (struct sockaddr *)&serverAddress, sizeof(serverAddress)) == -1) {
+        std::cerr << "Bind failed: " << strerror(errno) << std::endl;
         exit(EXIT_FAILURE);
     }
 
@@ -49,44 +54,46 @@ Server::Server(const short& port) :
     }
 }
 
-Server::~Server() {}
+Server::~Server() {
+    disconnect();
+}
 
 void Server::run() {
     socklen_t sockAddrLen = sizeof(address);
+    struct sockaddr* socketAddress = (struct sockaddr*) &address;
 
     while (true) {
-        int clientSocket = accept(sock, (struct sockaddr *)&address, &sockAddrLen);
+        char buffer[BUFFER_SIZE];
+        memset(buffer, 0, sizeof(buffer));
+
+        int clientSocket = accept(sock, socketAddress, &sockAddrLen);
         if (clientSocket < 0) {
             std::cerr << "Could not accept client socket." << std::endl;
             continue;
         }
-
-        char buffer[1024];
+        
         int received = recv(clientSocket, buffer, sizeof(buffer), 0);
         buffer[received] = '\0';
-    
+
         std::string senderName = std::string(buffer);
 
-        std::cout << senderName << " connected to the server." << std::endl;
-        addClient(senderName, clientSocket);
+        if (addClient(senderName, clientSocket)) {
+            std::cout << senderName << " connected to the server." << std::endl;
+        }
 
-        threadPool.enqueue([this, senderName, clientSocket] {
-            broadcast(senderName, clientSocket);
-        });
+        threadPool.enqueue([this, senderName, clientSocket] { broadcast(senderName, clientSocket); });
+        threadPool.enqueue([this, clientSocket] { sendHeartbeatToSender(clientSocket); });
     }
-
-    disconnect();
 }
 
 void Server::broadcast(std::string senderName, int senderSock) {
-    char buffer[1024];
+    char buffer[BUFFER_SIZE];
     std::unordered_map<std::string, Client*>& clients = getClients();
 
     while (true) {
-        size_t bufferSize = sizeof(buffer);
-        memset(buffer, 0, bufferSize);
+        memset(buffer, 0, BUFFER_SIZE);
 
-        int bytesReceived = recv(senderSock, buffer, bufferSize, 0);
+        int bytesReceived = recv(senderSock, buffer, BUFFER_SIZE, 0);
         if (bytesReceived < 0) {
             std::cerr << "Could not receive message from " << senderName << "." << std::endl;
             break;
@@ -96,13 +103,22 @@ void Server::broadcast(std::string senderName, int senderSock) {
             announceUserQuit(senderName);
             break;
         }
+        
+        std::string msg = std::string(buffer);
 
-        std::cout << buffer << std::endl;
+        // no point of sending an empty message
+        if (msg.empty() || strcmp("/ping", msg.c_str()) == 0) { 
+            continue;
+        }
 
+        std::string prefixedMsg = senderName + ": " + msg;
+        std::cout << prefixedMsg << std::endl; // Sending message to the server
+        
         for (auto& pair : clients) {
+            std::string username = pair.first;
             Client* client = pair.second;
             if (client == nullptr) {
-                std::cerr << "Client is null for username: " << pair.first << std::endl;
+                std::cerr << "Client is null for username: " << username << std::endl;
                 continue;
             }
 
@@ -111,8 +127,8 @@ void Server::broadcast(std::string senderName, int senderSock) {
                 continue;
             }
             
-            if (send(clientSocket, buffer, bytesReceived, 0) == -1) {
-                std::cerr << "Could not send message to Client: " << client->getUserName() << std::endl;
+            if (send(clientSocket, prefixedMsg.c_str(), prefixedMsg.length(), 0) == -1) {
+                std::cerr << "Could not send message to Client: " << username << std::endl;
             }
         }
     }
@@ -121,17 +137,33 @@ void Server::broadcast(std::string senderName, int senderSock) {
     close(senderSock);
 }
 
-void Server::addClient(const std::string& username, const int& sock) {
+void Server::sendHeartbeatToSender(const int& senderSock) {
+    char buffer[BUFFER_SIZE];
+    int bytesReceived;
+    std::cout << "I was here nig" << std::endl;
+
+    while ((bytesReceived = recv(senderSock, buffer, BUFFER_SIZE, 0)) > 0) {
+        memset(buffer, 0, BUFFER_SIZE);
+        // Checking if server receieved a heartbeat
+        if (strcmp("/ping", buffer) == 0) {
+            send(senderSock, "/pong", 5, 0);
+            continue;
+        }
+    }
+}
+
+bool Server::addClient(const std::string& username, const int& sock) {
     std::lock_guard<std::mutex> lock(mtx);
     std::string msg = "Username already taken, Please try other name.";
   
     if (hasClientWithName(username)) {
         send(sock, msg.c_str(), msg.length(), 0);
-        return;
+        return false;
     }
   
     Client* client = new Client(username, sock);
     clients[username] = client;
+    return true;
 }
 
 void Server::removeClient(const std::string& username) {
@@ -203,6 +235,10 @@ sockaddr_in Server::getAddress() {
 void Server::announceUserQuit(const std::string& username) {
     std::string quitMsg = username + " disconnected from the server.";
     std::cout << quitMsg << std::endl;
+
+    if (clients.empty()) {
+        return;
+    }
 
     for (auto& pair : clients) {
         Client* client = pair.second;

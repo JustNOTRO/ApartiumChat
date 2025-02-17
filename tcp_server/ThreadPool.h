@@ -22,7 +22,7 @@ private:
     void workerThread();
 
     std::vector<std::thread> workers;
-    std::queue<std::function<void()>> taskQueue;
+    std::queue<std::function<void()>> tasks;
     std::mutex queueMutex;
     std::condition_variable cv;
     bool stop;

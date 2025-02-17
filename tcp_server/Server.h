@@ -18,7 +18,7 @@ class ThreadPool;
 
 class Server {
     public:
-        Server(const short& port);
+        Server(std::string ip, const short& port);
 
         ~Server();
 
@@ -26,7 +26,9 @@ class Server {
 
         void broadcast(std::string senderName, int senderSock);
 
-        void addClient(const std::string& username, const int& sock);
+        void sendHeartbeatToSender(const int& sock);
+
+        bool addClient(const std::string& username, const int& sock);
 
         void removeClient(const std::string& username);
     

@@ -33,14 +33,14 @@ void ThreadPool::workerThread() {
         std::function<void()> task;
         {
             std::unique_lock<std::mutex> lock(queueMutex);
-            cv.wait(lock, [this] { return stop || !taskQueue.empty(); });
+            cv.wait(lock, [this] { return stop || !tasks.empty(); });
 
-            if (stop && taskQueue.empty()) {
+            if (stop && tasks.empty()) {
                 return;
             }
 
-            task = taskQueue.front();
-            taskQueue.pop();
+            task = tasks.front();
+            tasks.pop();
         }
         task();
     }
@@ -49,7 +49,7 @@ void ThreadPool::workerThread() {
 void ThreadPool::enqueue(std::function<void()> task) {
     {
         std::lock_guard<std::mutex> lock(queueMutex);
-        taskQueue.push(task);
+        tasks.push(task);
     }
     cv.notify_one();
 }
