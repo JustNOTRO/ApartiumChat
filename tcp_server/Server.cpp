@@ -140,7 +140,6 @@ void Server::broadcast(std::string senderName, int senderSock) {
 void Server::sendHeartbeatToSender(const int& senderSock) {
     char buffer[BUFFER_SIZE];
     int bytesReceived;
-    std::cout << "I was here nig" << std::endl;
 
     while ((bytesReceived = recv(senderSock, buffer, BUFFER_SIZE, 0)) > 0) {
         memset(buffer, 0, BUFFER_SIZE);
