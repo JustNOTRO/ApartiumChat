@@ -26,7 +26,7 @@ class Server {
 
         void broadcast(std::string senderName, int senderSock);
 
-        void sendHeartbeatToSender(const int& sock);
+        void sendHeartbeatToSender(std::string senderName, const int& sock);
 
         bool addClient(const std::string& username, const int& sock);
 

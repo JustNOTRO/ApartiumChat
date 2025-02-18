@@ -16,7 +16,7 @@
 #include "ThreadPool.h"
 
 #define NUM_THREADS 4
-#define BUFFER_SIZE 1024
+#define BUFFER_SIZE 1500
 
 class ThreadPool;
 
@@ -64,7 +64,7 @@ void Server::run() {
 
     while (true) {
         char buffer[BUFFER_SIZE];
-        memset(buffer, 0, sizeof(buffer));
+        memset(buffer, 0, BUFFER_SIZE);
 
         int clientSocket = accept(sock, socketAddress, &sockAddrLen);
         if (clientSocket < 0) {
@@ -72,17 +72,21 @@ void Server::run() {
             continue;
         }
         
-        int received = recv(clientSocket, buffer, sizeof(buffer), 0);
+        int received = recv(clientSocket, buffer, BUFFER_SIZE, 0);
         buffer[received] = '\0';
 
         std::string senderName = std::string(buffer);
 
-        if (addClient(senderName, clientSocket)) {
-            std::cout << senderName << " connected to the server." << std::endl;
+        // todo enhance functionality here
+        if (!addClient(senderName, clientSocket)) {
+            close(clientSocket);
+            continue;
         }
 
+        std::cout << senderName << " connected to the server." << std::endl;
+
         threadPool.enqueue([this, senderName, clientSocket] { broadcast(senderName, clientSocket); });
-        threadPool.enqueue([this, clientSocket] { sendHeartbeatToSender(clientSocket); });
+        //threadPool.enqueue([this, senderName, clientSocket] { sendHeartbeatToSender(senderName, clientSocket); });
     }
 }
 
@@ -95,6 +99,7 @@ void Server::broadcast(std::string senderName, int senderSock) {
 
         int bytesReceived = recv(senderSock, buffer, BUFFER_SIZE, 0);
         if (bytesReceived < 0) {
+            std::cout << strerror(errno) << std::endl;
             std::cerr << "Could not receive message from " << senderName << "." << std::endl;
             break;
         }
@@ -105,9 +110,20 @@ void Server::broadcast(std::string senderName, int senderSock) {
         }
         
         std::string msg = std::string(buffer);
+        if (msg.empty()) { 
+            continue;
+        }
 
-        // no point of sending an empty message
-        if (msg.empty() || strcmp("/ping", msg.c_str()) == 0) { 
+        if (msg == "/ping") {
+            std::cout << "Received a ping from client: " << senderName << std::endl;
+            std::cout << msg << std::endl;
+
+            if (send(senderSock, "/pong", 5, 0) >= 0) {
+                std::cout << "Sent /pong" << std::endl;
+                std::cout << "Errno on /pong: " << strerror(errno) << std::endl;
+            } else
+                std::cout << "Could not send /pong " << strerror(errno) << std::endl;
+
             continue;
         }
 
@@ -117,6 +133,7 @@ void Server::broadcast(std::string senderName, int senderSock) {
         for (auto& pair : clients) {
             std::string username = pair.first;
             Client* client = pair.second;
+
             if (client == nullptr) {
                 std::cerr << "Client is null for username: " << username << std::endl;
                 continue;
@@ -135,20 +152,6 @@ void Server::broadcast(std::string senderName, int senderSock) {
 
     removeClient(senderName);
     close(senderSock);
-}
-
-void Server::sendHeartbeatToSender(const int& senderSock) {
-    char buffer[BUFFER_SIZE];
-    int bytesReceived;
-
-    while ((bytesReceived = recv(senderSock, buffer, BUFFER_SIZE, 0)) > 0) {
-        memset(buffer, 0, BUFFER_SIZE);
-        // Checking if server receieved a heartbeat
-        if (strcmp("/ping", buffer) == 0) {
-            send(senderSock, "/pong", 5, 0);
-            continue;
-        }
-    }
 }
 
 bool Server::addClient(const std::string& username, const int& sock) {
