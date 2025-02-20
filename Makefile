@@ -1,11 +1,11 @@
 # Compiler and flags
 CC = g++
-CFLAGS = -I./tcp_server -I./tcp_client  # Include paths for server and client headers
+CFLAGS = -std=c++20 -I./tcp_server -I./tcp_client  # Include paths for server and client headers
 LDFLAGS =  # Add any linker flags if needed
 
 # Source files for the server and client
-SRCS_SERVER = tcp_server/server.cpp tcp_server/ThreadPool.cpp tcp_server/Server.cpp tcp_client/Client.cpp tcp_server/utils/ServerUtils.cpp
-SRCS_CLIENT = tcp_client/client.cpp tcp_client/Client.cpp tcp_server/Server.cpp tcp_server/ThreadPool.cpp tcp_server/utils/ServerUtils.cpp
+SRCS_SERVER = tcp_server/main.cpp tcp_server/ThreadPool.cpp tcp_server/Server.cpp tcp_client/Client.cpp tcp_server/utils/ServerUtils.cpp
+SRCS_CLIENT = tcp_client/main.cpp tcp_client/Client.cpp tcp_server/Server.cpp tcp_server/ThreadPool.cpp tcp_server/utils/ServerUtils.cpp
 
 # Object files
 OBJS_SERVER = $(SRCS_SERVER:.cpp=.o)

@@ -1,7 +1,12 @@
 #include <iostream>
 #include "ServerUtils.h"
 
-#define DEFAULT_PORT 3333
+#define BUFFER_SIZE 1500
+#define DEFAULT_PORT 8080
+
+#define HEARTBEAT_INTERVAL_SECONDS 5
+#define HEARTBEAT_REQUEST "/ping"
+#define HEARTBEAT_RESPONSE "/pong"
 
 std::string ServerUtils::getSelectedIpAddress(std::string providedAddress) {
     size_t colonPos = providedAddress.find(':');
