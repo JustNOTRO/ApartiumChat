@@ -14,6 +14,7 @@
 #include "Server.h"
 #include "Client.h"
 #include "ThreadPool.h"
+#include "ServerConstants.h"
 
 #define NUM_THREADS 4
 #define BUFFER_SIZE 1500
@@ -99,7 +100,6 @@ void Server::broadcast(std::string senderName, int senderSock) {
 
         int bytesReceived = recv(senderSock, buffer, BUFFER_SIZE, 0);
         if (bytesReceived < 0) {
-            std::cout << strerror(errno) << std::endl;
             std::cerr << "Could not receive message from " << senderName << "." << std::endl;
             break;
         }
@@ -114,8 +114,8 @@ void Server::broadcast(std::string senderName, int senderSock) {
             continue;
         }
 
-        if (msg == "/ping") {
-            send(senderSock, "/pong", 5, 0);
+        if (msg == HEARTBEAT_REQUEST) {
+            send(senderSock, HEARTBEAT_RESPONSE, sizeof(HEARTBEAT_RESPONSE), 0);
             continue;
         }
 
