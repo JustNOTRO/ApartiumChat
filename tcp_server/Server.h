@@ -26,8 +26,6 @@ class Server {
 
         void broadcast(std::string senderName, int senderSock);
 
-        void sendHeartbeatToSender(std::string senderName, const int& sock);
-
         bool addClient(const std::string& username, const int& sock);
 
         void removeClient(const std::string& username);
@@ -50,12 +48,11 @@ class Server {
 
         sockaddr_in getAddress();
 
-    private:
+    protected:
         std::unordered_map<std::string, Client*> clients;
-
         ThreadPool threadPool;
+
         sockaddr_in address;
-        int amountOfClients;
         int sock;
         short port;
 

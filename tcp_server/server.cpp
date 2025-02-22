@@ -17,7 +17,6 @@
 #include "ServerConstants.h"
 
 #define NUM_THREADS 4
-#define BUFFER_SIZE 1500
 
 class ThreadPool;
 
@@ -35,11 +34,11 @@ Server::Server(std::string ip, const short& port) : port(port), threadPool(NUM_T
     struct sockaddr_in serverAddress;
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_port = htons(port);
-    // serverAddress.sin_addr.s_addr = inet_addr(ip.c_str());
+    serverAddress.sin_addr.s_addr = inet_addr(ip.c_str());
     this->address = serverAddress;
 
     if (inet_pton(AF_INET, ip.c_str(), &serverAddress.sin_addr) <= 0) {
-        std::cerr << "Invalid IP Address: " << ip << std::endl;
+        std::cerr << "Invalid IP Address: " << ip << " " << strerror(errno) << std::endl;
         exit(EXIT_FAILURE);
     }
 
@@ -87,7 +86,6 @@ void Server::run() {
         std::cout << senderName << " connected to the server." << std::endl;
 
         threadPool.enqueue([this, senderName, clientSocket] { broadcast(senderName, clientSocket); });
-        //threadPool.enqueue([this, senderName, clientSocket] { sendHeartbeatToSender(senderName, clientSocket); });
     }
 }
 
