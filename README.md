@@ -49,10 +49,10 @@ Ensure you have the following installed:
 
 ```sh
 # Compile the server
-g++ server.cpp -o server
+make server
 
 # Compile the client
-g++ client.cpp -o client
+make client
 
 # Run the server
 ./server
