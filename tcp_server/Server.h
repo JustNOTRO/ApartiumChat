@@ -42,6 +42,8 @@ class Server {
 
         void announceUserQuit(const std::string& username);
 
+        void broadcastMessage(const std::string &username, int excludeSock);
+
         void disconnect();
 
         int getSocket();

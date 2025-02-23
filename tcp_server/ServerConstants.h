@@ -8,7 +8,7 @@
 #define HEARTBEAT_REQUEST "/ping"
 #define HEARTBEAT_RESPONSE "/pong"
 #define EXIT_CMD "/exit"
-#define LOCAL_HOST_ADDRESS "127.0.0.1:8080"
-#define MAX_FALLBACK_SERVERS 10 // change this asap to json, this is only tmp
+#define LOCAL_HOST_ADDRESS "127.0.0.1"
+#define USERNAME_TAKEN_MSG "Username already taken, Please try other name."
 
 #endif // SERVERCONSTANTS_H

@@ -10,7 +10,7 @@ std::string ServerUtils::getSelectedIpAddress(std::string providedAddress) {
 
 short ServerUtils::getSelectedPort(std::string ipAddress) {
     size_t colonPos = ipAddress.find(':');
-    if (colonPos == std::string::npos) {
+    if (colonPos == std::string::npos || colonPos + 1 == ipAddress.length()) {
         return DEFAULT_PORT;
     }
 

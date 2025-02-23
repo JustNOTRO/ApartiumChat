@@ -11,7 +11,7 @@ int main() {
    std::string ipAddress;
    std::cin >> ipAddress;
 
-   if (ipAddress == "localhost") {
+   if (ipAddress.starts_with("localhost")) {
        ipAddress = LOCAL_HOST_ADDRESS;
    }
 

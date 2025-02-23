@@ -14,9 +14,9 @@
 #include "Server.h"
 #include "Client.h"
 #include "ThreadPool.h"
+#include "ServerConstants.h"
 
 #define NUM_THREADS 4
-#define BUFFER_SIZE 1500
 
 class ThreadPool;
 
@@ -34,11 +34,11 @@ Server::Server(std::string ip, const short& port) : port(port), threadPool(NUM_T
     struct sockaddr_in serverAddress;
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_port = htons(port);
-    // serverAddress.sin_addr.s_addr = inet_addr(ip.c_str());
+    serverAddress.sin_addr.s_addr = inet_addr(ip.c_str());
     this->address = serverAddress;
 
     if (inet_pton(AF_INET, ip.c_str(), &serverAddress.sin_addr) <= 0) {
-        std::cerr << "Invalid IP Address: " << ip << std::endl;
+        std::cerr << "Invalid IP Address: " << ip << " " << strerror(errno) << std::endl;
         exit(EXIT_FAILURE);
     }
 
@@ -52,6 +52,8 @@ Server::Server(std::string ip, const short& port) : port(port), threadPool(NUM_T
         std::cerr << "Could not listen to server." << std::endl;
         exit(EXIT_FAILURE);
     }
+
+    std::cout << "Created server on IP Address: " << ip << ":" << port << std::endl;
 }
 
 Server::~Server() {
@@ -60,7 +62,7 @@ Server::~Server() {
 
 void Server::run() {
     socklen_t sockAddrLen = sizeof(address);
-    struct sockaddr* socketAddress = (struct sockaddr*) &address;
+    struct sockaddr* socketAddress = reinterpret_cast<struct sockaddr*>(&address);
 
     while (true) {
         char buffer[BUFFER_SIZE];
@@ -73,20 +75,27 @@ void Server::run() {
         }
         
         int received = recv(clientSocket, buffer, BUFFER_SIZE, 0);
-        buffer[received] = '\0';
-
-        std::string senderName = std::string(buffer);
-
-        // todo enhance functionality here
-        if (!addClient(senderName, clientSocket)) {
+        if (received <= 0) {
             close(clientSocket);
             continue;
         }
 
-        std::cout << senderName << " connected to the server." << std::endl;
+        buffer[received] = '\0';
+        std::string senderName(buffer);
 
-        threadPool.enqueue([this, senderName, clientSocket] { broadcast(senderName, clientSocket); });
-        //threadPool.enqueue([this, senderName, clientSocket] { sendHeartbeatToSender(senderName, clientSocket); });
+        if (!addClient(senderName, clientSocket)) {
+            close(clientSocket);
+            continue;
+        }
+        
+        std::string joinMsg = senderName + " connected to the server.";
+        std::cout << joinMsg << std::endl;
+
+        broadcastMessage(joinMsg, clientSocket);
+        
+        threadPool.enqueue([this, senderName, clientSocket] {
+            broadcast(senderName, clientSocket);
+        });
     }
 }
 
@@ -99,7 +108,6 @@ void Server::broadcast(std::string senderName, int senderSock) {
 
         int bytesReceived = recv(senderSock, buffer, BUFFER_SIZE, 0);
         if (bytesReceived < 0) {
-            std::cout << strerror(errno) << std::endl;
             std::cerr << "Could not receive message from " << senderName << "." << std::endl;
             break;
         }
@@ -114,22 +122,14 @@ void Server::broadcast(std::string senderName, int senderSock) {
             continue;
         }
 
-        if (msg == "/ping") {
-            std::cout << "Received a ping from client: " << senderName << std::endl;
-            std::cout << msg << std::endl;
-
-            if (send(senderSock, "/pong", 5, 0) >= 0) {
-                std::cout << "Sent /pong" << std::endl;
-                std::cout << "Errno on /pong: " << strerror(errno) << std::endl;
-            } else
-                std::cout << "Could not send /pong " << strerror(errno) << std::endl;
-
+        if (msg == HEARTBEAT_REQUEST) {
+            send(senderSock, HEARTBEAT_RESPONSE, sizeof(HEARTBEAT_RESPONSE), 0);
             continue;
         }
 
         std::string prefixedMsg = senderName + ": " + msg;
-        std::cout << prefixedMsg << std::endl; // Sending message to the server
-        
+        std::cout << prefixedMsg << std::endl;
+
         for (auto& pair : clients) {
             std::string username = pair.first;
             Client* client = pair.second;
@@ -154,12 +154,26 @@ void Server::broadcast(std::string senderName, int senderSock) {
     close(senderSock);
 }
 
+void Server::broadcastMessage(const std::string &msg, int excludeSock = -1) {
+    std::lock_guard<std::mutex> lock(mtx);
+    for (auto &pair : clients) {
+        int clientSocket = pair.second->getSocket();
+
+        if (clientSocket == excludeSock) {
+            continue;
+        }
+
+        if (send(clientSocket, msg.c_str(), msg.length(), 0) == -1) {
+            std::cerr << "Could not send message to " << pair.first << std::endl;
+        }
+    }
+}
+
 bool Server::addClient(const std::string& username, const int& sock) {
     std::lock_guard<std::mutex> lock(mtx);
-    std::string msg = "Username already taken, Please try other name.";
   
     if (hasClientWithName(username)) {
-        send(sock, msg.c_str(), msg.length(), 0);
+        send(sock, USERNAME_TAKEN_MSG, sizeof(USERNAME_TAKEN_MSG), 0);
         return false;
     }
   
