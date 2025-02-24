@@ -48,6 +48,9 @@ Ensure you have the following installed:
 ### 🔨 Compilation & Execution
 
 ```sh
+# Go to build directory
+cd build/
+
 # Compile the server
 make server
 
