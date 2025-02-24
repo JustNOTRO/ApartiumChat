@@ -1,3 +1,15 @@
+#ifdef _WIN32
+    #include <winsock2.h>
+    #include <ws2tcpip.h>
+    #include <windows.h>
+    #pragma comment(lib, "Ws2_32.lib")
+#else
+    #include <unistd.h>
+    #include <arpa/inet.h>
+    #include <netinet/in.h>
+    #include <sys/socket.h>
+#endif
+
 #include <cstring>
 #include <iostream>
 #include <unistd.h>
@@ -12,43 +24,86 @@
 #include "ServerConstants.h"
 #include "Server.h"
 
+#ifdef _WIN32
+    using Socket = SOCKET;
+#else
+    using Socket = int;
+#endif
+
 std::vector<std::string> servers;
 std::mutex serverMutex;
-std::atomic<int> sock;
+std::atomic<Socket> sock;
 
-int createSocket() {
+#ifdef _WIN32
+std::string getWindowsError() {
+    int errorCode = WSAGetLastError();
+    char* msgBuffer = nullptr;
+
+    FormatMessageA(
+        FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+        nullptr, errorCode, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+        (LPSTR)&msgBuffer, 0, nullptr
+    );
+
+    std::unique_ptr<char, decltype(&LocalFree)> msg(msgBuffer, LocalFree);
+    if (!msg) {
+        logError("Could not retrieve error message");
+        exit(EXIT_FAILURE);
+    }
+
+    return std::string(msg.get());
+#endif
+
+void logError(std::string message) {
+    #ifdef _WIN32
+        std::cerr << message << ": " << getWindowsError() << "." << std::endl;
+    #else
+        std::cerr << message << ": " << strerror(errno) << std::endl;
+    #endif
+}
+
+void closeSocket(Socket sock) {
+    #ifdef _WIN32
+        closesocket(sock);
+        WSACleanup();
+    #else
+        close(sock);
+    #endif
+}
+
+Socket createSocket() {
     int newSock = socket(AF_INET, SOCK_STREAM, 0);
     if (newSock < 0) {
-        std::cerr << "Socket creation failed: " << strerror(errno) << std::endl;
+        logError("Socket creation failed");
         exit(EXIT_FAILURE);
     }
 
     return newSock;
 }
 
-bool sendHeartbeat(int sockFD) {
-    if (send(sockFD, HEARTBEAT_REQUEST, sizeof(HEARTBEAT_REQUEST), 0) == -1) {
-        std::cerr << "Could not send heartbeat: " << strerror(errno) << std::endl;
+bool sendHeartbeat(Socket sock) {
+    if (send(sock, HEARTBEAT_REQUEST, sizeof(HEARTBEAT_REQUEST), 0) == -1) {
+        logError("Could not send heartbeat");
         return false;
     }
 
     return true; 
 }
 
-bool isServerResponding(int sockFD, int &bytesReceived) {
+bool isServerResponding(int &bytesReceived) {
     if (bytesReceived > 0) {
         return true;
     }
 
     if (bytesReceived < 0) {
-        std::cerr << "Error receiving data: " << strerror(errno) << std::endl;
+        logError("Error receiving data");
     }
 
     std::cerr << "Server is not responding.. disconnecting.." << std::endl;
     return false;
 }
 
-bool connectToServer(const std::string &ipAddress, int sock) {
+bool connectToServer(const std::string &ipAddress, Socket sock) {
     std::string ip = ServerUtils::getSelectedIpAddress(ipAddress);
     short port = ServerUtils::getSelectedPort(ipAddress);
 
@@ -57,37 +112,44 @@ bool connectToServer(const std::string &ipAddress, int sock) {
     serverAddress.sin_port = htons(port);
     
     if (inet_pton(AF_INET, ip.c_str(), &serverAddress.sin_addr) <= 0) {
-        std::cerr << "Invalid IP Address: " << strerror(errno) << std::endl;
+        logError("Invalid IP Address");
         return false;
     }
+
     return connect(sock, reinterpret_cast<sockaddr*>(&serverAddress), sizeof(serverAddress)) == 0;
 }
 
 struct FallbackServer {
+
 private:
     std::string ipAddress;
-    int newSock;
+    Socket newSock;
 
 public:
     std::string getIpAddress() {
         return ipAddress;
     }
 
-    int getSocket() {
+    Socket getSocket() {
         return newSock;
     }
 
     bool connect() {
+        if (servers.empty()) {
+            return false;
+        }
+
         for (const auto &server : servers) {
-            int tempSock = createSocket();
-            if (connectToServer(server, tempSock)) {
-                newSock = tempSock;
+            Socket sock = createSocket();
+            if (connectToServer(server, sock)) {
+                newSock = sock;
                 ipAddress = server;
                 return true;
             }
 
-            close(tempSock);
+            closeSocket(sock);
         }
+
         return false;
     }
 };
@@ -104,7 +166,7 @@ void handleIncomingMessages(const std::string &username) {
 
         int readySocks = select(sock.load() + 1, &readSocks, nullptr, nullptr, &timeout);
         if (readySocks < 0) {
-            std::cerr << "Error during select(): " << strerror(errno) << ". Disconnecting..." << std::endl;
+            logError("Error while waiting for ready sockets");
             break;
         }
 
@@ -114,7 +176,7 @@ void handleIncomingMessages(const std::string &username) {
         }
 
         int bytesReceived = recv(sock.load(), buffer, BUFFER_SIZE, 0);
-        if (isServerResponding(sock.load(), bytesReceived)) {
+        if (isServerResponding(bytesReceived)) {
             if (strcmp(buffer, USERNAME_TAKEN_MSG) == 0) {
                 std::cout << buffer << std::endl;
                 break;
@@ -123,12 +185,13 @@ void handleIncomingMessages(const std::string &username) {
             if (strncmp(buffer, HEARTBEAT_RESPONSE, sizeof(HEARTBEAT_RESPONSE)) != 0) {
                 std::cout << buffer << std::endl;
             }
+
             continue;
         }
 
         FallbackServer fallbackServer;
         if (!fallbackServer.connect()) {
-            std::cerr << "Could not connect to fallback servers: " << strerror(errno) << std::endl;
+            logError("Could not connect to fallback servers");
             break;
         }
 
@@ -137,7 +200,7 @@ void handleIncomingMessages(const std::string &username) {
         std::cout << "Connected to fallback server: " << fallbackServer.getIpAddress() << std::endl;
     }
 
-    close(sock.load());
+    closeSocket(sock.load());
 }
 
 void handleClientInput() {
@@ -158,7 +221,7 @@ void handleClientInput() {
         
         if (msg == EXIT_CMD) {
             servers.clear();
-            close(sock.load());
+            closeSocket(sock);
             break;
         }
         
@@ -167,12 +230,22 @@ void handleClientInput() {
         }
 
         if (send(sock.load(), msg.c_str(), msg.length(), 0) == -1) {
-            std::cerr << "Could not send message: " << strerror(errno) << std::endl;
+            logError("Could not send message");
         }
     }
 }
 
 int main() {
+    #ifdef _WIN32
+        WSADATA wsaData;
+        int res = WSAStartup(MAKEWORD(2, 2), &wsaData);
+        if (res != 0) {
+            logError("WSAStartup failed");
+            return 1;
+        }
+    
+    #endif
+    
     sock.store(createSocket());
 
     std::string ipAddress;
@@ -196,11 +269,14 @@ int main() {
     
     if (!connectToServer(servers[0], sock.load())) {
         std::cerr << "Could not connect to server: " << servers[0] << std::endl;
+
         FallbackServer fallbackServer;
         if (!fallbackServer.connect()) {
             std::cerr << "Could not connect to fallback servers." << std::endl;
+            closeSocket(sock);
             return 1;
         }
+
         sock.store(fallbackServer.getSocket());
         std::cout << "Connected to fallback server: " << fallbackServer.getIpAddress() << std::endl;
     }
@@ -215,5 +291,6 @@ int main() {
 
     std::thread(handleIncomingMessages, username).detach();
     handleClientInput();
+    closeSocket(sock);
     return 0;
 }

@@ -57,7 +57,8 @@ Server::Server(std::string ip, const short& port) : port(port), threadPool(NUM_T
 }
 
 Server::~Server() {
-    disconnect();
+    cleanupClients();
+    close(this->sock);
 }
 
 void Server::run() {
@@ -232,12 +233,6 @@ Client* Server::getClient(const std::string& username) {
     }
   
     return nullptr;
-}
-
-void Server::disconnect() {
-    cleanupClients();
-    close(this->sock);
-    delete this;
 }
 
 int Server::getSocket() {

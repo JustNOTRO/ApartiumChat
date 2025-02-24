@@ -44,8 +44,6 @@ class Server {
 
         void broadcastMessage(const std::string &username, int excludeSock);
 
-        void disconnect();
-
         int getSocket();
 
         sockaddr_in getAddress();
