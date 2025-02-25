@@ -32,7 +32,8 @@ This project is a **highly resilient** and **efficient** chat system built in C+
 ## 🏗️ Technology Stack
 
 - **C++** – Core implementation.
-- **sys/socket** – Low-level networking.
+- **sys/socket** – Using sys/socket for Unix-like operating systems.
+- **winsock** - Using winsock for Windows operating system.
 - **Multi-threading** – Optimized for performance.
 - **Thread Pooling**  - Efficient thread management&#x20;
 
