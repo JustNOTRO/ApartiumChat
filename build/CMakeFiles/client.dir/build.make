@@ -128,19 +128,33 @@ CMakeFiles/client.dir/tcp_server/ThreadPool.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/client.dir/tcp_server/ThreadPool.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/notro/ApartiumChat/tcp_server/ThreadPool.cpp -o CMakeFiles/client.dir/tcp_server/ThreadPool.cpp.s
 
-CMakeFiles/client.dir/tcp_server/utils/ServerUtils.cpp.o: CMakeFiles/client.dir/flags.make
-CMakeFiles/client.dir/tcp_server/utils/ServerUtils.cpp.o: /home/notro/ApartiumChat/tcp_server/utils/ServerUtils.cpp
-CMakeFiles/client.dir/tcp_server/utils/ServerUtils.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/notro/ApartiumChat/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/client.dir/tcp_server/utils/ServerUtils.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/tcp_server/utils/ServerUtils.cpp.o -MF CMakeFiles/client.dir/tcp_server/utils/ServerUtils.cpp.o.d -o CMakeFiles/client.dir/tcp_server/utils/ServerUtils.cpp.o -c /home/notro/ApartiumChat/tcp_server/utils/ServerUtils.cpp
+CMakeFiles/client.dir/utils/NetworkUtils.cpp.o: CMakeFiles/client.dir/flags.make
+CMakeFiles/client.dir/utils/NetworkUtils.cpp.o: /home/notro/ApartiumChat/utils/NetworkUtils.cpp
+CMakeFiles/client.dir/utils/NetworkUtils.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/notro/ApartiumChat/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/client.dir/utils/NetworkUtils.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/utils/NetworkUtils.cpp.o -MF CMakeFiles/client.dir/utils/NetworkUtils.cpp.o.d -o CMakeFiles/client.dir/utils/NetworkUtils.cpp.o -c /home/notro/ApartiumChat/utils/NetworkUtils.cpp
 
-CMakeFiles/client.dir/tcp_server/utils/ServerUtils.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/client.dir/tcp_server/utils/ServerUtils.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/notro/ApartiumChat/tcp_server/utils/ServerUtils.cpp > CMakeFiles/client.dir/tcp_server/utils/ServerUtils.cpp.i
+CMakeFiles/client.dir/utils/NetworkUtils.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/client.dir/utils/NetworkUtils.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/notro/ApartiumChat/utils/NetworkUtils.cpp > CMakeFiles/client.dir/utils/NetworkUtils.cpp.i
 
-CMakeFiles/client.dir/tcp_server/utils/ServerUtils.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/client.dir/tcp_server/utils/ServerUtils.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/notro/ApartiumChat/tcp_server/utils/ServerUtils.cpp -o CMakeFiles/client.dir/tcp_server/utils/ServerUtils.cpp.s
+CMakeFiles/client.dir/utils/NetworkUtils.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/client.dir/utils/NetworkUtils.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/notro/ApartiumChat/utils/NetworkUtils.cpp -o CMakeFiles/client.dir/utils/NetworkUtils.cpp.s
+
+CMakeFiles/client.dir/utils/Logger.cpp.o: CMakeFiles/client.dir/flags.make
+CMakeFiles/client.dir/utils/Logger.cpp.o: /home/notro/ApartiumChat/utils/Logger.cpp
+CMakeFiles/client.dir/utils/Logger.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/notro/ApartiumChat/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/client.dir/utils/Logger.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/utils/Logger.cpp.o -MF CMakeFiles/client.dir/utils/Logger.cpp.o.d -o CMakeFiles/client.dir/utils/Logger.cpp.o -c /home/notro/ApartiumChat/utils/Logger.cpp
+
+CMakeFiles/client.dir/utils/Logger.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/client.dir/utils/Logger.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/notro/ApartiumChat/utils/Logger.cpp > CMakeFiles/client.dir/utils/Logger.cpp.i
+
+CMakeFiles/client.dir/utils/Logger.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/client.dir/utils/Logger.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/notro/ApartiumChat/utils/Logger.cpp -o CMakeFiles/client.dir/utils/Logger.cpp.s
 
 # Object files for target client
 client_OBJECTS = \
@@ -148,7 +162,8 @@ client_OBJECTS = \
 "CMakeFiles/client.dir/tcp_client/Client.cpp.o" \
 "CMakeFiles/client.dir/tcp_server/Server.cpp.o" \
 "CMakeFiles/client.dir/tcp_server/ThreadPool.cpp.o" \
-"CMakeFiles/client.dir/tcp_server/utils/ServerUtils.cpp.o"
+"CMakeFiles/client.dir/utils/NetworkUtils.cpp.o" \
+"CMakeFiles/client.dir/utils/Logger.cpp.o"
 
 # External object files for target client
 client_EXTERNAL_OBJECTS =
@@ -157,11 +172,12 @@ client: CMakeFiles/client.dir/tcp_client/main.cpp.o
 client: CMakeFiles/client.dir/tcp_client/Client.cpp.o
 client: CMakeFiles/client.dir/tcp_server/Server.cpp.o
 client: CMakeFiles/client.dir/tcp_server/ThreadPool.cpp.o
-client: CMakeFiles/client.dir/tcp_server/utils/ServerUtils.cpp.o
+client: CMakeFiles/client.dir/utils/NetworkUtils.cpp.o
+client: CMakeFiles/client.dir/utils/Logger.cpp.o
 client: CMakeFiles/client.dir/build.make
 client: CMakeFiles/client.dir/compiler_depend.ts
 client: CMakeFiles/client.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/notro/ApartiumChat/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/notro/ApartiumChat/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable client"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/client.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

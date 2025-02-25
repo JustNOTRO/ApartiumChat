@@ -271,32 +271,59 @@ tcp_server/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/tcp_server/main.cpp.s
 .PHONY : tcp_server/main.cpp.s
 
-tcp_server/utils/ServerUtils.o: tcp_server/utils/ServerUtils.cpp.o
-.PHONY : tcp_server/utils/ServerUtils.o
+utils/Logger.o: utils/Logger.cpp.o
+.PHONY : utils/Logger.o
 
 # target to build an object file
-tcp_server/utils/ServerUtils.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/tcp_server/utils/ServerUtils.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/tcp_server/utils/ServerUtils.cpp.o
-.PHONY : tcp_server/utils/ServerUtils.cpp.o
+utils/Logger.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/utils/Logger.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/utils/Logger.cpp.o
+.PHONY : utils/Logger.cpp.o
 
-tcp_server/utils/ServerUtils.i: tcp_server/utils/ServerUtils.cpp.i
-.PHONY : tcp_server/utils/ServerUtils.i
+utils/Logger.i: utils/Logger.cpp.i
+.PHONY : utils/Logger.i
 
 # target to preprocess a source file
-tcp_server/utils/ServerUtils.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/tcp_server/utils/ServerUtils.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/tcp_server/utils/ServerUtils.cpp.i
-.PHONY : tcp_server/utils/ServerUtils.cpp.i
+utils/Logger.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/utils/Logger.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/utils/Logger.cpp.i
+.PHONY : utils/Logger.cpp.i
 
-tcp_server/utils/ServerUtils.s: tcp_server/utils/ServerUtils.cpp.s
-.PHONY : tcp_server/utils/ServerUtils.s
+utils/Logger.s: utils/Logger.cpp.s
+.PHONY : utils/Logger.s
 
 # target to generate assembly for a file
-tcp_server/utils/ServerUtils.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/tcp_server/utils/ServerUtils.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/tcp_server/utils/ServerUtils.cpp.s
-.PHONY : tcp_server/utils/ServerUtils.cpp.s
+utils/Logger.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/utils/Logger.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/utils/Logger.cpp.s
+.PHONY : utils/Logger.cpp.s
+
+utils/NetworkUtils.o: utils/NetworkUtils.cpp.o
+.PHONY : utils/NetworkUtils.o
+
+# target to build an object file
+utils/NetworkUtils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/utils/NetworkUtils.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/utils/NetworkUtils.cpp.o
+.PHONY : utils/NetworkUtils.cpp.o
+
+utils/NetworkUtils.i: utils/NetworkUtils.cpp.i
+.PHONY : utils/NetworkUtils.i
+
+# target to preprocess a source file
+utils/NetworkUtils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/utils/NetworkUtils.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/utils/NetworkUtils.cpp.i
+.PHONY : utils/NetworkUtils.cpp.i
+
+utils/NetworkUtils.s: utils/NetworkUtils.cpp.s
+.PHONY : utils/NetworkUtils.s
+
+# target to generate assembly for a file
+utils/NetworkUtils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/utils/NetworkUtils.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/utils/NetworkUtils.cpp.s
+.PHONY : utils/NetworkUtils.cpp.s
 
 # Help Target
 help:
@@ -323,9 +350,12 @@ help:
 	@echo "... tcp_server/main.o"
 	@echo "... tcp_server/main.i"
 	@echo "... tcp_server/main.s"
-	@echo "... tcp_server/utils/ServerUtils.o"
-	@echo "... tcp_server/utils/ServerUtils.i"
-	@echo "... tcp_server/utils/ServerUtils.s"
+	@echo "... utils/Logger.o"
+	@echo "... utils/Logger.i"
+	@echo "... utils/Logger.s"
+	@echo "... utils/NetworkUtils.o"
+	@echo "... utils/NetworkUtils.i"
+	@echo "... utils/NetworkUtils.s"
 .PHONY : help
 
 

@@ -194,7 +194,6 @@ CMakeFiles/client.dir/tcp_client/main.cpp.o: \
  /usr/include/c++/14.2.1/bits/stl_vector.h \
  /usr/include/c++/14.2.1/bits/stl_bvector.h \
  /usr/include/c++/14.2.1/bits/vector.tcc \
- /home/notro/ApartiumChat/tcp_server/utils/ServerUtils.h \
  /home/notro/ApartiumChat/tcp_server/ServerConstants.h \
  /home/notro/ApartiumChat/tcp_server/Server.h \
  /usr/include/c++/14.2.1/list /usr/include/c++/14.2.1/bits/stl_list.h \
@@ -215,6 +214,7 @@ CMakeFiles/client.dir/tcp_client/main.cpp.o: \
  /usr/include/c++/14.2.1/bits/std_function.h \
  /usr/include/c++/14.2.1/array \
  /home/notro/ApartiumChat/tcp_client/Client.h \
+ /home/notro/ApartiumChat/utils/SocketAdapter.h \
  /home/notro/ApartiumChat/tcp_server/ThreadPool.h \
  /usr/include/c++/14.2.1/condition_variable \
  /usr/include/c++/14.2.1/bits/shared_ptr.h \
@@ -224,4 +224,6 @@ CMakeFiles/client.dir/tcp_client/main.cpp.o: \
  /usr/include/c++/14.2.1/deque /usr/include/c++/14.2.1/bits/stl_deque.h \
  /usr/include/c++/14.2.1/bits/deque.tcc \
  /usr/include/c++/14.2.1/bits/stl_heap.h \
- /usr/include/c++/14.2.1/bits/stl_queue.h
+ /usr/include/c++/14.2.1/bits/stl_queue.h \
+ /home/notro/ApartiumChat/utils/Logger.h \
+ /home/notro/ApartiumChat/utils/NetworkUtils.h

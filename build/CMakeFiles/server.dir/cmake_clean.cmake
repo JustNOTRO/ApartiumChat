@@ -8,8 +8,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/server.dir/tcp_server/ThreadPool.cpp.o.d"
   "CMakeFiles/server.dir/tcp_server/main.cpp.o"
   "CMakeFiles/server.dir/tcp_server/main.cpp.o.d"
-  "CMakeFiles/server.dir/tcp_server/utils/ServerUtils.cpp.o"
-  "CMakeFiles/server.dir/tcp_server/utils/ServerUtils.cpp.o.d"
+  "CMakeFiles/server.dir/utils/Logger.cpp.o"
+  "CMakeFiles/server.dir/utils/Logger.cpp.o.d"
+  "CMakeFiles/server.dir/utils/NetworkUtils.cpp.o"
+  "CMakeFiles/server.dir/utils/NetworkUtils.cpp.o.d"
   "server"
   "server.pdb"
 )

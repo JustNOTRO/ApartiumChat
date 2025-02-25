@@ -12,7 +12,8 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/notro/ApartiumChat/tcp_client/main.cpp" "CMakeFiles/client.dir/tcp_client/main.cpp.o" "gcc" "CMakeFiles/client.dir/tcp_client/main.cpp.o.d"
   "/home/notro/ApartiumChat/tcp_server/Server.cpp" "CMakeFiles/client.dir/tcp_server/Server.cpp.o" "gcc" "CMakeFiles/client.dir/tcp_server/Server.cpp.o.d"
   "/home/notro/ApartiumChat/tcp_server/ThreadPool.cpp" "CMakeFiles/client.dir/tcp_server/ThreadPool.cpp.o" "gcc" "CMakeFiles/client.dir/tcp_server/ThreadPool.cpp.o.d"
-  "/home/notro/ApartiumChat/tcp_server/utils/ServerUtils.cpp" "CMakeFiles/client.dir/tcp_server/utils/ServerUtils.cpp.o" "gcc" "CMakeFiles/client.dir/tcp_server/utils/ServerUtils.cpp.o.d"
+  "/home/notro/ApartiumChat/utils/Logger.cpp" "CMakeFiles/client.dir/utils/Logger.cpp.o" "gcc" "CMakeFiles/client.dir/utils/Logger.cpp.o.d"
+  "/home/notro/ApartiumChat/utils/NetworkUtils.cpp" "CMakeFiles/client.dir/utils/NetworkUtils.cpp.o" "gcc" "CMakeFiles/client.dir/utils/NetworkUtils.cpp.o.d"
   "" "client" "gcc" "CMakeFiles/client.dir/link.d"
   )
 

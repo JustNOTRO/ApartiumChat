@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/notro/ApartiumChat/tcp_server -I/home/notro/ApartiumChat/tcp_client
+CXX_INCLUDES = -I/home/notro/ApartiumChat/tcp_server -I/home/notro/ApartiumChat/tcp_client -I/home/notro/ApartiumChat/utils
 
 CXX_FLAGS = -std=gnu++20
 
