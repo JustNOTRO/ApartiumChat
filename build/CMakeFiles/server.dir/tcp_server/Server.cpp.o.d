@@ -213,6 +213,7 @@ CMakeFiles/server.dir/tcp_server/Server.cpp.o: \
  /usr/include/c++/14.2.1/bits/allocated_ptr.h \
  /usr/include/c++/14.2.1/bits/list.tcc \
  /home/notro/ApartiumChat/tcp_client/Client.h \
+ /home/notro/ApartiumChat/utils/SocketAdapter.h \
  /home/notro/ApartiumChat/tcp_server/ThreadPool.h \
  /usr/include/c++/14.2.1/condition_variable \
  /usr/include/c++/14.2.1/bits/shared_ptr.h \
@@ -223,4 +224,6 @@ CMakeFiles/server.dir/tcp_server/Server.cpp.o: \
  /usr/include/c++/14.2.1/bits/deque.tcc \
  /usr/include/c++/14.2.1/bits/stl_heap.h \
  /usr/include/c++/14.2.1/bits/stl_queue.h \
- /home/notro/ApartiumChat/tcp_server/ServerConstants.h
+ /home/notro/ApartiumChat/tcp_server/ServerConstants.h \
+ /home/notro/ApartiumChat/utils/NetworkUtils.h \
+ /home/notro/ApartiumChat/utils/Logger.h

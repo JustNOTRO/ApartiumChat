@@ -187,6 +187,11 @@ CMakeFiles/server.dir/tcp_server/main.cpp.o: \
  /usr/include/c++/14.2.1/bits/parse_numbers.h \
  /usr/include/c++/14.2.1/bits/std_mutex.h \
  /usr/include/c++/14.2.1/bits/unique_lock.h \
+ /home/notro/ApartiumChat/utils/SocketAdapter.h /usr/include/unistd.h \
+ /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+ /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
+ /usr/include/bits/getopt_core.h /usr/include/bits/unistd_ext.h \
+ /usr/include/linux/close_range.h /usr/include/arpa/inet.h \
  /home/notro/ApartiumChat/tcp_server/ThreadPool.h \
  /usr/include/c++/14.2.1/thread /usr/include/c++/14.2.1/stop_token \
  /usr/include/c++/14.2.1/atomic \
@@ -199,11 +204,7 @@ CMakeFiles/server.dir/tcp_server/main.cpp.o: \
  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
- /usr/include/bits/uio_lim.h /usr/include/unistd.h \
- /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
- /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
- /usr/include/bits/getopt_core.h /usr/include/bits/unistd_ext.h \
- /usr/include/linux/close_range.h /usr/include/syscall.h \
+ /usr/include/bits/uio_lim.h /usr/include/syscall.h \
  /usr/include/sys/syscall.h /usr/include/asm/unistd.h \
  /usr/include/asm/unistd_64.h /usr/include/bits/syscall.h \
  /usr/include/c++/14.2.1/bits/std_thread.h \
@@ -222,5 +223,5 @@ CMakeFiles/server.dir/tcp_server/main.cpp.o: \
  /usr/include/c++/14.2.1/bits/deque.tcc \
  /usr/include/c++/14.2.1/bits/stl_heap.h \
  /usr/include/c++/14.2.1/bits/stl_queue.h \
- /home/notro/ApartiumChat/tcp_server/utils/ServerUtils.h \
- /home/notro/ApartiumChat/tcp_server/ServerConstants.h
+ /home/notro/ApartiumChat/tcp_server/ServerConstants.h \
+ /home/notro/ApartiumChat/utils/NetworkUtils.h

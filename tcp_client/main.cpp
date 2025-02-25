@@ -1,15 +1,3 @@
-#ifdef _WIN32
-    #include <winsock2.h>
-    #include <ws2tcpip.h>
-    #include <windows.h>
-    #pragma comment(lib, "Ws2_32.lib")
-#else
-    #include <unistd.h>
-    #include <arpa/inet.h>
-    #include <netinet/in.h>
-    #include <sys/socket.h>
-#endif
-
 #include <cstring>
 #include <iostream>
 #include <unistd.h>
@@ -20,105 +8,72 @@
 #include <mutex>
 #include <atomic>
 #include <vector>
-#include "utils/ServerUtils.h"
 #include "ServerConstants.h"
 #include "Server.h"
-
-#ifdef _WIN32
-    using Socket = SOCKET;
-#else
-    using Socket = int;
-#endif
+#include "Logger.h"
+#include "NetworkUtils.h"
 
 std::vector<std::string> servers;
 std::mutex serverMutex;
 std::atomic<Socket> sock;
 
-#ifdef _WIN32
-std::string getWindowsError() {
-    int errorCode = WSAGetLastError();
-    char* msgBuffer = nullptr;
-
-    FormatMessageA(
-        FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
-        nullptr, errorCode, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-        (LPSTR)&msgBuffer, 0, nullptr
-    );
-
-    std::unique_ptr<char, decltype(&LocalFree)> msg(msgBuffer, LocalFree);
-    if (!msg) {
-        logError("Could not retrieve error message");
-        exit(EXIT_FAILURE);
-    }
-
-    return std::string(msg.get());
-#endif
-
-void logError(std::string message) {
-    #ifdef _WIN32
-        std::cerr << message << ": " << getWindowsError() << "." << std::endl;
-    #else
-        std::cerr << message << ": " << strerror(errno) << std::endl;
-    #endif
-}
-
-void closeSocket(Socket sock) {
-    #ifdef _WIN32
-        closesocket(sock);
-        WSACleanup();
-    #else
-        close(sock);
-    #endif
-}
-
-Socket createSocket() {
-    int newSock = socket(AF_INET, SOCK_STREAM, 0);
-    if (newSock < 0) {
-        logError("Socket creation failed");
-        exit(EXIT_FAILURE);
-    }
-
-    return newSock;
-}
-
+/**
+ * @brief Sends heartbeat to the server for indicating if the server has crashed or not.
+ * @param sock the socket to send the message to.
+ */
 bool sendHeartbeat(Socket sock) {
     if (send(sock, HEARTBEAT_REQUEST, sizeof(HEARTBEAT_REQUEST), 0) == -1) {
-        logError("Could not send heartbeat");
+        Logger::logLastError("Could not send heartbeat");
         return false;
     }
 
     return true; 
 }
 
+/**
+ * @brief Determnines if the server is responding or not.
+ * @param bytesReceived the amount of bytes received from recv()
+ * @return true if responding, false otherwise
+ */
 bool isServerResponding(int &bytesReceived) {
     if (bytesReceived > 0) {
         return true;
     }
 
     if (bytesReceived < 0) {
-        logError("Error receiving data");
+        Logger::logLastError("Error receiving data");
     }
 
     std::cerr << "Server is not responding.. disconnecting.." << std::endl;
     return false;
 }
 
+/**
+ * @brief Connects to the server on the provided IP Address.
+ * @param ipAddress the IP address to connect to
+ * @param sock socket 
+ * @return true if connection established, false otherwise
+ */
 bool connectToServer(const std::string &ipAddress, Socket sock) {
-    std::string ip = ServerUtils::getSelectedIpAddress(ipAddress);
-    short port = ServerUtils::getSelectedPort(ipAddress);
+    std::string ip = NetworkUtils::getSelectedIpAddress(ipAddress);
+    short port = NetworkUtils::getSelectedPort(ipAddress);
 
     sockaddr_in serverAddress{};
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_port = htons(port);
     
     if (inet_pton(AF_INET, ip.c_str(), &serverAddress.sin_addr) <= 0) {
-        logError("Invalid IP Address");
+        Logger::logLastError("Invalid IP Address");
         return false;
     }
 
     return connect(sock, reinterpret_cast<sockaddr*>(&serverAddress), sizeof(serverAddress)) == 0;
 }
 
+/**
+ * @brief Fallback server is a struct representation of the fallback server of which the client is connected to.
+ * @see Failover Protocol https://en.wikipedia.org/wiki/Failover
+ */
 struct FallbackServer {
 
 private:
@@ -126,34 +81,49 @@ private:
     Socket newSock;
 
 public:
+    /**
+     * @brief Gets the IP Address of the fallback server which the client is connected to.
+     * @return the IP Address of the fallback server
+     */
     std::string getIpAddress() {
         return ipAddress;
     }
 
+    /**
+     * @brief Gets the fallback socket
+     * @return fallback socket
+     */
     Socket getSocket() {
         return newSock;
     }
 
+    /**
+     * @brief Attempts to connect to any available fallback server in provided servers.
+     * @return true if connection established, false otherwise
+     */
     bool connect() {
         if (servers.empty()) {
             return false;
         }
 
         for (const auto &server : servers) {
-            Socket sock = createSocket();
+            Socket sock = NetworkUtils::createSocket();
             if (connectToServer(server, sock)) {
                 newSock = sock;
                 ipAddress = server;
                 return true;
             }
 
-            closeSocket(sock);
+            NetworkUtils::closeSocket(sock);
         }
 
         return false;
     }
 };
 
+/**
+ * @brief Handles the incoming messages of other clients.
+ */
 void handleIncomingMessages(const std::string &username) {
     char buffer[BUFFER_SIZE];
 
@@ -166,7 +136,7 @@ void handleIncomingMessages(const std::string &username) {
 
         int readySocks = select(sock.load() + 1, &readSocks, nullptr, nullptr, &timeout);
         if (readySocks < 0) {
-            logError("Error while waiting for ready sockets");
+            Logger::logLastError("Error while waiting for ready sockets");
             break;
         }
 
@@ -191,7 +161,7 @@ void handleIncomingMessages(const std::string &username) {
 
         FallbackServer fallbackServer;
         if (!fallbackServer.connect()) {
-            logError("Could not connect to fallback servers");
+            Logger::logLastError("Could not connect to fallback servers");
             break;
         }
 
@@ -200,9 +170,12 @@ void handleIncomingMessages(const std::string &username) {
         std::cout << "Connected to fallback server: " << fallbackServer.getIpAddress() << std::endl;
     }
 
-    closeSocket(sock.load());
+    NetworkUtils::closeSocket(sock.load());
 }
 
+/**
+ * @brief Handles the client input and sends it to all connected clients.
+ */
 void handleClientInput() {
     char buffer[BUFFER_SIZE];
     while (true) {
@@ -221,7 +194,7 @@ void handleClientInput() {
         
         if (msg == EXIT_CMD) {
             servers.clear();
-            closeSocket(sock);
+            NetworkUtils::closeSocket(sock);
             break;
         }
         
@@ -230,23 +203,13 @@ void handleClientInput() {
         }
 
         if (send(sock.load(), msg.c_str(), msg.length(), 0) == -1) {
-            logError("Could not send message");
+            Logger::logLastError("Could not send message");
         }
     }
 }
 
 int main() {
-    #ifdef _WIN32
-        WSADATA wsaData;
-        int res = WSAStartup(MAKEWORD(2, 2), &wsaData);
-        if (res != 0) {
-            logError("WSAStartup failed");
-            return 1;
-        }
-    
-    #endif
-    
-    sock.store(createSocket());
+    sock.store(NetworkUtils::createSocket());
 
     std::string ipAddress;
     std::cout << "Enter IP Addresses: (type /done to finish):" << std::endl;
@@ -270,10 +233,15 @@ int main() {
     if (!connectToServer(servers[0], sock.load())) {
         std::cerr << "Could not connect to server: " << servers[0] << std::endl;
 
+        if (servers.size() == 1) {
+            NetworkUtils::closeSocket(sock);
+            return 1;
+        }
+
         FallbackServer fallbackServer;
         if (!fallbackServer.connect()) {
             std::cerr << "Could not connect to fallback servers." << std::endl;
-            closeSocket(sock);
+            NetworkUtils::closeSocket(sock);
             return 1;
         }
 
@@ -291,6 +259,6 @@ int main() {
 
     std::thread(handleIncomingMessages, username).detach();
     handleClientInput();
-    closeSocket(sock);
+    NetworkUtils::closeSocket(sock);
     return 0;
 }

@@ -170,4 +170,5 @@ CMakeFiles/client.dir/tcp_client/Client.cpp.o: \
  /usr/include/c++/14.2.1/limits /usr/include/c++/14.2.1/ctime \
  /usr/include/c++/14.2.1/bits/parse_numbers.h \
  /usr/include/c++/14.2.1/bits/std_mutex.h \
- /usr/include/c++/14.2.1/bits/unique_lock.h
+ /usr/include/c++/14.2.1/bits/unique_lock.h \
+ /home/notro/ApartiumChat/utils/SocketAdapter.h

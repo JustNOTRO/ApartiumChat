@@ -11,7 +11,7 @@
 
 #include "Client.h"
 
-Client::Client(std::string name, int sock) : name(name), sock(sock) {}
+Client::Client(std::string name, Socket sock) : name(name), sock(sock) {}
 
 Client::~Client() {}
 
@@ -19,7 +19,7 @@ std::string Client::getUserName() {
     return this->name;
 }
 
-int Client::getSocket() {
+Socket Client::getSocket() {
     return this->sock;
 }
 

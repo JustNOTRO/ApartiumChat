@@ -1,10 +1,9 @@
 #include <iostream>
 #include "Server.h"
-#include "utils/ServerUtils.h"
 #include "ServerConstants.h"
+#include "NetworkUtils.h"
 
 class Server;
-class ServerUtils;
 
 int main() {
    std::cout << "Enter IP Address: ";
@@ -15,8 +14,8 @@ int main() {
        ipAddress = LOCAL_HOST_ADDRESS;
    }
 
-   std::string ip = ServerUtils::getSelectedIpAddress(ipAddress);
-   short port = ServerUtils::getSelectedPort(ipAddress);
+   std::string ip = NetworkUtils::getSelectedIpAddress(ipAddress);
+   std::uint16_t port = NetworkUtils::getSelectedPort(ipAddress);
 
    Server server(ip, port);
    server.run();
