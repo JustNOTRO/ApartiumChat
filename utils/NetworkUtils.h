@@ -6,12 +6,11 @@
 #include <cstdint>
 
 /**
- * NetworkUtils is a utility class that contains common methods upon server-client side
+ * @brief NetworkUtils is a utility class that contains common methods upon server-client side applications
  */
 class NetworkUtils {
 
     public:
-
         /**
          * @brief Gets the IP address part out of the full IP address, for example 127.0.0.1 out of 127.0.0.1:8080.
          * @param ipAddress the full IP address
@@ -35,6 +34,9 @@ class NetworkUtils {
          * @brief Close the provided socket.
          */
         static void closeSocket(Socket sock);
+
+    private:
+        NetworkUtils();
 };
 
 #endif // NETWORKUTILS_H

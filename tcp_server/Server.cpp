@@ -64,7 +64,7 @@ void Server::run() {
 
         Socket clientSocket = accept(sock, socketAddress, &sockAddrLen);
         if (clientSocket < 0) {
-            Logger::logLastError("Could not accept client socket.");
+            Logger::logLastError("Could not accept client socket");
             continue;
         }
         
