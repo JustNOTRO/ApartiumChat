@@ -76,85 +76,85 @@ CMakeFiles/server.dir/tcp_server/main.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/tcp_server/main.cpp.o: /home/notro/ApartiumChat/tcp_server/main.cpp
 CMakeFiles/server.dir/tcp_server/main.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/notro/ApartiumChat/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/server.dir/tcp_server/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/tcp_server/main.cpp.o -MF CMakeFiles/server.dir/tcp_server/main.cpp.o.d -o CMakeFiles/server.dir/tcp_server/main.cpp.o -c /home/notro/ApartiumChat/tcp_server/main.cpp
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/tcp_server/main.cpp.o -MF CMakeFiles/server.dir/tcp_server/main.cpp.o.d -o CMakeFiles/server.dir/tcp_server/main.cpp.o -c /home/notro/ApartiumChat/tcp_server/main.cpp
 
 CMakeFiles/server.dir/tcp_server/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/server.dir/tcp_server/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/notro/ApartiumChat/tcp_server/main.cpp > CMakeFiles/server.dir/tcp_server/main.cpp.i
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/notro/ApartiumChat/tcp_server/main.cpp > CMakeFiles/server.dir/tcp_server/main.cpp.i
 
 CMakeFiles/server.dir/tcp_server/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/server.dir/tcp_server/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/notro/ApartiumChat/tcp_server/main.cpp -o CMakeFiles/server.dir/tcp_server/main.cpp.s
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/notro/ApartiumChat/tcp_server/main.cpp -o CMakeFiles/server.dir/tcp_server/main.cpp.s
 
 CMakeFiles/server.dir/tcp_server/ThreadPool.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/tcp_server/ThreadPool.cpp.o: /home/notro/ApartiumChat/tcp_server/ThreadPool.cpp
 CMakeFiles/server.dir/tcp_server/ThreadPool.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/notro/ApartiumChat/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/server.dir/tcp_server/ThreadPool.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/tcp_server/ThreadPool.cpp.o -MF CMakeFiles/server.dir/tcp_server/ThreadPool.cpp.o.d -o CMakeFiles/server.dir/tcp_server/ThreadPool.cpp.o -c /home/notro/ApartiumChat/tcp_server/ThreadPool.cpp
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/tcp_server/ThreadPool.cpp.o -MF CMakeFiles/server.dir/tcp_server/ThreadPool.cpp.o.d -o CMakeFiles/server.dir/tcp_server/ThreadPool.cpp.o -c /home/notro/ApartiumChat/tcp_server/ThreadPool.cpp
 
 CMakeFiles/server.dir/tcp_server/ThreadPool.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/server.dir/tcp_server/ThreadPool.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/notro/ApartiumChat/tcp_server/ThreadPool.cpp > CMakeFiles/server.dir/tcp_server/ThreadPool.cpp.i
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/notro/ApartiumChat/tcp_server/ThreadPool.cpp > CMakeFiles/server.dir/tcp_server/ThreadPool.cpp.i
 
 CMakeFiles/server.dir/tcp_server/ThreadPool.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/server.dir/tcp_server/ThreadPool.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/notro/ApartiumChat/tcp_server/ThreadPool.cpp -o CMakeFiles/server.dir/tcp_server/ThreadPool.cpp.s
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/notro/ApartiumChat/tcp_server/ThreadPool.cpp -o CMakeFiles/server.dir/tcp_server/ThreadPool.cpp.s
 
 CMakeFiles/server.dir/tcp_server/Server.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/tcp_server/Server.cpp.o: /home/notro/ApartiumChat/tcp_server/Server.cpp
 CMakeFiles/server.dir/tcp_server/Server.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/notro/ApartiumChat/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/server.dir/tcp_server/Server.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/tcp_server/Server.cpp.o -MF CMakeFiles/server.dir/tcp_server/Server.cpp.o.d -o CMakeFiles/server.dir/tcp_server/Server.cpp.o -c /home/notro/ApartiumChat/tcp_server/Server.cpp
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/tcp_server/Server.cpp.o -MF CMakeFiles/server.dir/tcp_server/Server.cpp.o.d -o CMakeFiles/server.dir/tcp_server/Server.cpp.o -c /home/notro/ApartiumChat/tcp_server/Server.cpp
 
 CMakeFiles/server.dir/tcp_server/Server.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/server.dir/tcp_server/Server.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/notro/ApartiumChat/tcp_server/Server.cpp > CMakeFiles/server.dir/tcp_server/Server.cpp.i
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/notro/ApartiumChat/tcp_server/Server.cpp > CMakeFiles/server.dir/tcp_server/Server.cpp.i
 
 CMakeFiles/server.dir/tcp_server/Server.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/server.dir/tcp_server/Server.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/notro/ApartiumChat/tcp_server/Server.cpp -o CMakeFiles/server.dir/tcp_server/Server.cpp.s
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/notro/ApartiumChat/tcp_server/Server.cpp -o CMakeFiles/server.dir/tcp_server/Server.cpp.s
 
 CMakeFiles/server.dir/tcp_client/Client.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/tcp_client/Client.cpp.o: /home/notro/ApartiumChat/tcp_client/Client.cpp
 CMakeFiles/server.dir/tcp_client/Client.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/notro/ApartiumChat/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/server.dir/tcp_client/Client.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/tcp_client/Client.cpp.o -MF CMakeFiles/server.dir/tcp_client/Client.cpp.o.d -o CMakeFiles/server.dir/tcp_client/Client.cpp.o -c /home/notro/ApartiumChat/tcp_client/Client.cpp
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/tcp_client/Client.cpp.o -MF CMakeFiles/server.dir/tcp_client/Client.cpp.o.d -o CMakeFiles/server.dir/tcp_client/Client.cpp.o -c /home/notro/ApartiumChat/tcp_client/Client.cpp
 
 CMakeFiles/server.dir/tcp_client/Client.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/server.dir/tcp_client/Client.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/notro/ApartiumChat/tcp_client/Client.cpp > CMakeFiles/server.dir/tcp_client/Client.cpp.i
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/notro/ApartiumChat/tcp_client/Client.cpp > CMakeFiles/server.dir/tcp_client/Client.cpp.i
 
 CMakeFiles/server.dir/tcp_client/Client.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/server.dir/tcp_client/Client.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/notro/ApartiumChat/tcp_client/Client.cpp -o CMakeFiles/server.dir/tcp_client/Client.cpp.s
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/notro/ApartiumChat/tcp_client/Client.cpp -o CMakeFiles/server.dir/tcp_client/Client.cpp.s
 
 CMakeFiles/server.dir/utils/NetworkUtils.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/utils/NetworkUtils.cpp.o: /home/notro/ApartiumChat/utils/NetworkUtils.cpp
 CMakeFiles/server.dir/utils/NetworkUtils.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/notro/ApartiumChat/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/server.dir/utils/NetworkUtils.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/utils/NetworkUtils.cpp.o -MF CMakeFiles/server.dir/utils/NetworkUtils.cpp.o.d -o CMakeFiles/server.dir/utils/NetworkUtils.cpp.o -c /home/notro/ApartiumChat/utils/NetworkUtils.cpp
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/utils/NetworkUtils.cpp.o -MF CMakeFiles/server.dir/utils/NetworkUtils.cpp.o.d -o CMakeFiles/server.dir/utils/NetworkUtils.cpp.o -c /home/notro/ApartiumChat/utils/NetworkUtils.cpp
 
 CMakeFiles/server.dir/utils/NetworkUtils.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/server.dir/utils/NetworkUtils.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/notro/ApartiumChat/utils/NetworkUtils.cpp > CMakeFiles/server.dir/utils/NetworkUtils.cpp.i
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/notro/ApartiumChat/utils/NetworkUtils.cpp > CMakeFiles/server.dir/utils/NetworkUtils.cpp.i
 
 CMakeFiles/server.dir/utils/NetworkUtils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/server.dir/utils/NetworkUtils.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/notro/ApartiumChat/utils/NetworkUtils.cpp -o CMakeFiles/server.dir/utils/NetworkUtils.cpp.s
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/notro/ApartiumChat/utils/NetworkUtils.cpp -o CMakeFiles/server.dir/utils/NetworkUtils.cpp.s
 
 CMakeFiles/server.dir/utils/Logger.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/utils/Logger.cpp.o: /home/notro/ApartiumChat/utils/Logger.cpp
 CMakeFiles/server.dir/utils/Logger.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/notro/ApartiumChat/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/server.dir/utils/Logger.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/utils/Logger.cpp.o -MF CMakeFiles/server.dir/utils/Logger.cpp.o.d -o CMakeFiles/server.dir/utils/Logger.cpp.o -c /home/notro/ApartiumChat/utils/Logger.cpp
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/utils/Logger.cpp.o -MF CMakeFiles/server.dir/utils/Logger.cpp.o.d -o CMakeFiles/server.dir/utils/Logger.cpp.o -c /home/notro/ApartiumChat/utils/Logger.cpp
 
 CMakeFiles/server.dir/utils/Logger.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/server.dir/utils/Logger.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/notro/ApartiumChat/utils/Logger.cpp > CMakeFiles/server.dir/utils/Logger.cpp.i
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/notro/ApartiumChat/utils/Logger.cpp > CMakeFiles/server.dir/utils/Logger.cpp.i
 
 CMakeFiles/server.dir/utils/Logger.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/server.dir/utils/Logger.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/notro/ApartiumChat/utils/Logger.cpp -o CMakeFiles/server.dir/utils/Logger.cpp.s
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/notro/ApartiumChat/utils/Logger.cpp -o CMakeFiles/server.dir/utils/Logger.cpp.s
 
 # Object files for target server
 server_OBJECTS = \
