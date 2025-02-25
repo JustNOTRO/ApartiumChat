@@ -48,6 +48,9 @@ Ensure you have the following installed:
 ### 🔨 Compilation & Execution
 
 ```sh
+# Clone the repository 
+git clone https://github.com/JustNOTRO/ApartiumChat.git
+
 # Go to build directory
 cd build/
 
