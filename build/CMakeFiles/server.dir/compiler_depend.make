@@ -1637,6 +1637,7 @@ server: /usr/lib/Scrt1.o \
   /usr/lib/libgcc_s.so \
   /usr/lib/libgcc_s.so.1 \
   /usr/lib/libm.so \
+  /usr/lib/libpthread.a \
   /usr/lib/libstdc++.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/crtbeginS.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/crtendS.o \
@@ -1671,6 +1672,8 @@ CMakeFiles/server.dir/tcp_client/Client.cpp.o:
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/libgcc.a:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/crtbeginS.o:
+
+/usr/lib/libpthread.a:
 
 /usr/lib/crti.o:
 
