@@ -21,7 +21,7 @@ Server::Server(std::string ip, const std::uint16_t &port) : port(port), threadPo
     serverAddress.sin_port = htons(port);
     this->address = serverAddress;
 
-    if (inet_pton(AF_INET, ip.c_str(), &serverAddress.sin_addr) <= 0) {
+    if (inet_pton(AF_INET, ip.c_str(), &serverAddress.sin_addr) == -1) {
         Logger::logLastError("Invalid IP Address " + ip);
         exit(EXIT_FAILURE);
     }
@@ -43,14 +43,18 @@ Server::Server(std::string ip, const std::uint16_t &port) : port(port), threadPo
 Server::~Server() {
     cleanupClients();
     NetworkUtils::closeSocket(this->sock);
+
+    #ifdef _WIN32
+        WSACleanup();
+    #endif
 }
 
 void Server::run() {
+    char buffer[BUFFER_SIZE];
     socklen_t sockAddrLen = sizeof(address);
     struct sockaddr* socketAddress = reinterpret_cast<struct sockaddr*>(&address);
 
     while (true) {
-        char buffer[BUFFER_SIZE];
         memset(buffer, 0, BUFFER_SIZE);
 
         Socket clientSocket = accept(sock, socketAddress, &sockAddrLen);
@@ -59,14 +63,14 @@ void Server::run() {
             continue;
         }
         
-        int received = recv(clientSocket, buffer, BUFFER_SIZE, 0);
-        if (received <= 0) {
-            NetworkUtils::closeSocket(clientSocket);
+        int bytesRecieved = recv(clientSocket, buffer, BUFFER_SIZE, 0);
+        buffer[bytesRecieved] = '\0';
+
+        std::string senderName(buffer);
+        if (bytesRecieved < 0) {
+            Logger::logLastError("Could not receive data from " + senderName);
             continue;
         }
-
-        buffer[received] = '\0';
-        std::string senderName(buffer);
 
         if (!addClient(senderName, clientSocket)) {
             NetworkUtils::closeSocket(clientSocket);
@@ -98,7 +102,8 @@ void Server::broadcast(std::string senderName, Socket senderSock) {
         }
 
         if (bytesReceived == 0) {
-            announceUserQuit(senderName);
+            removeClient(senderName);
+            announceUserQuit(senderName, senderSock);
             break;
         }
         
@@ -116,13 +121,13 @@ void Server::broadcast(std::string senderName, Socket senderSock) {
         std::cout << prefixedMsg << std::endl;
         broadcastMessage(prefixedMsg, senderSock);
     }
-
-    removeClient(senderName);
+    
     NetworkUtils::closeSocket(senderSock);
 }
 
 void Server::broadcastMessage(const std::string &msg, Socket excludeSock) {
     std::lock_guard<std::mutex> lock(mtx);
+
     for (auto &pair : clients) {
         int clientSocket = pair.second->getSocket();
 
@@ -144,7 +149,7 @@ bool Server::addClient(const std::string &username, Socket sock) {
         return false;
     }
   
-    Client* client = new Client(username, sock);
+    Client *client = new Client(username, sock);
     clients[username] = client;
     return true;
 }
@@ -197,24 +202,9 @@ sockaddr_in Server::getAddress() {
     return this->address;
 }
 
-void Server::announceUserQuit(const std::string &username) {
+void Server::announceUserQuit(const std::string &username, int senderSock) {
     std::string quitMsg = username + " disconnected from the server.";
     std::cout << quitMsg << std::endl;
 
-    if (clients.empty()) {
-        return;
-    }
-
-    for (auto& pair : clients) {
-        Client *client = pair.second;
-        if (send(client->getSocket(), quitMsg.c_str(), quitMsg.length(), 0) == -1) {
-            Logger::logLastError("Could not send quit message to " + pair.first);
-        }
-    }
+    broadcastMessage(quitMsg, senderSock);
 }
-
-
-
-
-
-

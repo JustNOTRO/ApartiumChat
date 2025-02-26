@@ -127,16 +127,16 @@ void handleIncomingMessages(const std::string &username) {
     char buffer[BUFFER_SIZE];
 
     while (true) {
+        // no need to continue if client disconnected.
+        if (disconnected.load()) { 
+            break;
+        }
+
         memset(buffer, 0, BUFFER_SIZE);
         struct timeval timeout = {HEARTBEAT_INTERVAL_SECONDS, 0};
         fd_set readSocks;
         FD_ZERO(&readSocks);
         FD_SET(sock.load(), &readSocks);
-
-        // no need to continue if client disconnected.
-        if (disconnected.load()) { 
-            break;
-        }
 
         int readySocks = select(sock.load() + 1, &readSocks, nullptr, nullptr, &timeout);
         if (readySocks < 0) {
@@ -266,5 +266,12 @@ int main() {
     send(sock.load(), username.c_str(), username.length(), 0);
     std::thread(handleIncomingMessages, username).detach();
     handleClientInput();
+
+    #ifdef _WIN32
+        if (disconnected.load()) {
+            WSACleanup();
+        }
+    #endif
+
     return 0;
 }

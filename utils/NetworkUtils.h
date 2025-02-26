@@ -32,6 +32,7 @@ class NetworkUtils {
 
         /**
          * @brief Close the provided socket.
+         * @param sock the socket to close
          */
         static void closeSocket(Socket sock);
 

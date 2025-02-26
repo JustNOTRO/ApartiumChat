@@ -40,7 +40,6 @@ Socket NetworkUtils::createSocket() {
 void NetworkUtils::closeSocket(Socket sock) {
     #ifdef _WIN32
         closesocket(sock);
-        WSACleanup();
     #else
         close(sock);
     #endif // _WIN32

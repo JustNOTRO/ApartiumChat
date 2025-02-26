@@ -93,7 +93,7 @@ class Server {
          * @brief Announces client disconnection.
          * @param username the client name
          */
-        void announceUserQuit(const std::string &username);
+        void announceUserQuit(const std::string &username, int senderSock);
 
         /**
          * @brief Sends message to all connected clients.
