@@ -1,4 +1,5 @@
 #include <string.h>
+#include <memory>
 #include "Logger.h"
 #include "SocketAdapter.h"
 

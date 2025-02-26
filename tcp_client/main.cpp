@@ -166,6 +166,7 @@ void handleIncomingMessages(const std::string &username) {
         std::cout << "Connected to fallback server: " << fallbackServer.getIpAddress() << std::endl;
     }
 
+    memset(buffer, 0, BUFFER_SIZE);
     NetworkUtils::closeSocket(sock.load());
 }
 
@@ -191,6 +192,7 @@ void handleClientInput() {
         if (msg == EXIT_CMD) {
             servers.clear();
             NetworkUtils::closeSocket(sock);
+            memset(buffer, 0, BUFFER_SIZE);
             break;
         }
         
