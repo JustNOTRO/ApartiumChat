@@ -12,6 +12,7 @@
 std::vector<std::string> servers;
 std::mutex serverMutex;
 std::atomic<Socket> sock;
+std::atomic<bool> disconnected(false);
 
 /**
  * @brief Sends heartbeat to the server for indicating if the server has crashed or not.
@@ -98,6 +99,8 @@ public:
      * @return true if connection established, false otherwise
      */
     bool connect() {
+        std::lock_guard<std::mutex> lock(serverMutex);
+
         if (servers.empty()) {
             return false;
         }
@@ -129,6 +132,11 @@ void handleIncomingMessages(const std::string &username) {
         fd_set readSocks;
         FD_ZERO(&readSocks);
         FD_SET(sock.load(), &readSocks);
+
+        // no need to continue if client disconnected.
+        if (disconnected.load()) { 
+            break;
+        }
 
         int readySocks = select(sock.load() + 1, &readSocks, nullptr, nullptr, &timeout);
         if (readySocks < 0) {
@@ -191,8 +199,8 @@ void handleClientInput() {
         
         if (msg == EXIT_CMD) {
             servers.clear();
-            NetworkUtils::closeSocket(sock);
             memset(buffer, 0, BUFFER_SIZE);
+            disconnected.store(true);
             break;
         }
         
@@ -204,6 +212,8 @@ void handleClientInput() {
             Logger::logLastError("Could not send message");
         }
     }
+
+    NetworkUtils::closeSocket(sock);
 }
 
 int main() {
@@ -233,7 +243,7 @@ int main() {
 
         if (servers.size() == 1) {
             NetworkUtils::closeSocket(sock);
-            return 1;
+            return 0;
         }
 
         FallbackServer fallbackServer;
@@ -254,9 +264,7 @@ int main() {
     }
     
     send(sock.load(), username.c_str(), username.length(), 0);
-
     std::thread(handleIncomingMessages, username).detach();
     handleClientInput();
-    NetworkUtils::closeSocket(sock);
     return 0;
 }
