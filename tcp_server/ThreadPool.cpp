@@ -1,13 +1,3 @@
-#include <iostream>
-#include <thread>
-#include <mutex>
-#include <condition_variable>
-#include <queue>
-#include <functional>
-#include <netinet/in.h>
-#include <unistd.h>
-#include <cstring>
-
 #include "ThreadPool.h"
 
 ThreadPool::ThreadPool(size_t numThreads) : stop(false) {
