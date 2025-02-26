@@ -193,13 +193,7 @@ CMakeFiles/client.dir/tcp_server/Server.cpp.o: \
  /usr/include/c++/14.2.1/bits/stl_set.h \
  /usr/include/c++/14.2.1/bits/stl_multiset.h \
  /usr/include/c++/14.2.1/bits/erase_if.h /usr/include/c++/14.2.1/mutex \
- /usr/include/c++/14.2.1/bits/unique_lock.h /usr/include/sys/socket.h \
- /usr/include/bits/types/struct_iovec.h /usr/include/bits/socket.h \
- /usr/include/bits/socket_type.h /usr/include/bits/sockaddr.h \
- /usr/include/asm/socket.h /usr/include/asm-generic/socket.h \
- /usr/include/asm/sockios.h /usr/include/asm-generic/sockios.h \
- /usr/include/bits/types/struct_osockaddr.h /usr/include/arpa/inet.h \
- /usr/include/netinet/in.h /usr/include/bits/in.h \
+ /usr/include/c++/14.2.1/bits/unique_lock.h \
  /usr/include/c++/14.2.1/functional \
  /usr/include/c++/14.2.1/bits/std_function.h \
  /usr/include/c++/14.2.1/unordered_map \
@@ -212,8 +206,15 @@ CMakeFiles/client.dir/tcp_server/Server.cpp.o: \
  /usr/include/c++/14.2.1/list /usr/include/c++/14.2.1/bits/stl_list.h \
  /usr/include/c++/14.2.1/bits/allocated_ptr.h \
  /usr/include/c++/14.2.1/bits/list.tcc \
+ /home/notro/ApartiumChat/tcp_server/ServerConstants.h \
  /home/notro/ApartiumChat/tcp_client/Client.h \
- /home/notro/ApartiumChat/utils/SocketAdapter.h \
+ /home/notro/ApartiumChat/utils/SocketAdapter.h /usr/include/arpa/inet.h \
+ /usr/include/netinet/in.h /usr/include/sys/socket.h \
+ /usr/include/bits/types/struct_iovec.h /usr/include/bits/socket.h \
+ /usr/include/bits/socket_type.h /usr/include/bits/sockaddr.h \
+ /usr/include/asm/socket.h /usr/include/asm-generic/socket.h \
+ /usr/include/asm/sockios.h /usr/include/asm-generic/sockios.h \
+ /usr/include/bits/types/struct_osockaddr.h /usr/include/bits/in.h \
  /home/notro/ApartiumChat/tcp_server/ThreadPool.h \
  /usr/include/c++/14.2.1/condition_variable \
  /usr/include/c++/14.2.1/bits/shared_ptr.h \
@@ -225,5 +226,4 @@ CMakeFiles/client.dir/tcp_server/Server.cpp.o: \
  /usr/include/c++/14.2.1/bits/stl_heap.h \
  /usr/include/c++/14.2.1/bits/stl_queue.h \
  /home/notro/ApartiumChat/utils/NetworkUtils.h \
- /home/notro/ApartiumChat/tcp_server/ServerConstants.h \
  /home/notro/ApartiumChat/utils/Logger.h

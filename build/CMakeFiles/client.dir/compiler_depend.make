@@ -890,15 +890,11 @@ CMakeFiles/client.dir/tcp_server/ThreadPool.cpp.o: /home/notro/ApartiumChat/tcp_
   /usr/include/asm-generic/errno.h \
   /usr/include/asm-generic/int-ll64.h \
   /usr/include/asm-generic/posix_types.h \
-  /usr/include/asm-generic/socket.h \
-  /usr/include/asm-generic/sockios.h \
   /usr/include/asm-generic/types.h \
   /usr/include/asm/bitsperlong.h \
   /usr/include/asm/errno.h \
   /usr/include/asm/posix_types.h \
   /usr/include/asm/posix_types_64.h \
-  /usr/include/asm/socket.h \
-  /usr/include/asm/sockios.h \
   /usr/include/asm/types.h \
   /usr/include/asm/unistd.h \
   /usr/include/asm/unistd_64.h \
@@ -914,7 +910,6 @@ CMakeFiles/client.dir/tcp_server/ThreadPool.cpp.o: /home/notro/ApartiumChat/tcp_
   /usr/include/bits/floatn.h \
   /usr/include/bits/getopt_core.h \
   /usr/include/bits/getopt_posix.h \
-  /usr/include/bits/in.h \
   /usr/include/bits/libc-header-start.h \
   /usr/include/bits/local_lim.h \
   /usr/include/bits/locale.h \
@@ -929,9 +924,6 @@ CMakeFiles/client.dir/tcp_server/ThreadPool.cpp.o: /home/notro/ApartiumChat/tcp_
   /usr/include/bits/select.h \
   /usr/include/bits/semaphore.h \
   /usr/include/bits/setjmp.h \
-  /usr/include/bits/sockaddr.h \
-  /usr/include/bits/socket.h \
-  /usr/include/bits/socket_type.h \
   /usr/include/bits/stdint-intn.h \
   /usr/include/bits/stdint-least.h \
   /usr/include/bits/stdint-uintn.h \
@@ -962,9 +954,7 @@ CMakeFiles/client.dir/tcp_server/ThreadPool.cpp.o: /home/notro/ApartiumChat/tcp_
   /usr/include/bits/types/sigset_t.h \
   /usr/include/bits/types/struct_FILE.h \
   /usr/include/bits/types/struct___jmp_buf_tag.h \
-  /usr/include/bits/types/struct_iovec.h \
   /usr/include/bits/types/struct_itimerspec.h \
-  /usr/include/bits/types/struct_osockaddr.h \
   /usr/include/bits/types/struct_sched_param.h \
   /usr/include/bits/types/struct_timespec.h \
   /usr/include/bits/types/struct_timeval.h \
@@ -1088,7 +1078,6 @@ CMakeFiles/client.dir/tcp_server/ThreadPool.cpp.o: /home/notro/ApartiumChat/tcp_
   /usr/include/c++/14.2.1/cstdint \
   /usr/include/c++/14.2.1/cstdio \
   /usr/include/c++/14.2.1/cstdlib \
-  /usr/include/c++/14.2.1/cstring \
   /usr/include/c++/14.2.1/ctime \
   /usr/include/c++/14.2.1/cwchar \
   /usr/include/c++/14.2.1/cwctype \
@@ -1157,7 +1146,6 @@ CMakeFiles/client.dir/tcp_server/ThreadPool.cpp.o: /home/notro/ApartiumChat/tcp_
   /usr/include/linux/stddef.h \
   /usr/include/linux/types.h \
   /usr/include/locale.h \
-  /usr/include/netinet/in.h \
   /usr/include/pthread.h \
   /usr/include/sched.h \
   /usr/include/semaphore.h \
@@ -1165,12 +1153,9 @@ CMakeFiles/client.dir/tcp_server/ThreadPool.cpp.o: /home/notro/ApartiumChat/tcp_
   /usr/include/stdint.h \
   /usr/include/stdio.h \
   /usr/include/stdlib.h \
-  /usr/include/string.h \
-  /usr/include/strings.h \
   /usr/include/sys/cdefs.h \
   /usr/include/sys/select.h \
   /usr/include/sys/single_threaded.h \
-  /usr/include/sys/socket.h \
   /usr/include/sys/syscall.h \
   /usr/include/sys/time.h \
   /usr/include/sys/types.h \
