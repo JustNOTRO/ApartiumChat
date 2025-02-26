@@ -73,8 +73,9 @@ void Server::run() {
         }
 
         if (!addClient(senderName, clientSocket)) {
+            send(clientSocket, USERNAME_TAKEN_MSG, sizeof(USERNAME_TAKEN_MSG), 0);
             NetworkUtils::closeSocket(clientSocket);
-            continue;
+            continue; 
         }
         
         std::string joinMsg = senderName + " connected to the server.";
@@ -145,7 +146,6 @@ bool Server::addClient(const std::string &username, Socket sock) {
     std::lock_guard<std::mutex> lock(mtx);
   
     if (hasClientWithName(username)) {
-        send(sock, USERNAME_TAKEN_MSG, sizeof(USERNAME_TAKEN_MSG), 0);
         return false;
     }
   

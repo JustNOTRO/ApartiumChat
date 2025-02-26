@@ -4,7 +4,7 @@
 #include "SocketAdapter.h"
 
 void Logger::logLastError(std::string message) {
-    std::cerr << message << " " << getLastError() << " ." << std::endl;
+    std::cerr << message << " " << getLastError() << "." << std::endl;
 }
 
 #ifdef _WIN32
