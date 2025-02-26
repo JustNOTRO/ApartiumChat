@@ -31,7 +31,7 @@ std::string Logger::getLastWindowsError() {
 
 std::string Logger::getLastError() {
     #ifdef _WIN32
-        return getWindowsError();
+        return getLastWindowsError();
     #else
         return strerror(errno);
     #endif // _WIN32
