@@ -2,7 +2,6 @@
 #include "NetworkUtils.h"
 #include "ServerConstants.h"
 #include "Logger.h"
-#include "SocketAdapter.h"
 
 std::string NetworkUtils::getSelectedIpAddress(std::string ipAddress) {
     size_t colonPos = ipAddress.find(':');

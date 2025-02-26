@@ -2,8 +2,8 @@
 #ifndef NETWORKUTILS_H 
 #define NETWORKUTILS_H
 
-#include "SocketAdapter.h"
 #include <cstdint>
+#include "SocketAdapter.h"
 
 /**
  * @brief NetworkUtils is a utility class that contains common methods upon server-client side applications

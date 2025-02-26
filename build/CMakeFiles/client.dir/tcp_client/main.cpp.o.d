@@ -149,23 +149,12 @@ CMakeFiles/client.dir/tcp_client/main.cpp.o: \
  /usr/include/c++/14.2.1/bits/locale_facets.tcc \
  /usr/include/c++/14.2.1/bits/basic_ios.tcc \
  /usr/include/c++/14.2.1/bits/ostream.tcc /usr/include/c++/14.2.1/istream \
- /usr/include/c++/14.2.1/bits/istream.tcc /usr/include/unistd.h \
- /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
- /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
- /usr/include/bits/getopt_core.h /usr/include/bits/unistd_ext.h \
- /usr/include/linux/close_range.h /usr/include/arpa/inet.h \
- /usr/include/netinet/in.h /usr/include/bits/stdint-uintn.h \
- /usr/include/sys/socket.h /usr/include/bits/types/struct_iovec.h \
- /usr/include/bits/socket.h /usr/include/bits/socket_type.h \
- /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
- /usr/include/asm-generic/socket.h /usr/include/asm/sockios.h \
- /usr/include/asm-generic/sockios.h \
- /usr/include/bits/types/struct_osockaddr.h /usr/include/bits/in.h \
- /usr/include/c++/14.2.1/thread /usr/include/c++/14.2.1/stop_token \
- /usr/include/c++/14.2.1/atomic \
+ /usr/include/c++/14.2.1/bits/istream.tcc /usr/include/c++/14.2.1/thread \
+ /usr/include/c++/14.2.1/stop_token /usr/include/c++/14.2.1/atomic \
  /usr/include/c++/14.2.1/bits/atomic_base.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdint.h \
- /usr/include/stdint.h /usr/include/bits/stdint-least.h \
+ /usr/include/stdint.h /usr/include/bits/stdint-uintn.h \
+ /usr/include/bits/stdint-least.h \
  /usr/include/c++/14.2.1/bits/atomic_lockfree_defines.h \
  /usr/include/c++/14.2.1/bits/atomic_wait.h \
  /usr/include/c++/14.2.1/cstdint /usr/include/c++/14.2.1/climits \
@@ -174,7 +163,11 @@ CMakeFiles/client.dir/tcp_client/main.cpp.o: \
  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
- /usr/include/bits/uio_lim.h /usr/include/syscall.h \
+ /usr/include/bits/uio_lim.h /usr/include/unistd.h \
+ /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+ /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
+ /usr/include/bits/getopt_core.h /usr/include/bits/unistd_ext.h \
+ /usr/include/linux/close_range.h /usr/include/syscall.h \
  /usr/include/sys/syscall.h /usr/include/asm/unistd.h \
  /usr/include/asm/unistd_64.h /usr/include/bits/syscall.h \
  /usr/include/c++/14.2.1/bits/std_mutex.h \
@@ -194,36 +187,13 @@ CMakeFiles/client.dir/tcp_client/main.cpp.o: \
  /usr/include/c++/14.2.1/bits/stl_vector.h \
  /usr/include/c++/14.2.1/bits/stl_bvector.h \
  /usr/include/c++/14.2.1/bits/vector.tcc \
- /home/notro/ApartiumChat/tcp_server/ServerConstants.h \
- /home/notro/ApartiumChat/tcp_server/Server.h \
- /usr/include/c++/14.2.1/list /usr/include/c++/14.2.1/bits/stl_list.h \
- /usr/include/c++/14.2.1/bits/allocated_ptr.h \
- /usr/include/c++/14.2.1/ext/aligned_buffer.h \
- /usr/include/c++/14.2.1/bits/list.tcc /usr/include/c++/14.2.1/set \
- /usr/include/c++/14.2.1/bits/stl_tree.h \
- /usr/include/c++/14.2.1/bits/node_handle.h \
- /usr/include/c++/14.2.1/bits/stl_set.h \
- /usr/include/c++/14.2.1/bits/stl_multiset.h \
- /usr/include/c++/14.2.1/bits/erase_if.h \
- /usr/include/c++/14.2.1/unordered_map \
- /usr/include/c++/14.2.1/bits/unordered_map.h \
- /usr/include/c++/14.2.1/bits/hashtable.h \
- /usr/include/c++/14.2.1/bits/hashtable_policy.h \
- /usr/include/c++/14.2.1/bits/enable_special_members.h \
- /usr/include/c++/14.2.1/functional \
- /usr/include/c++/14.2.1/bits/std_function.h \
- /usr/include/c++/14.2.1/array \
- /home/notro/ApartiumChat/tcp_client/Client.h \
- /home/notro/ApartiumChat/utils/SocketAdapter.h \
- /home/notro/ApartiumChat/tcp_server/ThreadPool.h \
- /usr/include/c++/14.2.1/condition_variable \
- /usr/include/c++/14.2.1/bits/shared_ptr.h \
- /usr/include/c++/14.2.1/bits/shared_ptr_base.h \
- /usr/include/c++/14.2.1/ext/concurrence.h \
- /usr/include/c++/14.2.1/bits/align.h /usr/include/c++/14.2.1/queue \
- /usr/include/c++/14.2.1/deque /usr/include/c++/14.2.1/bits/stl_deque.h \
- /usr/include/c++/14.2.1/bits/deque.tcc \
- /usr/include/c++/14.2.1/bits/stl_heap.h \
- /usr/include/c++/14.2.1/bits/stl_queue.h \
  /home/notro/ApartiumChat/utils/NetworkUtils.h \
+ /home/notro/ApartiumChat/utils/SocketAdapter.h /usr/include/arpa/inet.h \
+ /usr/include/netinet/in.h /usr/include/sys/socket.h \
+ /usr/include/bits/types/struct_iovec.h /usr/include/bits/socket.h \
+ /usr/include/bits/socket_type.h /usr/include/bits/sockaddr.h \
+ /usr/include/asm/socket.h /usr/include/asm-generic/socket.h \
+ /usr/include/asm/sockios.h /usr/include/asm-generic/sockios.h \
+ /usr/include/bits/types/struct_osockaddr.h /usr/include/bits/in.h \
+ /home/notro/ApartiumChat/tcp_server/ServerConstants.h \
  /home/notro/ApartiumChat/utils/Logger.h

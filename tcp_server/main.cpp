@@ -1,7 +1,5 @@
 #include "Server.h"
 
-class Server;
-
 int main() {
    std::cout << "Enter IP Address: ";
    std::string ipAddress;

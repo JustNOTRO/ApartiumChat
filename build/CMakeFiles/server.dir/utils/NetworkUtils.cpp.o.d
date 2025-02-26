@@ -150,20 +150,20 @@ CMakeFiles/server.dir/utils/NetworkUtils.cpp.o: \
  /usr/include/c++/14.2.1/bits/ostream.tcc /usr/include/c++/14.2.1/istream \
  /usr/include/c++/14.2.1/bits/istream.tcc \
  /home/notro/ApartiumChat/utils/NetworkUtils.h \
+ /usr/include/c++/14.2.1/cstdint \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdint.h \
+ /usr/include/stdint.h /usr/include/bits/stdint-uintn.h \
+ /usr/include/bits/stdint-least.h \
  /home/notro/ApartiumChat/utils/SocketAdapter.h /usr/include/unistd.h \
  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
  /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
  /usr/include/bits/getopt_core.h /usr/include/bits/unistd_ext.h \
  /usr/include/linux/close_range.h /usr/include/arpa/inet.h \
- /usr/include/netinet/in.h /usr/include/bits/stdint-uintn.h \
- /usr/include/sys/socket.h /usr/include/bits/types/struct_iovec.h \
- /usr/include/bits/socket.h /usr/include/bits/socket_type.h \
- /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
- /usr/include/asm-generic/socket.h /usr/include/asm/sockios.h \
- /usr/include/asm-generic/sockios.h \
+ /usr/include/netinet/in.h /usr/include/sys/socket.h \
+ /usr/include/bits/types/struct_iovec.h /usr/include/bits/socket.h \
+ /usr/include/bits/socket_type.h /usr/include/bits/sockaddr.h \
+ /usr/include/asm/socket.h /usr/include/asm-generic/socket.h \
+ /usr/include/asm/sockios.h /usr/include/asm-generic/sockios.h \
  /usr/include/bits/types/struct_osockaddr.h /usr/include/bits/in.h \
- /usr/include/c++/14.2.1/cstdint \
- /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdint.h \
- /usr/include/stdint.h /usr/include/bits/stdint-least.h \
  /home/notro/ApartiumChat/tcp_server/ServerConstants.h \
  /home/notro/ApartiumChat/utils/Logger.h

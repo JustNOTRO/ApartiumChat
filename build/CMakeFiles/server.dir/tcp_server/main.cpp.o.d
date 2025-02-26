@@ -1,5 +1,6 @@
 CMakeFiles/server.dir/tcp_server/main.cpp.o: \
  /home/notro/ApartiumChat/tcp_server/main.cpp /usr/include/stdc-predef.h \
+ /home/notro/ApartiumChat/tcp_server/Server.h \
  /usr/include/c++/14.2.1/iostream \
  /usr/include/c++/14.2.1/bits/requires_hosted.h \
  /usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -148,9 +149,8 @@ CMakeFiles/server.dir/tcp_server/main.cpp.o: \
  /usr/include/c++/14.2.1/bits/locale_facets.tcc \
  /usr/include/c++/14.2.1/bits/basic_ios.tcc \
  /usr/include/c++/14.2.1/bits/ostream.tcc /usr/include/c++/14.2.1/istream \
- /usr/include/c++/14.2.1/bits/istream.tcc \
- /home/notro/ApartiumChat/tcp_server/Server.h \
- /usr/include/c++/14.2.1/list /usr/include/c++/14.2.1/bits/stl_list.h \
+ /usr/include/c++/14.2.1/bits/istream.tcc /usr/include/c++/14.2.1/list \
+ /usr/include/c++/14.2.1/bits/stl_list.h \
  /usr/include/c++/14.2.1/bits/allocated_ptr.h \
  /usr/include/c++/14.2.1/ext/aligned_buffer.h \
  /usr/include/c++/14.2.1/bits/list.tcc /usr/include/c++/14.2.1/set \
@@ -182,16 +182,18 @@ CMakeFiles/server.dir/tcp_server/main.cpp.o: \
  /usr/include/c++/14.2.1/bits/parse_numbers.h \
  /usr/include/c++/14.2.1/bits/std_mutex.h \
  /usr/include/c++/14.2.1/bits/unique_lock.h \
- /home/notro/ApartiumChat/utils/SocketAdapter.h /usr/include/unistd.h \
- /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
- /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
- /usr/include/bits/getopt_core.h /usr/include/bits/unistd_ext.h \
- /usr/include/linux/close_range.h /usr/include/arpa/inet.h \
- /usr/include/netinet/in.h /usr/include/sys/socket.h \
- /usr/include/bits/types/struct_iovec.h /usr/include/bits/socket.h \
- /usr/include/bits/socket_type.h /usr/include/bits/sockaddr.h \
- /usr/include/asm/socket.h /usr/include/asm-generic/socket.h \
- /usr/include/asm/sockios.h /usr/include/asm-generic/sockios.h \
+ /usr/include/c++/14.2.1/cstring /usr/include/string.h \
+ /usr/include/strings.h /home/notro/ApartiumChat/utils/SocketAdapter.h \
+ /usr/include/unistd.h /usr/include/bits/posix_opt.h \
+ /usr/include/bits/environments.h /usr/include/bits/confname.h \
+ /usr/include/bits/getopt_posix.h /usr/include/bits/getopt_core.h \
+ /usr/include/bits/unistd_ext.h /usr/include/linux/close_range.h \
+ /usr/include/arpa/inet.h /usr/include/netinet/in.h \
+ /usr/include/sys/socket.h /usr/include/bits/types/struct_iovec.h \
+ /usr/include/bits/socket.h /usr/include/bits/socket_type.h \
+ /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+ /usr/include/asm-generic/socket.h /usr/include/asm/sockios.h \
+ /usr/include/asm-generic/sockios.h \
  /usr/include/bits/types/struct_osockaddr.h /usr/include/bits/in.h \
  /home/notro/ApartiumChat/tcp_server/ThreadPool.h \
  /usr/include/c++/14.2.1/thread /usr/include/c++/14.2.1/stop_token \

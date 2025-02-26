@@ -858,6 +858,7 @@ CMakeFiles/server.dir/tcp_server/main.cpp.o: /home/notro/ApartiumChat/tcp_server
   /home/notro/ApartiumChat/tcp_server/Server.h \
   /home/notro/ApartiumChat/tcp_server/ServerConstants.h \
   /home/notro/ApartiumChat/tcp_server/ThreadPool.h \
+  /home/notro/ApartiumChat/utils/Logger.h \
   /home/notro/ApartiumChat/utils/NetworkUtils.h \
   /home/notro/ApartiumChat/utils/SocketAdapter.h \
   /usr/include/alloca.h \
@@ -1070,6 +1071,7 @@ CMakeFiles/server.dir/tcp_server/main.cpp.o: /home/notro/ApartiumChat/tcp_server
   /usr/include/c++/14.2.1/cstdint \
   /usr/include/c++/14.2.1/cstdio \
   /usr/include/c++/14.2.1/cstdlib \
+  /usr/include/c++/14.2.1/cstring \
   /usr/include/c++/14.2.1/ctime \
   /usr/include/c++/14.2.1/cwchar \
   /usr/include/c++/14.2.1/cwctype \
@@ -1148,6 +1150,8 @@ CMakeFiles/server.dir/tcp_server/main.cpp.o: /home/notro/ApartiumChat/tcp_server
   /usr/include/stdint.h \
   /usr/include/stdio.h \
   /usr/include/stdlib.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
   /usr/include/sys/cdefs.h \
   /usr/include/sys/select.h \
   /usr/include/sys/single_threaded.h \

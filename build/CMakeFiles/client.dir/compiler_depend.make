@@ -249,11 +249,7 @@ CMakeFiles/client.dir/tcp_client/Client.cpp.o: /home/notro/ApartiumChat/tcp_clie
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdint.h
 
 CMakeFiles/client.dir/tcp_client/main.cpp.o: /home/notro/ApartiumChat/tcp_client/main.cpp \
-  /home/notro/ApartiumChat/tcp_client/Client.h \
-  /home/notro/ApartiumChat/tcp_server/Server.h \
   /home/notro/ApartiumChat/tcp_server/ServerConstants.h \
-  /home/notro/ApartiumChat/tcp_server/ThreadPool.h \
-  /home/notro/ApartiumChat/utils/Logger.h \
   /home/notro/ApartiumChat/utils/NetworkUtils.h \
   /home/notro/ApartiumChat/utils/SocketAdapter.h \
   /usr/include/alloca.h \
@@ -355,13 +351,10 @@ CMakeFiles/client.dir/tcp_client/main.cpp.o: /home/notro/ApartiumChat/tcp_client
   /usr/include/bits/wctype-wchar.h \
   /usr/include/bits/wordsize.h \
   /usr/include/bits/xopen_lim.h \
-  /usr/include/c++/14.2.1/array \
   /usr/include/c++/14.2.1/atomic \
   /usr/include/c++/14.2.1/backward/binders.h \
   /usr/include/c++/14.2.1/bit \
-  /usr/include/c++/14.2.1/bits/align.h \
   /usr/include/c++/14.2.1/bits/alloc_traits.h \
-  /usr/include/c++/14.2.1/bits/allocated_ptr.h \
   /usr/include/c++/14.2.1/bits/allocator.h \
   /usr/include/c++/14.2.1/bits/atomic_base.h \
   /usr/include/c++/14.2.1/bits/atomic_lockfree_defines.h \
@@ -378,22 +371,16 @@ CMakeFiles/client.dir/tcp_client/main.cpp.o: /home/notro/ApartiumChat/tcp_client
   /usr/include/c++/14.2.1/bits/cpp_type_traits.h \
   /usr/include/c++/14.2.1/bits/cxxabi_forced.h \
   /usr/include/c++/14.2.1/bits/cxxabi_init_exception.h \
-  /usr/include/c++/14.2.1/bits/deque.tcc \
-  /usr/include/c++/14.2.1/bits/enable_special_members.h \
-  /usr/include/c++/14.2.1/bits/erase_if.h \
   /usr/include/c++/14.2.1/bits/exception.h \
   /usr/include/c++/14.2.1/bits/exception_defines.h \
   /usr/include/c++/14.2.1/bits/exception_ptr.h \
   /usr/include/c++/14.2.1/bits/functexcept.h \
   /usr/include/c++/14.2.1/bits/functional_hash.h \
   /usr/include/c++/14.2.1/bits/hash_bytes.h \
-  /usr/include/c++/14.2.1/bits/hashtable.h \
-  /usr/include/c++/14.2.1/bits/hashtable_policy.h \
   /usr/include/c++/14.2.1/bits/invoke.h \
   /usr/include/c++/14.2.1/bits/ios_base.h \
   /usr/include/c++/14.2.1/bits/istream.tcc \
   /usr/include/c++/14.2.1/bits/iterator_concepts.h \
-  /usr/include/c++/14.2.1/bits/list.tcc \
   /usr/include/c++/14.2.1/bits/locale_classes.h \
   /usr/include/c++/14.2.1/bits/locale_classes.tcc \
   /usr/include/c++/14.2.1/bits/locale_facets.h \
@@ -405,7 +392,6 @@ CMakeFiles/client.dir/tcp_client/main.cpp.o: /home/notro/ApartiumChat/tcp_client
   /usr/include/c++/14.2.1/bits/move.h \
   /usr/include/c++/14.2.1/bits/nested_exception.h \
   /usr/include/c++/14.2.1/bits/new_allocator.h \
-  /usr/include/c++/14.2.1/bits/node_handle.h \
   /usr/include/c++/14.2.1/bits/ostream.tcc \
   /usr/include/c++/14.2.1/bits/ostream_insert.h \
   /usr/include/c++/14.2.1/bits/parse_numbers.h \
@@ -419,27 +405,17 @@ CMakeFiles/client.dir/tcp_client/main.cpp.o: /home/notro/ApartiumChat/tcp_client
   /usr/include/c++/14.2.1/bits/refwrap.h \
   /usr/include/c++/14.2.1/bits/requires_hosted.h \
   /usr/include/c++/14.2.1/bits/semaphore_base.h \
-  /usr/include/c++/14.2.1/bits/shared_ptr.h \
-  /usr/include/c++/14.2.1/bits/shared_ptr_base.h \
   /usr/include/c++/14.2.1/bits/std_abs.h \
-  /usr/include/c++/14.2.1/bits/std_function.h \
   /usr/include/c++/14.2.1/bits/std_mutex.h \
   /usr/include/c++/14.2.1/bits/std_thread.h \
   /usr/include/c++/14.2.1/bits/stl_algobase.h \
   /usr/include/c++/14.2.1/bits/stl_bvector.h \
   /usr/include/c++/14.2.1/bits/stl_construct.h \
-  /usr/include/c++/14.2.1/bits/stl_deque.h \
   /usr/include/c++/14.2.1/bits/stl_function.h \
-  /usr/include/c++/14.2.1/bits/stl_heap.h \
   /usr/include/c++/14.2.1/bits/stl_iterator.h \
   /usr/include/c++/14.2.1/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/14.2.1/bits/stl_iterator_base_types.h \
-  /usr/include/c++/14.2.1/bits/stl_list.h \
-  /usr/include/c++/14.2.1/bits/stl_multiset.h \
   /usr/include/c++/14.2.1/bits/stl_pair.h \
-  /usr/include/c++/14.2.1/bits/stl_queue.h \
-  /usr/include/c++/14.2.1/bits/stl_set.h \
-  /usr/include/c++/14.2.1/bits/stl_tree.h \
   /usr/include/c++/14.2.1/bits/stl_uninitialized.h \
   /usr/include/c++/14.2.1/bits/stl_vector.h \
   /usr/include/c++/14.2.1/bits/streambuf.tcc \
@@ -449,7 +425,6 @@ CMakeFiles/client.dir/tcp_client/main.cpp.o: /home/notro/ApartiumChat/tcp_client
   /usr/include/c++/14.2.1/bits/this_thread_sleep.h \
   /usr/include/c++/14.2.1/bits/unique_lock.h \
   /usr/include/c++/14.2.1/bits/unique_ptr.h \
-  /usr/include/c++/14.2.1/bits/unordered_map.h \
   /usr/include/c++/14.2.1/bits/uses_allocator.h \
   /usr/include/c++/14.2.1/bits/uses_allocator_args.h \
   /usr/include/c++/14.2.1/bits/utility.h \
@@ -461,7 +436,6 @@ CMakeFiles/client.dir/tcp_client/main.cpp.o: /home/notro/ApartiumChat/tcp_client
   /usr/include/c++/14.2.1/clocale \
   /usr/include/c++/14.2.1/compare \
   /usr/include/c++/14.2.1/concepts \
-  /usr/include/c++/14.2.1/condition_variable \
   /usr/include/c++/14.2.1/cstddef \
   /usr/include/c++/14.2.1/cstdint \
   /usr/include/c++/14.2.1/cstdio \
@@ -472,32 +446,25 @@ CMakeFiles/client.dir/tcp_client/main.cpp.o: /home/notro/ApartiumChat/tcp_client
   /usr/include/c++/14.2.1/cwctype \
   /usr/include/c++/14.2.1/debug/assertions.h \
   /usr/include/c++/14.2.1/debug/debug.h \
-  /usr/include/c++/14.2.1/deque \
   /usr/include/c++/14.2.1/exception \
-  /usr/include/c++/14.2.1/ext/aligned_buffer.h \
   /usr/include/c++/14.2.1/ext/alloc_traits.h \
   /usr/include/c++/14.2.1/ext/atomicity.h \
-  /usr/include/c++/14.2.1/ext/concurrence.h \
   /usr/include/c++/14.2.1/ext/numeric_traits.h \
   /usr/include/c++/14.2.1/ext/string_conversions.h \
   /usr/include/c++/14.2.1/ext/type_traits.h \
-  /usr/include/c++/14.2.1/functional \
   /usr/include/c++/14.2.1/initializer_list \
   /usr/include/c++/14.2.1/ios \
   /usr/include/c++/14.2.1/iosfwd \
   /usr/include/c++/14.2.1/iostream \
   /usr/include/c++/14.2.1/istream \
   /usr/include/c++/14.2.1/limits \
-  /usr/include/c++/14.2.1/list \
   /usr/include/c++/14.2.1/mutex \
   /usr/include/c++/14.2.1/new \
   /usr/include/c++/14.2.1/numbers \
   /usr/include/c++/14.2.1/ostream \
   /usr/include/c++/14.2.1/pstl/pstl_config.h \
-  /usr/include/c++/14.2.1/queue \
   /usr/include/c++/14.2.1/ratio \
   /usr/include/c++/14.2.1/semaphore \
-  /usr/include/c++/14.2.1/set \
   /usr/include/c++/14.2.1/stdexcept \
   /usr/include/c++/14.2.1/stop_token \
   /usr/include/c++/14.2.1/streambuf \
@@ -508,7 +475,6 @@ CMakeFiles/client.dir/tcp_client/main.cpp.o: /home/notro/ApartiumChat/tcp_client
   /usr/include/c++/14.2.1/tuple \
   /usr/include/c++/14.2.1/type_traits \
   /usr/include/c++/14.2.1/typeinfo \
-  /usr/include/c++/14.2.1/unordered_map \
   /usr/include/c++/14.2.1/vector \
   /usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/atomic_word.h \
   /usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/c++allocator.h \
@@ -1676,16 +1642,6 @@ CMakeFiles/client.dir/tcp_client/Client.cpp.o:
 
 /home/notro/ApartiumChat/tcp_server/ThreadPool.cpp:
 
-/home/notro/ApartiumChat/tcp_server/Server.cpp:
-
-/usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/limits.h:
-
-/usr/include/semaphore.h:
-
-/usr/include/linux/limits.h:
-
-/usr/include/limits.h:
-
 /usr/include/c++/14.2.1/unordered_map:
 
 /usr/include/c++/14.2.1/set:
@@ -1696,17 +1652,7 @@ CMakeFiles/client.dir/tcp_client/Client.cpp.o:
 
 /usr/include/c++/14.2.1/deque:
 
-/usr/include/c++/14.2.1/climits:
-
 /usr/include/c++/14.2.1/bits/unordered_map.h:
-
-/usr/include/c++/14.2.1/bits/unique_ptr.h:
-
-/usr/lib/libm.so:
-
-/usr/include/c++/14.2.1/bits/this_thread_sleep.h:
-
-/usr/include/c++/14.2.1/bits/stl_vector.h:
 
 /usr/include/c++/14.2.1/bits/stl_set.h:
 
@@ -1718,13 +1664,9 @@ CMakeFiles/client.dir/tcp_client/Client.cpp.o:
 
 /usr/include/c++/14.2.1/bits/stl_heap.h:
 
-/usr/include/c++/14.2.1/bits/std_thread.h:
-
 /usr/include/c++/14.2.1/bits/std_function.h:
 
 /usr/include/c++/14.2.1/bits/shared_ptr_base.h:
-
-/usr/include/c++/14.2.1/bits/semaphore_base.h:
 
 /usr/include/c++/14.2.1/bits/list.tcc:
 
@@ -1733,6 +1675,36 @@ CMakeFiles/client.dir/tcp_client/Client.cpp.o:
 /usr/include/c++/14.2.1/bits/erase_if.h:
 
 /usr/include/c++/14.2.1/bits/deque.tcc:
+
+/usr/include/c++/14.2.1/bits/align.h:
+
+/home/notro/ApartiumChat/utils/Logger.h:
+
+/home/notro/ApartiumChat/tcp_server/Server.h:
+
+/home/notro/ApartiumChat/tcp_server/Server.cpp:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/limits.h:
+
+/usr/include/semaphore.h:
+
+/usr/include/linux/limits.h:
+
+/usr/include/limits.h:
+
+/usr/include/c++/14.2.1/climits:
+
+/usr/include/c++/14.2.1/bits/unique_ptr.h:
+
+/usr/lib/libm.so:
+
+/usr/include/c++/14.2.1/bits/this_thread_sleep.h:
+
+/usr/include/c++/14.2.1/bits/stl_vector.h:
+
+/usr/include/c++/14.2.1/bits/std_thread.h:
+
+/usr/include/c++/14.2.1/bits/semaphore_base.h:
 
 /usr/include/c++/14.2.1/bits/atomic_wait.h:
 
@@ -1745,12 +1717,6 @@ CMakeFiles/client.dir/tcp_client/Client.cpp.o:
 /usr/include/c++/14.2.1/bits/stl_tree.h:
 
 /usr/include/c++/14.2.1/bits/atomic_base.h:
-
-/usr/include/c++/14.2.1/bits/align.h:
-
-/usr/include/bits/uio_lim.h:
-
-/usr/include/bits/syscall.h:
 
 /usr/include/c++/14.2.1/bits/move.h:
 
@@ -1899,8 +1865,6 @@ CMakeFiles/client.dir/tcp_client/Client.cpp.o:
 CMakeFiles/client.dir/tcp_client/main.cpp.o:
 
 /usr/include/bits/locale.h:
-
-/home/notro/ApartiumChat/tcp_server/Server.h:
 
 /usr/include/c++/14.2.1/bits/functexcept.h:
 
@@ -2148,6 +2112,8 @@ CMakeFiles/client.dir/utils/Logger.cpp.o:
 
 /usr/include/c++/14.2.1/bits/stl_iterator.h:
 
+/usr/include/bits/syscall.h:
+
 /usr/include/c++/14.2.1/bits/stl_pair.h:
 
 /usr/include/c++/14.2.1/bits/streambuf.tcc:
@@ -2250,6 +2216,8 @@ CMakeFiles/client.dir/utils/Logger.cpp.o:
 
 /usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/c++config.h:
 
+/usr/include/bits/uio_lim.h:
+
 /usr/include/c++/14.2.1/bits/stl_bvector.h:
 
 /usr/include/c++/14.2.1/bits/std_abs.h:
@@ -2313,8 +2281,6 @@ CMakeFiles/client.dir/utils/Logger.cpp.o:
 /usr/include/c++/14.2.1/bits/stl_iterator_base_types.h:
 
 /home/notro/ApartiumChat/tcp_client/main.cpp:
-
-/home/notro/ApartiumChat/utils/Logger.h:
 
 /usr/include/c++/14.2.1/bits/shared_ptr.h:
 

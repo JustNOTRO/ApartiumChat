@@ -1,17 +1,13 @@
 #include <cstring>
 #include <iostream>
-#include <unistd.h>
-#include <arpa/inet.h>
-#include <netinet/in.h>
-#include <sys/socket.h>
 #include <thread>
 #include <mutex>
 #include <atomic>
 #include <vector>
-#include "ServerConstants.h"
-#include "Server.h"
-#include "Logger.h"
+
 #include "NetworkUtils.h"
+#include "ServerConstants.h"
+#include "Logger.h"
 
 std::vector<std::string> servers;
 std::mutex serverMutex;
