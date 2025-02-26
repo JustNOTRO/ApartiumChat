@@ -1,12 +1,13 @@
-#include "Logger.h"
 #include <string.h>
+#include "Logger.h"
+#include "SocketAdapter.h"
 
 void Logger::logLastError(std::string message) {
     std::cerr << message << " " << getLastError() << " ." << std::endl;
 }
 
 #ifdef _WIN32
-std::string ServerUtils::getLastWindowsError() {
+std::string Logger::getLastWindowsError() {
     int errorCode = WSAGetLastError();
     char* msgBuffer = nullptr;
 
