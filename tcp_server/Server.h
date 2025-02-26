@@ -8,11 +8,11 @@
 #include <list>
 #include <set>
 #include <unordered_map>
-#include <netinet/in.h>
 #include <functional>
 
 #include "Client.h"
 #include "ThreadPool.h"
+#include "NetworkUtils.h"
 
 class Client;
 class ThreadPool;
