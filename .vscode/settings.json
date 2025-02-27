@@ -75,7 +75,8 @@
         "valarray": "cpp",
         "variant": "cpp",
         "*.rh": "cpp",
-        "stdfloat": "cpp"
+        "stdfloat": "cpp",
+        "*.inc": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

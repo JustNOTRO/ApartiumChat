@@ -186,7 +186,35 @@ CMakeFiles/client.dir/tcp_client/main.cpp.o: \
  /usr/include/c++/14.2.1/bits/stl_uninitialized.h \
  /usr/include/c++/14.2.1/bits/stl_vector.h \
  /usr/include/c++/14.2.1/bits/stl_bvector.h \
- /usr/include/c++/14.2.1/bits/vector.tcc \
+ /usr/include/c++/14.2.1/bits/vector.tcc /usr/include/c++/14.2.1/chrono \
+ /usr/include/c++/14.2.1/sstream /usr/include/c++/14.2.1/bits/sstream.tcc \
+ /usr/include/c++/14.2.1/bits/stl_algo.h \
+ /usr/include/c++/14.2.1/bits/algorithmfwd.h \
+ /usr/include/c++/14.2.1/bits/stl_heap.h \
+ /usr/include/c++/14.2.1/bits/uniform_int_dist.h \
+ /usr/include/c++/14.2.1/bits/stl_tempbuf.h \
+ /usr/include/c++/14.2.1/bits/shared_ptr.h \
+ /usr/include/c++/14.2.1/bits/shared_ptr_base.h \
+ /usr/include/c++/14.2.1/bits/allocated_ptr.h \
+ /usr/include/c++/14.2.1/ext/aligned_buffer.h \
+ /usr/include/c++/14.2.1/ext/concurrence.h \
+ /usr/include/c++/14.2.1/bits/align.h \
+ /usr/include/c++/14.2.1/bits/chrono_io.h /usr/include/c++/14.2.1/iomanip \
+ /usr/include/c++/14.2.1/locale \
+ /usr/include/c++/14.2.1/bits/locale_facets_nonio.h \
+ /usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/time_members.h \
+ /usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/14.2.1/bits/codecvt.h \
+ /usr/include/c++/14.2.1/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/14.2.1/bits/locale_conv.h \
+ /usr/include/c++/14.2.1/bits/quoted_string.h \
+ /usr/include/c++/14.2.1/format /usr/include/c++/14.2.1/array \
+ /usr/include/c++/14.2.1/charconv /usr/include/c++/14.2.1/optional \
+ /usr/include/c++/14.2.1/bits/enable_special_members.h \
+ /usr/include/c++/14.2.1/span /usr/include/c++/14.2.1/variant \
+ /usr/include/c++/14.2.1/bits/ranges_algobase.h \
+ /usr/include/c++/14.2.1/bits/unicode.h \
+ /usr/include/c++/14.2.1/bits/unicode-data.h \
  /home/notro/ApartiumChat/utils/NetworkUtils.h \
  /home/notro/ApartiumChat/utils/SocketAdapter.h /usr/include/arpa/inet.h \
  /usr/include/netinet/in.h /usr/include/sys/socket.h \

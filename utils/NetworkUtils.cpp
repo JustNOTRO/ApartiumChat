@@ -44,3 +44,11 @@ void NetworkUtils::closeSocket(Socket sock) {
         close(sock);
     #endif // _WIN32
 }
+
+void NetworkUtils::shutdownSocket(Socket sock) {
+    #ifdef _WIN32
+        shutdown(sock, SD_BOTH);
+    #else
+        shutdown(sock, SHUT_RDWR);
+    #endif
+}

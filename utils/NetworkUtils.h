@@ -36,6 +36,12 @@ class NetworkUtils {
          */
         static void closeSocket(Socket sock);
 
+        /**
+         * @brief Shutdown the sock entirely.
+         * @param sock the sock to shutdown
+         */
+        static void shutdownSocket(Socket sock);
+
     private:
         NetworkUtils();
 };

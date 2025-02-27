@@ -23,18 +23,18 @@ Server::Server(std::string ip, const std::uint16_t &port) : port(port), threadPo
 
     if (inet_pton(AF_INET, ip.c_str(), &serverAddress.sin_addr) == -1) {
         Logger::logLastError("Invalid IP Address " + ip);
-        exit(EXIT_FAILURE);
+        std::exit(EXIT_FAILURE);
     }
 
     if (bind(sock, (struct sockaddr *)&serverAddress, sizeof(serverAddress)) == -1) {
         Logger::logLastError("Bind failed");
-        exit(EXIT_FAILURE);
+        std::exit(EXIT_FAILURE);
     }
 
     int connectionBacklog = 5;
     if (listen(this->sock, connectionBacklog) == -1) {
         Logger::logLastError("Could not listen to server");
-        exit(EXIT_FAILURE);
+        std::exit(EXIT_FAILURE);
     }
 
     std::cout << "Created server on IP Address: " << ip << ":" << port << std::endl;
@@ -69,6 +69,10 @@ void Server::run() {
         std::string senderName(buffer);
         if (bytesRecieved < 0) {
             Logger::logLastError("Could not receive data from " + senderName);
+            continue;
+        }
+
+        if (senderName.empty()) {
             continue;
         }
 
