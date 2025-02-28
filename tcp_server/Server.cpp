@@ -107,8 +107,6 @@ void Server::broadcast(std::string senderName, Socket senderSock) {
         }
 
         if (bytesReceived == 0) {
-            removeClient(senderName);
-            announceUserQuit(senderName, senderSock);
             break;
         }
         
@@ -127,6 +125,8 @@ void Server::broadcast(std::string senderName, Socket senderSock) {
         broadcastMessage(prefixedMsg, senderSock);
     }
     
+    removeClient(senderName);
+    announceUserQuit(senderName, senderSock);
     NetworkUtils::closeSocket(senderSock);
 }
 
