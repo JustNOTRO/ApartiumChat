@@ -175,6 +175,10 @@ void handleIncomingMessages(const std::string &username) {
     while (!disconnected.load()) {
         memset(buffer, 0, BUFFER_SIZE);
 
+        if (disconnected.load()) {
+            break;
+        }
+
         if (isServerResponding(buffer)) {
             if (!isHeartbeatResponse(buffer)) {
                 std::cout << buffer << std::endl;
