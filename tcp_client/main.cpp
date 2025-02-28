@@ -176,7 +176,6 @@ void handleIncomingMessages(const std::string &username) {
         memset(buffer, 0, BUFFER_SIZE);
 
         if (isServerResponding(buffer)) {
-            connectionFailures.store(0);
             if (!isHeartbeatResponse(buffer)) {
                 std::cout << buffer << std::endl;
             }
