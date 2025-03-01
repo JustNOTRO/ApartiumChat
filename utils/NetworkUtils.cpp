@@ -6,16 +6,22 @@
 
 std::string NetworkUtils::getSelectedIpAddress(std::string ipAddress) {
     size_t colonPos = ipAddress.find(':');
+    if (colonPos == std::string::npos) {
+        colonPos = ipAddress.size();
+    }
+
+    std::cout << ipAddress.substr(0, colonPos) << std::endl;
     return ipAddress.substr(0, colonPos);
 }
 
 std::uint16_t NetworkUtils::getSelectedPort(std::string ipAddress) {
     size_t colonPos = ipAddress.find(':');
-    if (colonPos == std::string::npos || colonPos + 1 == ipAddress.length()) {
+    size_t lastIndex = ipAddress.length() - 1;
+    if (colonPos == std::string::npos || colonPos == lastIndex) {
         return DEFAULT_PORT;
     }
 
-    // Parse the port as short since we don't need that many bytes.
+    // Parse the port as std::uint16_t since we don't need that many bytes.
     return std::stoi(ipAddress.substr(colonPos + 1));
 }
 

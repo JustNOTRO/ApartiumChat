@@ -1,0 +1,1 @@
+g++ -Wl,--dependency-file=CMakeFiles/client.dir/link.d CMakeFiles/client.dir/tcp_client/main.cpp.o CMakeFiles/client.dir/tcp_client/Client.cpp.o CMakeFiles/client.dir/tcp_server/Server.cpp.o CMakeFiles/client.dir/tcp_server/ThreadPool.cpp.o CMakeFiles/client.dir/utils/NetworkUtils.cpp.o -o client  -lpthread

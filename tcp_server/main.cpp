@@ -5,8 +5,8 @@ int main() {
    std::string ipAddress;
    std::cin >> ipAddress;
 
-   if (ipAddress.starts_with("localhost")) {
-       ipAddress = LOCAL_HOST_ADDRESS;
+   if (ipAddress.starts_with("localhost")) { 
+       ipAddress.replace(0, ipAddress.length(), LOCAL_HOST_ADDRESS);
    }
 
    std::string ip = NetworkUtils::getSelectedIpAddress(ipAddress);
