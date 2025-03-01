@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <memory>
 #include "NetworkUtils.h"
 #include "ServerConstants.h"
 
