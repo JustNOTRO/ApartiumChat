@@ -63,9 +63,9 @@ make client
 
 ## 📜 License
 
-This project is licensed under the **MIT License** – feel free to use, modify, and enhance it! 🚀
+This project is licensed under the **MIT License** – feel free to use, modify, and enhance it.
 
 ## 🤝 Contributing
 
-Contributions are welcome! If you have improvements, submit a PR or open an issue. Let’s build a **rock-solid** chat system together! 🚀💬
+Contributions are welcome! If you have improvements, submit a PR or open an issue.
 
