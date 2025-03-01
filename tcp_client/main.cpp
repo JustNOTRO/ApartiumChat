@@ -280,18 +280,14 @@ int main() {
         Socket fallbackSock = NetworkUtils::createSocket();
         FallbackServer fallbackServer{ ipAddress, fallbackSock };
         servers.push_back(fallbackServer);
-
-        // updating the current socket to the first server included
-        if (servers.size() == 1) {
-            updateSocket(fallbackSock);
-        }
-
     } while (true);
-    
+
     if (servers.empty()) {
         std::cerr << "No servers provided." << std::endl;
         return 1;
     }
+
+    updateSocket(servers[0].getSocket()); // Setting the gloabl socket to the first socket.
     
     if (!connectToServer(servers[0].getIpAddress(), getCurrentSocket())) {
 

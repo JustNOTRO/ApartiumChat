@@ -31,7 +31,6 @@ elseif(APPLE)
     set(CMAKE_C_COMPILER "/usr/bin/clang")
     
 elseif(UNIX)
-    # For Linux, use GCC or Clang as the default compilers
     set(CMAKE_CXX_COMPILER "g++")
     set(CMAKE_C_COMPILER "gcc")
 endif()
@@ -55,12 +54,7 @@ add_executable(client
 if(WIN32)
     target_link_libraries(server ws2_32)
     target_link_libraries(client ws2_32)
-
-elseif(APPLE)
-    target_link_libraries(server pthread)
-    target_link_libraries(client pthread)
-
-elseif(UNIX)
+else(UNIX)
     target_link_libraries(server pthread)
     target_link_libraries(client pthread)
 endif()
