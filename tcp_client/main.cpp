@@ -8,6 +8,10 @@
 #include <optional>
 #include <string>
 
+#ifdef _WIN32
+#include <conio.h>
+#endif // _WIN32
+
 #include "NetworkUtils.h"
 #include "ServerConstants.h"
 
@@ -322,14 +326,12 @@ int main() {
     NetworkUtils::closeSocket(getCurrentSocket());
 
     #ifdef _WIN32
-        #include <conio.h>
-
         if (disconnected.load()) {
             WSACleanup();
         }
         
         std::cout << "Press any key to continue..." << std::endl;
-        _getch();
+        getchar();
     #else
     #endif // _WIN32
 

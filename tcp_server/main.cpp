@@ -1,3 +1,6 @@
+#ifdef _WIN32
+#include <conio.h>
+#endif // _WIN32
 
 #include "Server.h"
 
@@ -17,10 +20,8 @@ int main() {
    server.run();
 
    #ifdef _WIN32
-        #include <conio.h>
-
         std::cout << "Press any key to continue..." << std::endl;
-        _getchar();
+        getchar();
    #endif // _WIN32
    return 0;
 }
