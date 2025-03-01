@@ -21,6 +21,7 @@ Socket sock;
 /**
  * @brief Updates the socket safe.
  * @param newSock the new socket assigned
+ * @note This is a replacement for atomic since SOCKET of winsock isn't a copyable-object entirely. 
  */
 void updateSocket(Socket newSock) {
     std::lock_guard<std::mutex> lock(serverMutex);
@@ -94,7 +95,7 @@ bool connectToServer(const std::string &ipAddress, Socket sock) {
     if (connected) {
         std::cerr << "Connected to server: " << ipAddress << "." << std::endl;
     } else {
-        std::cerr << "Could not connect to server '" << ipAddress << "': " << NetworkUtils::getLastError() << "." << std::endl;
+        std::cerr << "Could not connect to server '" << ipAddress << std::endl;
     }
     
     return connected;
@@ -321,10 +322,18 @@ int main() {
     NetworkUtils::closeSocket(getCurrentSocket());
 
     #ifdef _WIN32
+        #include <conio.h>
+
         if (disconnected.load()) {
             WSACleanup();
         }
+        
+        std::cout << "Press any key to continue..." << std::endl;
+        _getch();
+    #else
     #endif // _WIN32
 
+
+    
     return 0;
 }

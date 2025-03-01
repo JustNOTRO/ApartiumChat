@@ -1,3 +1,4 @@
+
 #include "Server.h"
 
 int main() {
@@ -14,5 +15,12 @@ int main() {
 
    Server server(ip, port);
    server.run();
+
+   #ifdef _WIN32
+        #include <conio.h>
+
+        std::cout << "Press any key to continue..." << std::endl;
+        _getchar();
+   #endif // _WIN32
    return 0;
 }

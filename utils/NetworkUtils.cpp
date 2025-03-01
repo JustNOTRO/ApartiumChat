@@ -10,7 +10,6 @@ std::string NetworkUtils::getSelectedIpAddress(std::string ipAddress) {
         colonPos = ipAddress.size();
     }
 
-    std::cout << ipAddress.substr(0, colonPos) << std::endl;
     return ipAddress.substr(0, colonPos);
 }
 
