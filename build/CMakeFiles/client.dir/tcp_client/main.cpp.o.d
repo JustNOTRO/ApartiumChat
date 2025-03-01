@@ -223,5 +223,4 @@ CMakeFiles/client.dir/tcp_client/main.cpp.o: \
  /usr/include/asm/socket.h /usr/include/asm-generic/socket.h \
  /usr/include/asm/sockios.h /usr/include/asm-generic/sockios.h \
  /usr/include/bits/types/struct_osockaddr.h /usr/include/bits/in.h \
- /home/notro/ApartiumChat/tcp_server/ServerConstants.h \
- /home/notro/ApartiumChat/utils/Logger.h
+ /home/notro/ApartiumChat/tcp_server/ServerConstants.h

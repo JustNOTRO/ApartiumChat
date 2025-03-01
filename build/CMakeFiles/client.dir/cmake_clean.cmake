@@ -8,8 +8,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/client.dir/tcp_server/Server.cpp.o.d"
   "CMakeFiles/client.dir/tcp_server/ThreadPool.cpp.o"
   "CMakeFiles/client.dir/tcp_server/ThreadPool.cpp.o.d"
-  "CMakeFiles/client.dir/utils/Logger.cpp.o"
-  "CMakeFiles/client.dir/utils/Logger.cpp.o.d"
   "CMakeFiles/client.dir/utils/NetworkUtils.cpp.o"
   "CMakeFiles/client.dir/utils/NetworkUtils.cpp.o.d"
   "client"

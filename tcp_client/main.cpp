@@ -10,7 +10,6 @@
 
 #include "NetworkUtils.h"
 #include "ServerConstants.h"
-#include "Logger.h"
 
 #define MAX_FAILURES 3
 
@@ -86,21 +85,28 @@ bool connectToServer(const std::string &ipAddress, Socket sock) {
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_port = htons(port);
     
-    if (inet_pton(AF_INET, ip.c_str(), &serverAddress.sin_addr) == -1) {
-        Logger::logLastError("Invalid IP Address");
+    if (inet_pton(AF_INET, ip.c_str(), &serverAddress.sin_addr) <= 0) {
+        std::cerr << "Invalid IP Address: '" << ipAddress << "'." << std::endl;
         return false;
     }
     
-    return connect(sock, reinterpret_cast<sockaddr*>(&serverAddress), sizeof(serverAddress)) == 0;
+    bool connected = connect(sock, reinterpret_cast<sockaddr*>(&serverAddress), sizeof(serverAddress)) == 0;
+    if (connected) {
+        std::cerr << "Connected to server: " << ipAddress << "." << std::endl;
+    } else {
+        std::cerr << "Could not connect to server '" << ipAddress << "': " << NetworkUtils::getLastError() << "." << std::endl;
+    }
+    
+    return connected;
 }
 
 std::vector<FallbackServer> servers;
 
 /**
- * @brief Gets the next available server in the provided fallback servers.
+ * @brief Gets an available server in the provided fallback servers.
  * @return An optional reference wrapper to a FallbackServer if one is found; std::nullopt otherwise.
  */
-std::optional<std::reference_wrapper<FallbackServer>> getNextAvailableServer() {
+std::optional<std::reference_wrapper<FallbackServer>> getAvailableServer() {
     std::lock_guard<std::mutex> lock(serverMutex);
     
     for (auto &server : servers) {
@@ -125,39 +131,12 @@ void sendHeartbeat(Socket sock) {
     }
 
     if (send(sock, HEARTBEAT_REQUEST, sizeof(HEARTBEAT_REQUEST), 0) == -1) {
-        Logger::logLastError("Could not send heartbeat");
+        std::cerr << "Could not send heartbeat: " << NetworkUtils::getLastError() << "." << std::endl;
         return;
     }
 
     connectionFailures.fetch_add(1);
     std::this_thread::sleep_for(std::chrono::seconds(2));
-}
-
-/**
- * @brief Determines if the server is responding or not.
- * @param buffer the message buffer
- * @return true if responding, false otherwise
- */
-bool isServerResponding(char buffer[]) {
-    Socket currentSock = getCurrentSocket();
-    struct timeval timeout { HEARTBEAT_INTERVAL_SECONDS, 0 };
-    fd_set readSocks;
-    FD_ZERO(&readSocks);
-    FD_SET(currentSock, &readSocks);
-
-    int readySocks = select(currentSock + 1, &readSocks, nullptr, nullptr, &timeout);
-    if (readySocks < 0) {
-        Logger::logLastError("Error during select()");
-        std::cerr << "Disconnecting.";
-        return false;
-    }
-    
-    if (readySocks == 0) {
-        sendHeartbeat(currentSock);
-    }
-
-    int bytesReceived = recv(currentSock, buffer, BUFFER_SIZE, 0);
-    return bytesReceived > 0;
 }
 
 /**
@@ -170,7 +149,7 @@ bool isHeartbeatResponse(char buffer[]) {
 }
 
 /**
- * @brief Attempts to connect to an available fallback server
+ * @brief Attempts to connect to an available fallback server.
  * @param username the client username
  */
 void connectToFallbackServer(std::string username) {
@@ -182,9 +161,9 @@ void connectToFallbackServer(std::string username) {
         std::exit(EXIT_SUCCESS);
     }
 
-    auto serverOpt = getNextAvailableServer();
+    auto serverOpt = getAvailableServer();
     if (!serverOpt.has_value()) {
-        Logger::logLastError("No fallback servers available");
+        std::cerr << "No fallback servers available." << std::endl;
         std::exit(EXIT_FAILURE);
     }
 
@@ -212,10 +191,8 @@ void handleIncomingMessages(const std::string &username) {
         FD_SET(getCurrentSocket(), &readSocks);
 
         int activity = select(getCurrentSocket() + 1, &readSocks, nullptr, nullptr, &timeout);
-
         if (activity < 0) {
-            Logger::logLastError("Error occured while using select()");
-            std::cerr << " disconnecting..";
+            std::cerr << "Error occured while using select()" << NetworkUtils::getLastError() << std::endl;
             break;
         }
 
@@ -228,27 +205,26 @@ void handleIncomingMessages(const std::string &username) {
             continue;
         }
 
+        if (disconnected.load()) {
+            break;
+        }
+
         connectionFailures.store(0);
 
         if (!FD_ISSET(getCurrentSocket(), &readSocks)) {
-            continue;   
+            continue;
         }
 
         int bytesReceived = recv(getCurrentSocket(), buffer, BUFFER_SIZE, 0);
-        if (bytesReceived < 0) {
-            Logger::logLastError("Error while receiving data from server");
-            break;
-        }
-        
         buffer[bytesReceived] = '\0';
 
-        if (bytesReceived > 0) {
-            if (!isHeartbeatResponse(buffer)) {
-                std::cout << buffer << std::endl;
-            }
-        } else {
-            std::cerr << "Connection closed by server. Attempting to connect to fallback server..." << std::endl;
+        if (bytesReceived <= 0) {
             connectToFallbackServer(username);
+            continue;
+        }
+
+        if (!isHeartbeatResponse(buffer)) {
+            std::cout << buffer << std::endl;
         }
     }
 }
@@ -284,14 +260,12 @@ void handleClientInput() {
         }
 
         if (send(getCurrentSocket(), msg.c_str(), msg.length(), 0) == -1) {
-            Logger::logLastError("Could not send message");
+            std::cerr << "Could not send message: " << NetworkUtils::getLastError() << std::endl;
         }
     }
 }
 
 int main() {
-    updateSocket(NetworkUtils::createSocket());
-
     std::cout << "Enter IP Addresses: (type /done to finish):" << std::endl;
     std::string ipAddress;
 
@@ -306,6 +280,12 @@ int main() {
         Socket fallbackSock = NetworkUtils::createSocket();
         FallbackServer fallbackServer{ ipAddress, fallbackSock };
         servers.push_back(fallbackServer);
+
+        // updating the current socket to the first server included
+        if (servers.size() == 1) {
+            updateSocket(fallbackSock);
+        }
+
     } while (true);
     
     if (servers.empty()) {
@@ -314,21 +294,20 @@ int main() {
     }
     
     if (!connectToServer(servers[0].getIpAddress(), getCurrentSocket())) {
-        Logger::logLastError("Could not connect to server " + servers[0].getIpAddress());
 
         // if only 1 server provided
         if (servers.size() == 1) {
             return 0;
         }
 
-        auto serverOpt = getNextAvailableServer();
+        auto serverOpt = getAvailableServer();
         if (!serverOpt.has_value()) {
-            Logger::logLastError("Could not connect to fallback servers");
+            std::cerr << "No fallback servers available." << std::endl;
             return 1;
         }
 
         updateSocket(serverOpt.value().get().getSocket());
-        std::cout << "Connected to fallback server: " << serverOpt.value().get().getIpAddress() << std::endl;
+        std::cout << "Connected to fallback server: " << serverOpt.value().get().getIpAddress() << "." << std::endl;
     }
     
     std::string username;

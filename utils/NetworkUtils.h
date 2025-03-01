@@ -26,6 +26,18 @@ class NetworkUtils {
         static std::uint16_t getSelectedPort(std::string ipAddress);
 
         /**
+         * @brief Gets the last error indicated by windows system.
+         */
+        #ifdef _WIN32
+            static std::string getLastWindowsError();
+        #endif // _WIN32
+
+        /**
+         * @brief Gets the last error indicated by the system.
+         */
+        static std::string getLastError();
+
+        /**
          * @brief Creates a socket depending on the operating system, winsock for windows, unix-sockets for unix-like operating systems.
          */
         static Socket createSocket();

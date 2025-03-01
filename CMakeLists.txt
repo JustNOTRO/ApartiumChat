@@ -42,7 +42,6 @@ add_executable(server
     tcp_server/Server.cpp
     tcp_client/Client.cpp
     utils/NetworkUtils.cpp
-    utils/Logger.cpp
 )
 
 add_executable(client
@@ -51,7 +50,6 @@ add_executable(client
     tcp_server/Server.cpp
     tcp_server/ThreadPool.cpp
     utils/NetworkUtils.cpp
-    utils/Logger.cpp
 )
 
 if(WIN32)

@@ -21,19 +21,19 @@ Server::Server(std::string ip, const std::uint16_t &port) : port(port), threadPo
     serverAddress.sin_port = htons(port);
     this->address = serverAddress;
 
-    if (inet_pton(AF_INET, ip.c_str(), &serverAddress.sin_addr) == -1) {
-        Logger::logLastError("Invalid IP Address " + ip);
+    if (inet_pton(AF_INET, ip.c_str(), &serverAddress.sin_addr) <= 0) {
+        std::cerr << "Invalid IP Address: '" << ip << "'." << std::endl;
         std::exit(EXIT_FAILURE);
     }
 
     if (bind(sock, (struct sockaddr *)&serverAddress, sizeof(serverAddress)) == -1) {
-        Logger::logLastError("Bind failed");
+        std::cerr << "Bind failed " << NetworkUtils::getLastError() << "." << std::endl;
         std::exit(EXIT_FAILURE);
     }
 
     int connectionBacklog = 5;
     if (listen(this->sock, connectionBacklog) == -1) {
-        Logger::logLastError("Could not listen to server");
+        std::cerr << "Could not listen to server: " << NetworkUtils::getLastError() << "." << std::endl;
         std::exit(EXIT_FAILURE);
     }
 
@@ -59,7 +59,7 @@ void Server::run() {
 
         Socket clientSocket = accept(sock, socketAddress, &sockAddrLen);
         if (clientSocket < 0) {
-            Logger::logLastError("Could not accept client socket");
+            std::cerr << "Could not accept client socket: " << NetworkUtils::getLastError() << "." << std::endl;
             continue;
         }
         
@@ -68,7 +68,7 @@ void Server::run() {
 
         std::string senderName(buffer);
         if (bytesRecieved < 0) {
-            Logger::logLastError("Could not receive data from " + senderName);
+            std::cerr << "Could not receive data from " << senderName << ":" << NetworkUtils::getLastError() << "." << std::endl;
             continue;
         }
 

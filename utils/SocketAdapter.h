@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef SOCKETADAPTER_H
 #define SOCKETADAPTER_H
 

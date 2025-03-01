@@ -1,7 +1,7 @@
 #include <iostream>
+#include <cstring>
 #include "NetworkUtils.h"
 #include "ServerConstants.h"
-#include "Logger.h"
 
 std::string NetworkUtils::getSelectedIpAddress(std::string ipAddress) {
     size_t colonPos = ipAddress.find(':');
@@ -18,19 +18,48 @@ std::uint16_t NetworkUtils::getSelectedPort(std::string ipAddress) {
     return std::stoi(ipAddress.substr(colonPos + 1));
 }
 
+#ifdef _WIN32
+std::string NetworkUtils::getLastWindowsError() {
+    int errorCode = WSAGetLastError();
+    char *msgBuffer = nullptr;
+
+    FormatMessageA(
+        FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+        nullptr, errorCode, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+        (LPSTR)&msgBuffer, 0, nullptr
+    );
+
+    std::unique_ptr<char, decltype(&LocalFree)> msg(msgBuffer, LocalFree);
+    if (!msg) {
+        std::cerr << "Could not retrieve windows error message." << std::endl;
+        std::exit(EXIT_FAILURE);
+    }
+
+    return std::string(msg.get());
+}
+#endif // _WIN32
+
+std::string NetworkUtils::getLastError() {
+    #ifdef _WIN32
+        return getLastWindowsError();
+    #else
+        return strerror(errno);
+    #endif // _WIN32
+}
+
 Socket NetworkUtils::createSocket() {
     #ifdef _WIN32
         WSADATA wsaData;
         int res = WSAStartup(MAKEWORD(2, 2), &wsaData);
         if (res != 0) {
-            Logger::logLastError("WSAStartup failed");
+            std::cerr << "WSAStartup failed: " << getLastWindowsError() << std::endl; 
             exit(EXIT_FAILURE);
         }
     #endif // _WIN32
 
     Socket newSock = socket(AF_INET, SOCK_STREAM, 0);
     if (newSock < 0) {
-        Logger::logLastError("Socket creation failed");
+        std::cerr << "Socket creation failed: " << getLastError() << "." << std::endl;
         exit(EXIT_FAILURE);
     }
 

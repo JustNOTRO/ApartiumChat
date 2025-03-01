@@ -226,4 +226,4 @@ CMakeFiles/client.dir/tcp_server/Server.cpp.o: \
  /usr/include/c++/14.2.1/bits/stl_heap.h \
  /usr/include/c++/14.2.1/bits/stl_queue.h \
  /home/notro/ApartiumChat/utils/NetworkUtils.h \
- /home/notro/ApartiumChat/utils/Logger.h
+ /home/notro/ApartiumChat/utils/SocketAdapter.h

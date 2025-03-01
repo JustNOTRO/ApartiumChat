@@ -15,7 +15,6 @@
 #include "Client.h"
 #include "ThreadPool.h"
 #include "NetworkUtils.h"
-#include "Logger.h"
 
 class Client;
 class ThreadPool;

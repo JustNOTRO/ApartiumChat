@@ -271,33 +271,6 @@ tcp_server/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/tcp_server/main.cpp.s
 .PHONY : tcp_server/main.cpp.s
 
-utils/Logger.o: utils/Logger.cpp.o
-.PHONY : utils/Logger.o
-
-# target to build an object file
-utils/Logger.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/utils/Logger.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/utils/Logger.cpp.o
-.PHONY : utils/Logger.cpp.o
-
-utils/Logger.i: utils/Logger.cpp.i
-.PHONY : utils/Logger.i
-
-# target to preprocess a source file
-utils/Logger.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/utils/Logger.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/utils/Logger.cpp.i
-.PHONY : utils/Logger.cpp.i
-
-utils/Logger.s: utils/Logger.cpp.s
-.PHONY : utils/Logger.s
-
-# target to generate assembly for a file
-utils/Logger.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/utils/Logger.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/utils/Logger.cpp.s
-.PHONY : utils/Logger.cpp.s
-
 utils/NetworkUtils.o: utils/NetworkUtils.cpp.o
 .PHONY : utils/NetworkUtils.o
 
@@ -350,9 +323,6 @@ help:
 	@echo "... tcp_server/main.o"
 	@echo "... tcp_server/main.i"
 	@echo "... tcp_server/main.s"
-	@echo "... utils/Logger.o"
-	@echo "... utils/Logger.i"
-	@echo "... utils/Logger.s"
 	@echo "... utils/NetworkUtils.o"
 	@echo "... utils/NetworkUtils.i"
 	@echo "... utils/NetworkUtils.s"

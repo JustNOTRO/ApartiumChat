@@ -7,7 +7,6 @@ server: \
   CMakeFiles/server.dir/tcp_server/Server.cpp.o \
   CMakeFiles/server.dir/tcp_client/Client.cpp.o \
   CMakeFiles/server.dir/utils/NetworkUtils.cpp.o \
-  CMakeFiles/server.dir/utils/Logger.cpp.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/libpthread.a \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/libstdc++.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/libm.so \
@@ -52,8 +51,6 @@ CMakeFiles/server.dir/tcp_server/Server.cpp.o:
 CMakeFiles/server.dir/tcp_client/Client.cpp.o:
 
 CMakeFiles/server.dir/utils/NetworkUtils.cpp.o:
-
-CMakeFiles/server.dir/utils/Logger.cpp.o:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/libpthread.a:
 
