@@ -99,7 +99,7 @@ bool connectToServer(const std::string &ipAddress, Socket sock) {
     if (connected) {
         std::cerr << "Connected to server: " << ipAddress << "." << std::endl;
     } else {
-        std::cerr << "Could not connect to server '" << ipAddress << std::endl;
+        std::cerr << "Could not connect to server '" << ipAddress << "'" << std::endl;
     }
     
     return connected;
@@ -213,8 +213,6 @@ void handleIncomingMessages(const std::string &username) {
         if (disconnected.load()) {
             break;
         }
-
-        connectionFailures.store(0);
 
         if (!FD_ISSET(getCurrentSocket(), &readSocks)) {
             continue;
@@ -334,8 +332,5 @@ int main() {
         getchar();
     #else
     #endif // _WIN32
-
-
-    
     return 0;
 }
