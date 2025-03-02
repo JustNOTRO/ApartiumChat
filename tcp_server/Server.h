@@ -2,9 +2,7 @@
 // Created by notro on 1/28/25.
 //
 
-#ifndef SERVER_H
-#define SERVER_H
-
+#pragma once
 #include <iostream>
 #include <list>
 #include <set>
@@ -109,5 +107,3 @@ class Server {
         std::uint16_t port;
 
 };
-
-#endif //SERVER_H
