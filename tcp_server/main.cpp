@@ -1,24 +1,27 @@
-#include <iostream>
-#include "Server.h"
-#include "utils/ServerUtils.h"
-#include "ServerConstants.h"
+#ifdef _WIN32
+#include <conio.h>
+#endif // _WIN32
 
-class Server;
-class ServerUtils;
+#include "Server.h"
 
 int main() {
    std::cout << "Enter IP Address: ";
    std::string ipAddress;
    std::cin >> ipAddress;
 
-   if (ipAddress.starts_with("localhost")) {
-       ipAddress = LOCAL_HOST_ADDRESS;
+   if (ipAddress.starts_with("localhost")) { 
+       ipAddress.replace(0, ipAddress.length(), LOCAL_HOST_ADDRESS);
    }
 
-   std::string ip = ServerUtils::getSelectedIpAddress(ipAddress);
-   short port = ServerUtils::getSelectedPort(ipAddress);
+   std::string ip = NetworkUtils::getSelectedIpAddress(ipAddress);
+   std::uint16_t port = NetworkUtils::getSelectedPort(ipAddress);
 
    Server server(ip, port);
    server.run();
+
+   #ifdef _WIN32
+        std::cout << "Press any key to continue..." << std::endl;
+        getchar();
+   #endif // _WIN32
    return 0;
 }

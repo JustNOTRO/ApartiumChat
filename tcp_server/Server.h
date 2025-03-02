@@ -2,62 +2,108 @@
 // Created by notro on 1/28/25.
 //
 
-#ifndef SERVER_H
-#define SERVER_H
+#pragma once
+#include <iostream>
 #include <list>
 #include <set>
 #include <unordered_map>
-#include <netinet/in.h>
 #include <functional>
 
+#include "ServerConstants.h"
 #include "Client.h"
 #include "ThreadPool.h"
+#include "NetworkUtils.h"
 
 class Client;
 class ThreadPool;
 
+/**
+ * @brief A class representation of the server-side application.
+ */
 class Server {
     public:
-        Server(std::string ip, const short& port);
+        /**
+         * @brief Constructs Server object.
+         * @param ip the server IP address
+         * @param port the server port
+         * @return a new server object
+         */
+        Server(std::string ip, const std::uint16_t &port);
 
+        /**
+         * @brief Destroys the Server object.
+         */
         ~Server();
 
+        /**
+         * @brief Starts to run the server.
+         */
         void run();
 
-        void broadcast(std::string senderName, int senderSock);
+        /**
+         * @brief Broadcasts the sender's message to all other connected clients.
+         * @param senderName the sender's name
+         * @param senderSock the sender's socket
+         */
+        void broadcast(std::string senderName, Socket senderSock);
 
-        bool addClient(const std::string& username, const int& sock);
+        /**
+         * @brief Adds the client to the server map.
+         * @param username the client name
+         * @param sock the client socket
+         * @return true if client was successfully added, false otherwise
+         */
+        bool addClient(const std::string &username, Socket sock);
 
-        void removeClient(const std::string& username);
+        /**
+         * @brief Removes the client from the server map.
+         * @param username the client's name
+         */
+        void removeClient(const std::string &username);
     
+        /**
+         * @brief Removes all clients from the server map.
+         */
         void cleanupClients();
 
-        bool hasClientWithName(const std::string& username);
+        /**
+         * @brief Checks if there is already client with that name in the server.
+         * @param username the client's name
+         * @return true if there is a client with that name, false otherwise
+         */
+        bool hasClientWithName(const std::string &username);
 
-        std::unordered_map<std::string, Client*>& getClients();
+        /**
+         * @brief Gets all the clients that are currently connected to the server.
+         * @return the clients connected to the server
+         */
+        std::unordered_map<std::string, Client*> &getClients();
 
-        std::vector<int> getClientSockets();
+        /**
+         * @brief Gets the client with name.
+         * @param username client name
+         * @return the client with that name, null otherwise
+         */
+        Client* getClient(const std::string &username);
 
-        Client* getClient(const std::string& username);
+        /**
+         * @brief Announces client disconnection.
+         * @param username the client name
+         */
+        void announceUserQuit(const std::string &username, int senderSock);
 
-        void announceUserQuit(const std::string& username);
+        /**
+         * @brief Sends message to all connected clients.
+         * @see broadcast(const std::string, Socket)
+         */
+        void broadcastMessage(const std::string &username, Socket excludeSock);
 
-        void broadcastMessage(const std::string &username, int excludeSock);
-
-        void disconnect();
-
-        int getSocket();
-
-        sockaddr_in getAddress();
-
-    protected:
-        std::unordered_map<std::string, Client*> clients;
+    private:
+        std::unordered_map<std::string, Client *> clients;
         ThreadPool threadPool;
 
         sockaddr_in address;
-        int sock;
-        short port;
+        Socket sock;
+        std::uint16_t port;
 
 };
-
-#endif //SERVER_H

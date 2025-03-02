@@ -35,7 +35,7 @@ This project is a **highly resilient** and **efficient** chat system built in C+
 - **sys/socket** – Using sys/socket for Unix-like operating systems.
 - **winsock** - Using winsock for Windows operating system.
 - **Multi-threading** – Optimized for performance.
-- **Thread Pooling**  - Efficient thread management&#x20;
+- **Thread Pooling** – Efficient thread management
 
 ## 🚀 Getting Started
 
@@ -45,34 +45,101 @@ Ensure you have the following installed:
 
 - A **C++ compiler** (`g++` recommended).
 - A **Unix-based system** (Linux/macOS recommended, though it can be adapted for Windows).
+- **CMake** (version 3.10 or above).
 
 ### 🔨 Compilation & Execution
 
-```sh
-# Clone the repository 
-git clone https://github.com/JustNOTRO/ApartiumChat.git
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/JustNOTRO/ApartiumChat.git
+    cd ApartiumChat
+    ```
 
-# Go to build directory
-cd build/
+2. Create a build directory and run CMake:
+    ```sh
+    mkdir build
+    cd build
+    cmake ..
+    ```
 
-# Compile the server
-make server
+3. Compile the server and client:
+    ```sh
+    make server
+    make client
+    ```
 
-# Compile the client
-make client
+4. Run the server:
+    ```sh
+    ./server
+    ```
 
-# Run the server
-./server
+5. Run the client (provide multiple server IPs as fallback):
+    ```sh
+    ./client <server_ip_1> <server_ip_2> <server_ip_3>
+    ```
 
-# Run the client (provide multiple server IPs as fallback)
-./client <server_ip_1> <server_ip_2> <server_ip_3>
-```
+#### Windows (MinGW or MSVC)
+
+##### With MinGW (using "MinGW Makefiles")
+
+1. Install MinGW and ensure it's added to your system's `PATH`.
+
+2. Clone the repository:
+    ```sh
+    git clone https://github.com/JustNOTRO/ApartiumChat.git
+    cd ApartiumChat
+    ```
+
+3. Create a build directory and run CMake with the MinGW generator:
+    ```sh
+    mkdir build
+    cd build
+    cmake -G "MinGW Makefiles" ..
+    ```
+
+4. Compile the server and client:
+    ```sh
+    mingw32-make server
+    mingw32-make client
+    ```
+
+5. Run the server:
+    ```sh
+    ./server.exe
+    ```
+
+6. Run the client (provide multiple server IPs as fallback):
+    ```sh
+    ./client.exe <server_ip_1> <server_ip_2> <server_ip_3>
+    ```
+
+##### With MSVC (Microsoft Visual Studio)
+
+1. Install **Visual Studio** with C++ development tools.
+
+2. Clone the repository:
+    ```sh
+    git clone https://github.com/JustNOTRO/ApartiumChat.git
+    cd ApartiumChat
+    ```
+
+3. Create a build directory and run CMake with the MSVC generator:
+    ```sh
+    mkdir build
+    cd build
+    cmake -G "Visual Studio 16 2019" ..
+    ```
+
+4. Open the generated solution file `ApartiumChat.sln` in Visual Studio.
+
+5. Build the solution from within Visual Studio.
+
+6. Run the server and client as usual from within the terminal or Visual Studio's debugger.
 
 ## 📜 License
 
-This project is licensed under the **MIT License** – feel free to use, modify, and enhance it! 🚀
+This project is licensed under the **MIT License** – feel free to use, modify, and enhance it.
 
 ## 🤝 Contributing
 
-Contributions are welcome! If you have improvements, submit a PR or open an issue. Let’s build a **rock-solid** chat system together! 🚀💬
-
+Contributions are welcome, If you have improvements, submit a PR or open an issue.

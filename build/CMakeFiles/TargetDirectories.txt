@@ -1,4 +1,0 @@
-/home/notro/ApartiumChat/build/CMakeFiles/server.dir
-/home/notro/ApartiumChat/build/CMakeFiles/client.dir
-/home/notro/ApartiumChat/build/CMakeFiles/edit_cache.dir
-/home/notro/ApartiumChat/build/CMakeFiles/rebuild_cache.dir
