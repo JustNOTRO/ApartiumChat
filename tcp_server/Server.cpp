@@ -188,24 +188,6 @@ std::unordered_map<std::string, Client *>& Server::getClients() {
     return clients;
 }
 
-Client* Server::getClient(const std::string &username) {
-    std::lock_guard<std::mutex> lock(mtx);
-    auto it = clients.find(username);
-    if (it != clients.end()) {
-        return it->second;
-    }
-  
-    return nullptr;
-}
-
-Socket Server::getSocket() {
-    return this->sock;
-}
-
-sockaddr_in Server::getAddress() {
-    return this->address;
-}
-
 void Server::announceUserQuit(const std::string &username, int senderSock) {
     std::string quitMsg = username + " disconnected from the server.";
     std::cout << quitMsg << std::endl;

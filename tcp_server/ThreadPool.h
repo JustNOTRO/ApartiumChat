@@ -1,5 +1,4 @@
-#ifndef THREADPOOL_H
-#define THREADPOOL_H
+#pragma once
 
 #include <iostream>
 #include <unordered_map>
@@ -43,5 +42,3 @@ private:
     std::condition_variable cv;
     bool stop;
 };
-
-#endif // THREADPOOL_H

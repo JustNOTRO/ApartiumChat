@@ -100,20 +100,6 @@ class Server {
          */
         void broadcastMessage(const std::string &username, Socket excludeSock);
 
-        /**
-         * @brief Gets the server socket.
-         * @return the server socket
-         */
-        Socket getSocket();
-
-        /**
-         * @brief Retrieves the server's address information.
-         * @see sockaddr_in
-         * @return A sockaddr_in representing the server's address
-         */
-        sockaddr_in getAddress();
-
-
     private:
         std::unordered_map<std::string, Client *> clients;
         ThreadPool threadPool;
