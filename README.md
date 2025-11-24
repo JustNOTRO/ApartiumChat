@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a **highly resilient** and **efficient** chat system built in C++ using `sys/socket`. Designed for **stability** and **flexibility**, it implements a **Heartbeat mechanism** to swiftly detect server crashes and an intelligent **failover protocol** to ensure seamless connectivity. 💡
+This project is a **highly resilient** and **efficient** chat system built in C++ using `sys/socket`. Designed for **stability** and **flexibility**, it implements a **Heartbeat mechanism** to swiftly detect server crashes and an intelligent **failover protocol** to ensure seamless connectivity. 
 
 ## Features
 
