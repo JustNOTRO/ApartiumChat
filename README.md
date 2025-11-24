@@ -1,18 +1,18 @@
-# 🚀 High-Availability C++ Chat System
+# High-Availability C++ Chat System
 
-## 🖧 Overview
+## Overview
 
 This project is a **highly resilient** and **efficient** chat system built in C++ using `sys/socket`. Designed for **stability** and **flexibility**, it implements a **Heartbeat mechanism** to swiftly detect server crashes and an intelligent **failover protocol** to ensure seamless connectivity. 💡
 
-## 🛠 Features
+## Features
 
-- **🔄 Heartbeat Mechanism** – Instantly detects server failures to prevent unexpected disconnections.
-- **⚡ Failover Protocol** – Automatically connects to alternative servers in case of failure.
-- **📡 Multi-Server Support** – Clients can specify a prioritized list of server IPs for maximum reliability.
-- **💬 Real-Time Messaging** – Efficient socket-based communication with minimal latency.
-- **🛡 Robust & Scalable** – Designed with stability in mind for long-lasting connections.
+- **Heartbeat Mechanism** – Instantly detects server failures to prevent unexpected disconnections.
+- **Failover Protocol** – Automatically connects to alternative servers in case of failure.
+- **Multi-Server Support** – Clients can specify a prioritized list of server IPs for maximum reliability.
+- **Real-Time Messaging** – Efficient socket-based communication with minimal latency.
+- **Robust & Scalable** – Designed with stability in mind for long-lasting connections.
 
-## 🎯 How It Works
+## How It Works
 
 1. **Client-Side Configuration**
 
@@ -29,7 +29,7 @@ This project is a **highly resilient** and **efficient** chat system built in C+
    - Seamlessly reconnects to the next prioritized server in the list.
    - Ensures minimal disruption to the chat experience.
 
-## 🏗️ Technology Stack
+## Technology Stack
 
 - **C++** – Core implementation.
 - **sys/socket** – Using sys/socket for Unix-like operating systems.
@@ -37,9 +37,9 @@ This project is a **highly resilient** and **efficient** chat system built in C+
 - **Multi-threading** – Optimized for performance.
 - **Thread Pooling** – Efficient thread management
 
-## 🚀 Getting Started
+## Getting Started
 
-### 🔧 Prerequisites
+### Prerequisites
 
 Ensure you have the following installed:
 
@@ -47,7 +47,7 @@ Ensure you have the following installed:
 - A **Unix-based system** (Linux/macOS recommended, though it can be adapted for Windows).
 - **CMake** (version 3.10 or above).
 
-### 🔨 Compilation & Execution
+### Compilation & Execution
 
 1. Clone the repository:
     ```sh
@@ -136,10 +136,10 @@ Ensure you have the following installed:
 
 6. Run the server and client as usual from within the terminal or Visual Studio's debugger.
 
-## 📜 License
+## License
 
 This project is licensed under the **MIT License** – feel free to use, modify, and enhance it.
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome, If you have improvements, submit a PR or open an issue.
